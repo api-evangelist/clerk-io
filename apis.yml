@@ -4,8 +4,8 @@ url: >-
 name: Clerk.io
 tags:
   - Commerce
-  - Personalization
   - E-Commerce
+  - Personalization
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
