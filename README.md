@@ -1,60 +1,47 @@
 # Clerk.io (clerk-io)
-Clerk.io is an e-commerce personalization platform that utilizes artificial intelligence and machine learning to offer tailored product recommendations, search results, and marketing communications for online retailers. By analyzing customer behavior and preferences, Clerk.io helps businesses increase conversion rates, improve customer retention, and drive sales. With features like personalized product recommendations, automated email marketing campaigns, and dynamic search capabilities, Clerk.io helps online stores provide a more customized and engaging shopping experience for their customers.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/clerk-io/refs/heads/main/apis.yml)
+Clerk.io is an e-commerce personalization platform that uses artificial intelligence and machine learning to deliver tailored product recommendations, on-site search results, audience-segmented email campaigns, and merchandising controls for online retailers. The platform exposes a REST API for product, category, order, and customer data ingestion, plus client-side JavaScript and Liquid templating for recommendation slots and search experiences.
+
+**APIs.json:** [apis.yml](https://raw.githubusercontent.com/api-evangelist/clerk-io/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consumer 
-- **Access:** 3rd-Party 
+- **Type:** Index
+- **x-type:** company
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - Commerce, Personalization
-
-## Timestamps
-
-- **Created:** 2025-02-08 
-- **Modified:** 2025-02-27 
+AI, Commerce, E-Commerce, Email Marketing, Personalization, Recommendations, Search
 
 ## APIs
 
-### Clerk.io
-Clerk.io is a powerful e-commerce personalization platform that helps businesses increase sales and enhance their customers' shopping experience. By analyzing customer behavior and purchasing patterns, Clerk.io provides personalized product recommendations and relevant search results to help customers find exactly what they are looking for. In addition, Clerk.io's AI-driven algorithms continuously learn and adapt to individual preferences, ensuring that each customer receives a unique and tailored shopping experience. Overall, Clerk.io aims to drive customer engagement, loyalty, and ultimately, revenue for online retailers.
+### Clerk.io API
+REST endpoints for managing products, categories, orders, customers, recommendations, and search. The API uses a dual-key authentication model: a public key identifies the store, while a private key is required for sensitive operations and data ingestion.
 
-**Human URL:** [ https://docs.clerk.io/]( https://docs.clerk.io/)
+- [Documentation](https://docs.clerk.io/)
+- [Getting Started](https://docs.clerk.io/docs/how-the-clerkio-platform-works)
+- [Authentication](https://docs.clerk.io/docs/authentication)
 
+### Clerk.js Client Library
+Browser-side JavaScript library for embedding Clerk.io recommendation slots, search, and email opens on a storefront, with Liquid templating support and event tracking.
 
-#### Tags:
-
- - API
-
-#### Properties
-
-- [Documentation]( https://docs.clerk.io/)
+- [Documentation](https://docs.clerk.io/docs/clerkjs-quick-start)
 
 ## Common Properties
 
-- [GettingStarted](https://docs.clerk.io/docs/how-the-clerkio-platform-works)
-- [Authentication](https://docs.clerk.io/docs/authentication)
-- [Errors](https://docs.clerk.io/docs/errors)
-- [Pagination](https://docs.clerk.io/docs/pagenation)
-- [GettingStarted](https://docs.clerk.io/docs/clerkjs-quick-start)
+- [Website](https://www.clerk.io/)
+- [Documentation](https://docs.clerk.io/)
 - [Knowledgebase](https://help.clerk.io/)
 - [Status](https://status.clerk.io/)
-- [Website](https://www.clerk.io/)
 - [Pricing](https://www.clerk.io/pricing)
-- [Partners](https://www.clerk.io/partners)
-- [Blog](https://www.clerk.io/blogs)
-- [Integrations](https://www.clerk.io/integrations)
-- [TermsOfService](https://www.clerk.io/terms-of-service)
-- [PrivacyPolicy](https://www.clerk.io/privacy)
-- [Trust](https://trust.clerk.io/)
+- [Trust Center](https://trust.clerk.io/)
+- [JSON-LD](json-ld/clerk-io-context.jsonld)
+- [Spectral](rules/clerk-io-rules.yml)
+- [Naftiko Capabilities](capabilities/clerk-io-capabilities.yml)
 
 ## Maintainers
 
-**FN:** Kin Lane
-
-**Email:** info@apievangelist.com
-
+- **FN:** Kin Lane
+- **Email:** kinlane@gmail.com

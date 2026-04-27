@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "clerk": "https://clerk.io/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Product": {
+      "@id": "schema:Product",
+      "@context": {
+        "id": "schema:productID",
+        "name": "schema:name",
+        "description": "schema:description",
+        "price": "schema:price",
+        "currency": "schema:priceCurrency",
+        "image": "schema:image",
+        "url": "schema:url",
+        "brand": "schema:brand",
+        "categories": "clerk:categories",
+        "stock": "clerk:stock"
+      }
+    },
+
+    "Category": {
+      "@id": "schema:CategoryCode",
+      "@context": {
+        "id": "schema:codeValue",
+        "name": "schema:name",
+        "url": "schema:url",
+        "parent": "clerk:parent"
+      }
+    },
+
+    "Order": {
+      "@id": "schema:Order",
+      "@context": {
+        "id": "schema:orderNumber",
+        "customer": "schema:customer",
+        "products": "clerk:products",
+        "time": {
+          "@id": "schema:orderDate",
+          "@type": "xsd:dateTime"
+        },
+        "total": "schema:totalPrice"
+      }
+    },
+
+    "Customer": {
+      "@id": "schema:Person",
+      "@context": {
+        "id": "schema:identifier",
+        "email": "schema:email",
+        "name": "schema:name"
+      }
+    },
+
+    "Recommendation": {
+      "@id": "clerk:Recommendation",
+      "@context": {
+        "slot": "clerk:slot",
+        "products": "clerk:products",
+        "score": "clerk:score"
+      }
+    }
+  }
+}
