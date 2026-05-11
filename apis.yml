@@ -95,6 +95,38 @@ common:
     url: rules/clerk-io-rules.yml
   - type: Naftiko Capabilities
     url: capabilities/clerk-io-capabilities.yml
+integrations:
+  - name: cler.io
+  - name: Heart
+  - name: Icon symbolizing AI
+  - name: People icon, symbolizing audience
+  - name: Envelope icon symbolizing email
+  - name: Icon symbolizing a platform
+  - name: Reviews
+  - name: Icon symbolizing integration process
+  - name: Icon symbolizing integrations
+  - name: people
+  - name: Icon of a graph symbolizing verticals
+  - name: Icon symbolizing careers
+  - name: Handshake icon symbolizing partnerships
+  - name: Book icon symbolizing knowledge
+  - name: shield orange
+  - name: people orange
+  - name: interrogation orange
+  - name: book orange
+  - name: play orange
+  - name: shopify
+  - name: magneto
+  - name: big comemrce
+  - name: shopware
+  - name: woo commerce
+  - name: presta shop
+  - name: dandomain
+  - name: lightspeed
+  - name: smartweb
+  - name: shoporama
+  - name: JTL
+  - name: clerk.io
 maintainers:
   - FN: Kin Lane
     email: kinlane@gmail.com
