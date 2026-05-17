@@ -8,7 +8,7 @@ access: 3rd-Party
 position: Consumer
 specificationVersion: '0.19'
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-x-type: company
+kind: company
 tags:
   - AI
   - Commerce
@@ -38,7 +38,7 @@ apis:
       - url: https://docs.clerk.io/
         type: Documentation
       - url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
-        type: Getting Started
+        type: GettingStarted
       - url: https://docs.clerk.io/docs/authentication
         type: Authentication
       - url: https://docs.clerk.io/docs/errors
@@ -73,7 +73,7 @@ common:
     url: https://docs.clerk.io/
   - type: Knowledgebase
     url: https://help.clerk.io/
-  - type: Status
+  - type: StatusPage
     url: https://status.clerk.io/
   - type: Blog
     url: https://www.clerk.io/blogs
@@ -85,11 +85,11 @@ common:
     url: https://www.clerk.io/integrations
   - type: Trust Center
     url: https://trust.clerk.io/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.clerk.io/terms-of-service
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.clerk.io/privacy
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/clerk-io-context.jsonld
   - type: Spectral
     url: rules/clerk-io-rules.yml
