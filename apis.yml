@@ -67,6 +67,10 @@ apis:
       Clerk.io recommendation slots, search, and email opens on a
       storefront, with Liquid templating support and event tracking.
 common:
+  - type: GitHubOrganization
+    url: https://github.com/clerkio
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/clerk-io
   - type: Website
     url: https://www.clerk.io/
   - type: Documentation
