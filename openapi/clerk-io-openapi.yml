@@ -1,0 +1,291 @@
+openapi: 3.1.0
+info:
+  title: Clerk.io API
+  description: |
+    Clerk.io e-commerce personalization REST API for ingesting catalog data
+    (products, categories, pages, orders), running recommendations and search,
+    managing accessories and order parcels, and logging user behavior.
+    Authentication is performed by sending the store's API key and (for
+    write operations) private API key in the request body.
+  version: "1.0.0"
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+servers:
+  - url: https://api.clerk.io/v2
+    description: Clerk.io production API
+paths:
+  /products:
+    post:
+      summary: Add or update products
+      operationId: upsertProducts
+      tags: [Catalog]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductsRequest'
+      responses:
+        '200':
+          description: Products upserted
+  /categories:
+    post:
+      summary: Add or update categories
+      operationId: upsertCategories
+      tags: [Catalog]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Categories upserted
+  /pages:
+    post:
+      summary: Add or update pages
+      operationId: upsertPages
+      tags: [Catalog]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Pages upserted
+  /orders:
+    post:
+      summary: Add or update orders
+      operationId: upsertOrders
+      tags: [Catalog]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Orders upserted
+  /orders/parcels:
+    get:
+      summary: Fetch parcels for orders
+      operationId: listOrderParcels
+      tags: [Orders]
+      responses:
+        '200':
+          description: List of order parcels
+    post:
+      summary: Create parcels for orders
+      operationId: createOrderParcels
+      tags: [Orders]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Parcels created
+    patch:
+      summary: Edit parcels for orders
+      operationId: updateOrderParcels
+      tags: [Orders]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Parcels updated
+    delete:
+      summary: Remove parcels for orders
+      operationId: deleteOrderParcels
+      tags: [Orders]
+      responses:
+        '200':
+          description: Parcels removed
+  /accessories:
+    get:
+      summary: Retrieve accessories
+      operationId: listAccessories
+      tags: [Accessories]
+      responses:
+        '200':
+          description: Accessories
+    post:
+      summary: Create accessories
+      operationId: createAccessories
+      tags: [Accessories]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Created
+    patch:
+      summary: Update accessories
+      operationId: updateAccessories
+      tags: [Accessories]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated
+    delete:
+      summary: Remove accessories
+      operationId: deleteAccessories
+      tags: [Accessories]
+      responses:
+        '200':
+          description: Removed
+  /recommendations/popular:
+    get:
+      summary: Popular product recommendations
+      operationId: recommendationsPopular
+      tags: [Recommendations]
+      responses:
+        '200':
+          description: Recommendations
+  /recommendations/trending:
+    get:
+      summary: Trending product recommendations
+      operationId: recommendationsTrending
+      tags: [Recommendations]
+      responses:
+        '200':
+          description: Recommendations
+  /recommendations/complementary:
+    get:
+      summary: Complementary product recommendations
+      operationId: recommendationsComplementary
+      tags: [Recommendations]
+      responses:
+        '200':
+          description: Recommendations
+  /recommendations/substituting:
+    get:
+      summary: Substituting product recommendations
+      operationId: recommendationsSubstituting
+      tags: [Recommendations]
+      responses:
+        '200':
+          description: Recommendations
+  /search/search:
+    get:
+      summary: Product search with behavioral ranking
+      operationId: searchProducts
+      tags: [Search]
+      parameters:
+        - in: query
+          name: query
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Search results
+  /search/predictive:
+    get:
+      summary: "Search As You Type" auto-completion
+      operationId: searchPredictive
+      tags: [Search]
+      parameters:
+        - in: query
+          name: query
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Predictive results
+  /search/suggestions:
+    get:
+      summary: Query auto-complete suggestions
+      operationId: searchSuggestions
+      tags: [Search]
+      responses:
+        '200':
+          description: Suggestions
+  /search/categories:
+    get:
+      summary: Category search with relevance sorting
+      operationId: searchCategories
+      tags: [Search]
+      responses:
+        '200':
+          description: Categories
+  /search/pages:
+    get:
+      summary: Pages search
+      operationId: searchPages
+      tags: [Search]
+      responses:
+        '200':
+          description: Pages
+  /search/popular:
+    get:
+      summary: Popular/trending searches from the past 2 days
+      operationId: searchPopular
+      tags: [Search]
+      responses:
+        '200':
+          description: Popular queries
+  /log/click:
+    post:
+      summary: Log product click
+      operationId: logClick
+      tags: [Logging]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Logged
+  /log/category:
+    post:
+      summary: Log category view
+      operationId: logCategory
+      tags: [Logging]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Logged
+components:
+  schemas:
+    ProductsRequest:
+      type: object
+      required: [key, private_key, products]
+      properties:
+        key:
+          type: string
+          description: Public Clerk.io store key
+        private_key:
+          type: string
+          description: Private API key (required for write operations)
+        products:
+          type: array
+          items:
+            type: object
