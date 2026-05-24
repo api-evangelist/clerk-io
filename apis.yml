@@ -99,6 +99,8 @@ common:
     url: rules/clerk-io-rules.yml
   - type: Naftiko Capabilities
     url: capabilities/clerk-io-capabilities.yml
+  - type: LLMsTxt
+    url: https://docs.clerk.io/llms.txt
 integrations:
   - name: cler.io
   - name: Heart
