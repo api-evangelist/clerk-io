@@ -18,13 +18,10 @@ tags:
   - Recommendations
   - Search
 description: >-
-  Clerk.io is an e-commerce personalization platform that uses artificial
-  intelligence and machine learning to deliver tailored product
-  recommendations, on-site search results, audience-segmented email
-  campaigns, and merchandising controls for online retailers. The platform
-  exposes a REST API for product, category, order, and customer data
-  ingestion, plus client-side JavaScript and Liquid templating for
-  recommendation slots and search experiences.
+  Clerk.io is an e-commerce personalization platform that uses artificial intelligence and machine learning to deliver
+  tailored product recommendations, on-site search results, audience-segmented email campaigns, and merchandising
+  controls for online retailers. The platform exposes a REST API for product, category, order, and customer data
+  ingestion, plus client-side JavaScript and Liquid templating for recommendation slots and search experiences.
 apis:
   - aid: clerk-io:clerk-io-api
     name: Clerk.io API
@@ -46,13 +43,10 @@ apis:
       - url: https://docs.clerk.io/docs/pagenation
         type: Pagination
     description: >-
-      The Clerk.io API provides REST endpoints for managing products,
-      categories, orders, customers, recommendations, and search. The API
-      uses a dual-key authentication model: a public key identifies the
-      store and is used in browser-side requests, while a private key is
-      required for sensitive operations and data ingestion. JSON is the
-      primary payload format and SSL is required when sending the private
-      key.
+      The Clerk.io API provides REST endpoints for managing products, categories, orders, customers, recommendations,
+      and search. The API uses a dual-key authentication model: a public key identifies the store and is used in
+      browser-side requests, while a private key is required for sensitive operations and data ingestion. JSON is the
+      primary payload format and SSL is required when sending the private key.
   - aid: clerk-io:clerkjs
     name: Clerk.js Client Library
     tags:
@@ -63,9 +57,8 @@ apis:
       - url: https://docs.clerk.io/docs/clerkjs-quick-start
         type: Documentation
     description: >-
-      Clerk.js is the browser-side JavaScript library for embedding
-      Clerk.io recommendation slots, search, and email opens on a
-      storefront, with Liquid templating support and event tracking.
+      Clerk.js is the browser-side JavaScript library for embedding Clerk.io recommendation slots, search, and email
+      opens on a storefront, with Liquid templating support and event tracking.
 common:
   - type: GitHubOrganization
     url: https://github.com/clerkio
@@ -97,8 +90,6 @@ common:
     url: json-ld/clerk-io-context.jsonld
   - type: Spectral
     url: rules/clerk-io-rules.yml
-  - type: Naftiko Capabilities
-    url: capabilities/clerk-io-capabilities.yml
   - type: LLMsTxt
     url: https://docs.clerk.io/llms.txt
 integrations:
