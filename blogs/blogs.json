@@ -2,13 +2,20 @@
   "repo": "clerk-io",
   "feeds": [
     {
+      "source": "https://www.clerk.io/blogs",
+      "feed_url": "https://www.clerk.io/blogs",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://status.clerk.io/",
       "feed_url": "https://status.clerk.io/feed",
       "title": "",
-      "saved": 2,
+      "saved": 0,
       "method": "discovered"
     }
   ],
-  "fetched": "2026-06-01T23:35:02Z",
-  "post_count": 2
+  "post_count": 9,
+  "fetched": "2026-06-14T20:42:17Z"
 }
