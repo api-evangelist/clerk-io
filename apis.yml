@@ -39,7 +39,7 @@ apis:
       - url: https://docs.clerk.io/docs/authentication
         type: Authentication
       - url: https://docs.clerk.io/docs/errors
-        type: Errors
+        type: ErrorCodes
       - url: https://docs.clerk.io/docs/pagenation
         type: Pagination
     description: >-
@@ -90,7 +90,7 @@ common:
     url: json-ld/clerk-io-context.jsonld
   - type: Spectral
     url: rules/clerk-io-rules.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.clerk.io/llms.txt
 integrations:
   - name: cler.io
