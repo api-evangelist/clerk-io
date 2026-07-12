@@ -60,6 +60,10 @@ apis:
       Clerk.js is the browser-side JavaScript library for embedding Clerk.io recommendation slots, search, and email
       opens on a storefront, with Liquid templating support and event tracking.
 common:
+  - type: TrustCenter
+    url: security/clerk-io-trust-center.yml
+  - type: DomainSecurity
+    url: security/clerk-io-domain-security.yml
   - type: GitHubOrganization
     url: https://github.com/clerkio
   - type: LinkedIn
