@@ -2,19 +2,27 @@ aid: clerk-io
 name: Clerk.io
 url: https://raw.githubusercontent.com/api-evangelist/clerk-io/refs/heads/main/apis.yml
 accessModel:
-  pricing: freemium
-  onboarding: unknown
-  trial: false
+  pricing: usage-based
+  onboarding: signup-required
+  trial: true
+  trial_url: https://www.clerk.io/free-trial
   try_now: false
   public: false
-  label: Freemium
-  confidence: medium
+  label: Usage-Based
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - https://www.clerk.io/pricing
+  - https://www.clerk.io/free-trial
+  - plans/clerk-io-plans-pricing.yml
+  generated: '2026-08-13'
+  method: searched
+  note: >-
+    Corrected 2026-08-13. The prior derived block read "freemium / trial: false" from a fabricated plans
+    scaffold. Clerk.io sells five metered products a la carte with no free tier and no named
+    subscription tiers, and does offer a free trial. Per-band prices are calculator-only and are not
+    published in machine-readable form.
 created: '2025-02-08'
-modified: '2026-04-26'
+modified: '2026-08-13'
 type: Index
 access: 3rd-Party
 position: Consumer
@@ -43,9 +51,20 @@ apis:
       - Recommendations
       - Search
     humanURL: https://docs.clerk.io/
+    baseURL: https://api.clerk.io/v2
     properties:
+      - url: openapi/clerk-io-openapi.yml
+        type: OpenAPI
+      - url: openapi/_original/clerk-io-api-settings-openapi-original.yml
+        type: OpenAPI
+      - url: overlays/clerk-io-api-overlay.yaml
+        type: Overlay
+      - url: mcp/clerk-io-tool-crosswalk.yml
+        type: ToolCrosswalk
       - url: https://docs.clerk.io/
         type: Documentation
+      - url: https://docs.clerk.io/reference
+        type: APIReference
       - url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
         type: GettingStarted
       - url: https://docs.clerk.io/docs/authentication
@@ -58,20 +77,32 @@ apis:
       The Clerk.io API provides REST endpoints for managing products, categories, orders, customers, recommendations,
       and search. The API uses a dual-key authentication model: a public key identifies the store and is used in
       browser-side requests, while a private key is required for sensitive operations and data ingestion. JSON is the
-      primary payload format and SSL is required when sending the private key.
+      primary payload format and SSL is required when sending the private key. Clerk.io publishes an OpenAPI 3.1.0
+      definition of 65 paths and 101 operations through its ReadMe developer portal, covering catalog ingestion,
+      search, twenty-five recommendation logics, behavioural logging, merchandising, audiences and GDPR privacy
+      requests.
   - aid: clerk-io:clerkjs
     name: Clerk.js Client Library
     tags:
       - Client Library
       - JavaScript
     humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+    baseURL: https://api.clerk.io/v2
     properties:
       - url: https://docs.clerk.io/docs/clerkjs-quick-start
         type: Documentation
+      - url: https://cdn.clerk.io/clerk.js
+        type: SourceCode
+      - url: https://docs.clerk.io/docs/clerkjs-cdn
+        type: CDN
+      - url: components/clerk-io-components.yml
+        type: Components
     description: >-
       Clerk.js is the browser-side JavaScript library for embedding Clerk.io recommendation slots, search, and email
       opens on a storefront, with Liquid templating support and event tracking.
 common:
+  - type: Authentication
+    url: authentication/clerk-io-authentication.yml
   - type: TrustCenter
     url: security/clerk-io-trust-center.yml
   - type: DomainSecurity
@@ -108,6 +139,60 @@ common:
     url: rules/clerk-io-rules.yml
   - type: LlmsText
     url: https://docs.clerk.io/llms.txt
+  - type: LLMsTxt
+    url: llms/clerk-io-llms.txt
+  - type: DeveloperPortal
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Support
+    url: https://help.clerk.io/
+  - type: SignUp
+    url: https://www.clerk.io/free-trial
+  - type: Login
+    url: https://my.clerk.io/
+  - type: Packages
+    url: packages/clerk-io-packages.yml
+  - type: SDKs
+    url: packages/clerk-io-packages.yml
+  - type: MCPServer
+    url: mcp/clerk-io-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Overlay
+    url: overlays/clerk-io-api-overlay.yaml
+  - type: Conformance
+    url: conformance/clerk-io-conformance.yml
+  - type: Compliance
+    url: https://trust.clerk.io/
+  - type: ErrorCatalog
+    url: errors/clerk-io-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/clerk-io-lifecycle.yml
+  - type: Conventions
+    url: conventions/clerk-io-conventions.yml
+  - type: DataModel
+    url: data-model/clerk-io-data-model.yml
+  - type: Components
+    url: components/clerk-io-components.yml
+  - type: Plans
+    url: plans/clerk-io-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/clerk-io-rate-limits.yml
+  - type: FinOps
+    url: finops/clerk-io-finops.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+# NOTE: well-known/clerk-io-well-known.yml is deliberately NOT wired to a common[] pointer.
+# Every /.well-known/ path on every Clerk.io host returned 404 on 2026-08-13, so the artifact records a
+# verified ABSENCE. Emitting a WellKnown or SecurityTxt pointer would assert a surface Clerk.io does not
+# serve. Same reasoning for AgentCard (no card found), Security (no security.txt, no bug bounty, no
+# disclosure page), Deprecation (no policy published), Idempotency (no mechanism published), ChangeLog
+# (ReadMe changelog is live but publishes zero entries), AsyncAPI/Webhooks (no event surface exists),
+# Postman (the postman.com/clerk-io workspace is published by postman-atlas, not by Clerk.io), Roadmap
+# (404) and Sandbox/CLI (neither exists).
 integrations:
   - name: cler.io
   - name: Heart
@@ -143,3 +228,26 @@ integrations:
 maintainers:
   - FN: Kin Lane
     email: kinlane@gmail.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Clerk.io publishes a real OpenAPI 3.1.0 - 65 paths, 101 operations, servers https://api.clerk.io/v2 -
+    through its ReadMe developer portal, plus a verbatim llms.txt and a remote (auth-gated) MCP endpoint
+    at https://docs.clerk.io/mcp. The prior round had only a 20-operation best-effort spec hand-written
+    from the docs and no contract pointer at all.
+  evidence:
+    - url: https://docs.clerk.io/reference/products-post
+      status: 200
+    - url: https://docs.clerk.io/llms.txt
+      status: 200
+    - url: https://docs.clerk.io/mcp
+      status: 200
+    - url: https://api.clerk.io/openapi.json
+      status: 404
+  checked: '2026-08-13'
