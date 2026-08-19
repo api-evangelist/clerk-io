@@ -1,0 +1,80 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.clerk.io/docs/errors
+spec_source: openapi/clerk-io-openapi.yml
+format: vendor-envelope
+rfc9457: false
+note: >-
+  Clerk.io does NOT use RFC 9457 problem+json. It returns a proprietary JSON envelope on application/json
+  with a fixed shape and a small closed set of error TYPES rather than numeric error codes. The envelope
+  and the four types below are published verbatim in the docs error reference. The published OpenAPI is
+  much weaker than the docs here: across 101 operations it declares only 200 and 400 responses (53 of the
+  101 operations declare a 400 at all), every 400 schema is an empty object, and no 401/403/404/429/5xx
+  response is declared anywhere - so an agent reading only the spec would not know an error envelope
+  exists. Observed live behaviour also contradicts the spec: an unauthenticated GET to
+  https://api.clerk.io/v2/recommendations/popular returns HTTP 401 with the AuthenticationError envelope,
+  and https://api.clerk.io/v2/openapi.json returns HTTP 200 carrying an AuthenticationError envelope -
+  a soft error, not a status code.
+envelope:
+  media_type: application/json
+  fields:
+  - name: status
+    description: The status of the request. Always the literal string "error".
+  - name: message
+    description: A human-readable message explaining the error.
+  - name: moreInfo
+    description: >-
+      Link to a unique, more detailed error page for this specific error instance, at
+      http://my.clerk.io/error/{ERROR_ID}. Usable in support conversations. Reports are deleted after 24
+      hours if never opened, or after 7 days of inactivity.
+  - name: type
+    description: The error type. One of the four values in problems[] below.
+  - name: id
+    description: The unique ID of this error instance.
+  example: |-
+    {
+      "status": "error",
+      "message": "A message explaining the error.",
+      "moreInfo": "http://my.clerk.io/error/{ERROR_ID}",
+      "type": "ErrorType",
+      "id": "{ERROR_ID}"
+    }
+problems:
+- type: AuthenticationError
+  title: Request could not be authenticated
+  cause: An invalid API key, or a disabled account.
+  remediation: >-
+    Verify the public `key` matches the store, and that `private_key` is supplied for write and
+    sensitive operations. Confirm the account is active in my.clerk.io.
+  observed_http_status: 401
+  observed_at: https://api.clerk.io/v2/recommendations/popular
+  source: https://docs.clerk.io/docs/errors
+- type: ParsingError
+  title: Request body or parameters could not be parsed
+  cause: >-
+    The request is not valid JSON, a required parameter is missing, or a parameter has the wrong type.
+  remediation: >-
+    JSON-encode complex GET query parameters (lists and objects) - Clerk.io treats an unencoded value as
+    a plain string. Check required parameters against the operation in openapi/clerk-io-openapi.yml.
+  mapped_spec_status: 400
+  source: https://docs.clerk.io/docs/errors
+- type: LogicalError
+  title: A parameter did not follow documented behaviour
+  cause: One or more parameters were syntactically valid but semantically wrong.
+  remediation: Re-read the operation's parameter semantics, filters and facets documentation.
+  mapped_spec_status: 400
+  source: https://docs.clerk.io/docs/errors
+- type: InternalError
+  title: Unexpected server error
+  cause: An unexpected error occurred on Clerk.io's side.
+  remediation: >-
+    Retry with backoff and quote the `id` / `moreInfo` link to Clerk.io support. Clerk.io states these
+    are logged internally, then manually verified and fixed.
+  mapped_spec_status: null
+  source: https://docs.clerk.io/docs/errors
+spec_gaps:
+- No 401 response is declared on any of the 101 operations, although the API demonstrably returns 401.
+- 48 of 101 operations declare no 4xx response at all.
+- Every declared 400 response carries an empty object schema, not the documented error envelope.
+- No 429 response and no rate-limit semantics are declared or documented.
+- No 5xx response is declared, although InternalError is a documented error type.

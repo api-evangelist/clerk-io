@@ -1,0 +1,80 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/clerk-io-openapi.yml, https://docs.clerk.io/docs/errors, https://docs.clerk.io/docs/pagenation,
+  https://docs.clerk.io/docs/authentication, https://trust.clerk.io/
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    Provider publishes OpenAPI 3.1.0 through ReadMe API Designer; 65 paths / 101 operations harvested
+    from https://docs.clerk.io/reference/*.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme in the spec and no OAuth documentation on any Clerk.io host.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every host.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use a proprietary {status,message,moreInfo,type,id} envelope on application/json, not
+    application/problem+json. See errors/clerk-io-problem-types.yml.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www.clerk.io, clerk.io, api.clerk.io and docs.clerk.io.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support published; no deprecation policy.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No idempotency key header or replay-detection window is published. See
+    conventions/clerk-io-conventions.yml.
+- id: pagination
+  conforms: true
+  evidence: >-
+    Documented limit/offset pagination on result-returning endpoints
+    (https://docs.clerk.io/docs/pagenation). No cursor pagination and no total-count field.
+- id: json-api
+  conforms: false
+  evidence: Responses are a bare vendor JSON envelope; no JSON:API document structure.
+- id: odata
+  conforms: false
+  evidence: No OData query surface.
+- id: scim
+  conforms: false
+  evidence: No /Users or /Groups SCIM 2.0 endpoints.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No event, streaming or webhook surface is documented anywhere in the Clerk.io docs index; nothing to
+    describe.
+- id: mcp
+  conforms: partial
+  evidence: >-
+    A remote MCP endpoint answers at https://docs.clerk.io/mcp but tools/list is auth-gated (401) and it
+    is scoped to documentation, not to the REST operations. See mcp/clerk-io-mcp.yml.
+- id: a2a
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json return 404 on every Clerk.io host.
+- id: gdpr
+  conforms: true
+  evidence: >-
+    Clerk.io publishes GDPR compliance at https://trust.clerk.io/ and ships dedicated data-subject
+    endpoints in the API - /privacy/info (privacy-info) and /privacy/forget (privacy-forget).
+- id: soc2
+  conforms: true
+  evidence: SOC 2 named on the Clerk.io Trust Center at https://trust.clerk.io/.
+- id: iso27001
+  conforms: true
+  evidence: ISO/IEC 27001 named on the Clerk.io Trust Center at https://trust.clerk.io/.
+- id: pci-dss
+  conforms: false
+  evidence: Not claimed; Clerk.io does not process card data.
+compliance_program:
+  published: true
+  url: https://trust.clerk.io/
+  certifications: [SOC 2, ISO 27001, GDPR]
+  see: security/clerk-io-trust-center.yml

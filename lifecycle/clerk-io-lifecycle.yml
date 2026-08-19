@@ -1,0 +1,53 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.clerk.io/docs/api, https://status.clerk.io/, https://docs.clerk.io/changelog,
+  https://www.clerk.io/terms-of-service, openapi/clerk-io-openapi.yml
+versioning:
+  scheme: uri-path
+  current: v2
+  docs: https://docs.clerk.io/docs/api
+  policy_published: false
+  note: >-
+    Clerk.io states only that "the version is always v2 and should be the first part of the URL path".
+    There is no published policy describing how versions are introduced or retired, no dated or header
+    version pinning, and no v1 documentation remaining. The docs host still serves a legacy
+    /v2/reference path alongside /reference.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation policy, no RFC 8594 Sunset or Deprecation header support, and no advance-notice
+    commitment is published. NO Deprecation pointer is emitted in apis.yml - the artifact records the
+    absence.
+deprecated_operations: []
+deprecated_operations_note: >-
+  Zero of the 101 operations in the provider-published OpenAPI carry deprecated: true. Every operation
+  explicitly declares deprecated: false.
+sla:
+  url: null
+  uptime_target: null
+  published: false
+  note: >-
+    No uptime target or service-level commitment is published on the public site. The terms of service
+    at https://www.clerk.io/terms-of-service do not state a numeric availability target.
+status_page:
+  url: https://status.clerk.io/
+  vendor: Atlassian Statuspage
+  http_status: 200
+  machine_readable: false
+  note: >-
+    The status page is live and carries dated incident history, but the Statuspage JSON API is not
+    exposed on this instance - https://status.clerk.io/api/v2/summary.json returns the HTML page, not
+    JSON, so an agent cannot poll availability programmatically. Incident history is mirrored into
+    blogs/ in this repo and shows recurring API and docs outages through 2026-06.
+changelog:
+  url: https://docs.clerk.io/changelog
+  http_status: 200
+  entries_published: 0
+  note: >-
+    The ReadMe changelog surface exists and returns 200, but its public changelog collection is EMPTY
+    (total: 0). Clerk.io ships product-update marketing posts under www.clerk.io but publishes no dated,
+    versioned API changelog, so no changelog/ artifact and no ChangeLog pointer are emitted.

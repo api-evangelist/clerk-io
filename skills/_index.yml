@@ -1,0 +1,42 @@
+generated: '2026-08-13'
+method: generated
+source: openapi/clerk-io-openapi.yml + Clerk.io developer documentation
+note: One packaged Agent Skill per marquee Clerk.io flow. Every operationId listed in the frontmatter was verified
+  to exist in the provider-published OpenAPI (openapi/clerk-io-openapi.yml, 101 operations). No operation names
+  are invented.
+skills:
+- file: clerk-io-catalog-sync.md
+  name: clerk-io-catalog-sync
+  description: Sync a store's products, categories and content pages into Clerk.io so search and recommendations
+    have a current catalog to rank.
+  api: Clerk.io API
+  operations: 13
+- file: clerk-io-merchandising.md
+  name: clerk-io-merchandising
+  description: Control Clerk.io search and result ranking with synonyms, redirects, custom search configurations,
+    merchandising rules and curated accessories.
+  api: Clerk.io API
+  operations: 20
+- file: clerk-io-order-and-behaviour-ingest.md
+  name: clerk-io-order-and-behaviour-ingest
+  description: Feed Clerk.io the sales, customer and on-site behaviour data its ranking depends on — orders, parcels,
+    customers, and the /log event surface.
+  api: Clerk.io API
+  operations: 22
+- file: clerk-io-privacy-requests.md
+  name: clerk-io-privacy-requests
+  description: Service a GDPR subject access or erasure request against Clerk.io using its first-class privacy endpoints.
+  api: Clerk.io API
+  operations: 3
+- file: clerk-io-recommendations.md
+  name: clerk-io-recommendations
+  description: Choose and call the right Clerk.io recommendation logic for a storefront slot — popular, trending,
+    complementary, substituting, or visitor- and customer-personalised.
+  api: Clerk.io API
+  operations: 25
+- file: clerk-io-search.md
+  name: clerk-io-search
+  description: Run behaviour-ranked product search, search-as-you-type, and query suggestions against a Clerk.io
+    store, with filters, facets and pagination.
+  api: Clerk.io API
+  operations: 6

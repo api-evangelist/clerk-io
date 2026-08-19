@@ -1,0 +1,94 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.clerk.io/docs/clerkjs-quick-start, https://docs.clerk.io/docs/clerkjs-cdn,
+  https://docs.clerk.io/docs/clerkjs-template-language, https://docs.clerk.io/docs/clerkjs-configuration,
+  https://docs.clerk.io/docs/clerkjs-content, https://docs.clerk.io/docs/clerkjs-events,
+  https://docs.clerk.io/docs/clerkjs-ui-faceted-search, https://docs.clerk.io/docs/clerkjs-ui-popup,
+  https://docs.clerk.io/docs/clerkjs-ui-exit-intent, https://docs.clerk.io/docs/clerkjs-ui-excluding-products,
+  https://docs.clerk.io/docs/clerkjs-shopping-cart, https://docs.clerk.io/docs/clerkjs-click-tracking,
+  https://docs.clerk.io/docs/chat, https://docs.clerk.io/docs/search-page,
+  https://docs.clerk.io/docs/category-page, https://docs.clerk.io/docs/split-testing,
+  https://docs.clerk.io/docs/template-language-1
+description: >-
+  Clerk.io's primary integration surface for a storefront is NOT the REST API - it is Clerk.js, a
+  browser library that renders Clerk.io results declaratively from HTML attributes. A developer marks up
+  a <span class="clerk"> element with a data-api attribute naming a REST endpoint and a Liquid template
+  body; Clerk.js makes the network call, handles errors, renders into the DOM, and wires click and
+  behavioural tracking automatically. This is the reason a store can adopt Clerk.io without writing a
+  single server-side API call, and it is why the REST surface has no server SDKs.
+loader:
+  name: Clerk.js
+  url: https://cdn.clerk.io/clerk.js
+  alternate_url: https://custom.clerk.io/{any-name}.js
+  install: >-
+    Async script snippet inserted before </head>, followed by Clerk('config', { key: '<public API key>' }).
+    Installed automatically by every official Clerk.io platform extension.
+  config_call: "Clerk('config', { key: <public API key> })"
+  queue_global: window.__clerk_q
+  api_global: window.Clerk
+  versioned: false
+  versioned_note: >-
+    Both loader URLs always serve the latest build; there is no pinned version. The custom.clerk.io
+    wildcard host serves the same library under any filename, documented explicitly as a way to evade ad
+    blockers, with an nginx reverse-proxy recipe for serving it from the merchant's own domain.
+families:
+- name: Content Elements
+  description: >-
+    The core declarative unit. A DOM element with class="clerk" and data-api naming a Clerk.io endpoint
+    (for example recommendations/popular or search/search), rendered with a Liquid template body.
+  attributes: [data-api, data-labels, data-limit, data-template, data-filter, data-query]
+  backing_operations: [recommendations-popular, recommendations-trending, search-search, search-predictive]
+  docs: https://docs.clerk.io/docs/clerkjs-quick-start
+- name: Template Language
+  description: >-
+    Liquid templating over the response, with product objects and Clerk.io filters such as `money`.
+    A separate MJML template language covers AUTO EMAIL templates.
+  docs:
+  - https://docs.clerk.io/docs/clerkjs-template-language
+  - https://docs.clerk.io/docs/template-language-1
+- name: Search Page
+  description: Prebuilt full search-results page surface.
+  docs: https://docs.clerk.io/docs/search-page
+- name: Category Page
+  description: Prebuilt category listing surface with Clerk.io ranking.
+  docs: https://docs.clerk.io/docs/category-page
+- name: Faceted Search
+  description: Faceted navigation UI so shoppers can filter a result set by attribute groups.
+  docs: https://docs.clerk.io/docs/clerkjs-ui-faceted-search
+- name: Popup
+  description: Out-of-the-box popup surface.
+  docs: https://docs.clerk.io/docs/clerkjs-ui-popup
+- name: Exit Intent
+  description: Exit-intent surface that recovers a departing visitor with personal recommendations.
+  docs: https://docs.clerk.io/docs/clerkjs-ui-exit-intent
+- name: Chat
+  description: >-
+    Generative and predictive AI chatbot surface, with configurable hooks for chat events and a command
+    interface. Sold as its own metered product.
+  docs: https://docs.clerk.io/docs/chat
+- name: Shopping Cart
+  description: JavaScript interface for notifying Clerk.js of cart changes so cart logics stay accurate.
+  docs: https://docs.clerk.io/docs/clerkjs-shopping-cart
+  backing_operations: [logcartadd, logcartremove, logcartupdate]
+- name: Click Tracking
+  description: >-
+    Attaches Clerk.io click tracking to DOM elements that Clerk.js did not itself render, so
+    merchant-rendered markup still feeds the behavioural model.
+  docs: https://docs.clerk.io/docs/clerkjs-click-tracking
+  backing_operations: [log-click]
+- name: Events
+  description: Client-side event hooks for Clerk.js lifecycle and rendering events.
+  docs: https://docs.clerk.io/docs/clerkjs-events
+- name: Element Rendering API
+  description: Imperative JavaScript interface for interacting with and re-rendering Clerk.js elements.
+  docs: https://docs.clerk.io/docs/clerkjs-content
+- name: Debugger
+  description: Client-side error handling and debugging surface for Clerk.js.
+  docs: https://docs.clerk.io/docs/clerkjs-debugger
+- name: Split Testing
+  description: Compare performance between one or more Clerk logics on the same site.
+  docs: https://docs.clerk.io/docs/split-testing
+- name: Excluding Products
+  description: Declarative exclusion of products from any rendered result set.
+  docs: https://docs.clerk.io/docs/clerkjs-ui-excluding-products

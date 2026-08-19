@@ -1,0 +1,139 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://github.com/clerkio (org listing + releases/tags API), https://packagist.org,
+  https://registry.npmjs.org, https://pypi.org, https://docs.clerk.io/docs/clerkjs-cdn
+note: >-
+  Clerk.io ships NO general-purpose language SDK for the api.clerk.io REST API - there is no first-party
+  package on npm, PyPI, Maven Central, NuGet, RubyGems, crates.io or pkg.go.dev. What it ships instead is
+  a browser library distributed by CDN (Clerk.js) and a set of first-party e-commerce PLATFORM EXTENSIONS
+  maintained in the clerkio GitHub org. Those extensions are the supported integration path and are
+  counted here as official client libraries. CAUTION FOR RE-RUNS: the npm scope @clerk and the Packagist
+  vendor clerkinc belong to Clerk.com, an unrelated authentication company - they are NOT Clerk.io and
+  must never be attributed here. @types/clerk.io on npm is a DefinitelyTyped community package, not
+  first-party.
+packages:
+- language: javascript
+  registry: cdn
+  name: Clerk.js
+  url: https://cdn.clerk.io/clerk.js
+  alternate_url: https://custom.clerk.io/*.js
+  install: '<script src="https://cdn.clerk.io/clerk.js" async></script>'
+  docs: https://docs.clerk.io/docs/clerkjs-cdn
+  official: true
+  version: null
+  published: '2026-08-11'
+  note: >-
+    UNPINNED DISTRIBUTION. Clerk.io publishes no version identifier for Clerk.js and no registry entry -
+    both documented URLs are documented to "always return the latest official version", so a consumer
+    cannot pin or diff a release. version is null because there is nothing to read; `published` is the
+    Last-Modified header observed on https://cdn.clerk.io/clerk.js (217,778 bytes) on 2026-08-13. The
+    custom.clerk.io wildcard host serves the same build under any filename to evade ad blockers.
+- language: php
+  registry: packagist
+  name: clerk/magento
+  url: https://packagist.org/packages/clerk/magento
+  repository: https://github.com/clerkio/clerk-magento
+  install: composer require clerk/magento
+  official: true
+  version: 4.8.6
+  published: '2026-02-05'
+  note: Magento 1.x extension. The only Clerk.io package published to a language registry.
+- language: php
+  registry: github
+  name: clerk-magento2
+  url: https://github.com/clerkio/clerk-magento2
+  install: git clone https://github.com/clerkio/clerk-magento2
+  official: true
+  version: 4.9.0
+  published: '2026-08-07'
+  note: >-
+    Magento 2 extension. Not published to Packagist - version read from the newest git tag and its
+    commit date. This is the most actively maintained Clerk.io client library.
+- language: php
+  registry: github
+  name: clerk-woocommerce
+  url: https://github.com/clerkio/clerk-woocommerce
+  install: WordPress plugin install from the release ZIP
+  official: true
+  version: 4.2.2
+  published: '2026-02-05'
+  note: WooCommerce / WordPress plugin. Version and date read from the GitHub latest release.
+- language: php
+  registry: github
+  name: clerk-prestashop
+  url: https://github.com/clerkio/clerk-prestashop
+  official: true
+  version: 6.9.2
+  published: '2026-02-05'
+  note: PrestaShop module. Version and date read from the GitHub latest release.
+- language: php
+  registry: github
+  name: clerk-shopware-6.4
+  url: https://github.com/clerkio/clerk-shopware-6.4
+  official: true
+  version: 1.2.9
+  published: '2026-02-06'
+  note: Shopware 6.4+ extension. Version and date read from the GitHub latest release.
+- language: php
+  registry: github
+  name: clerk-shopware
+  url: https://github.com/clerkio/clerk-shopware
+  official: true
+  version: 1.1.0
+  published: '2021-11-30'
+  note: >-
+    Shopware 5 extension. DECAY SIGNAL - last release 2021-11-30, superseded by clerk-shopware-6.4.
+- language: typescript
+  registry: github
+  name: clerk-vtex
+  url: https://github.com/clerkio/clerk-vtex
+  official: true
+  version: v1.1.1
+  published: null
+  note: >-
+    VTEX integration. Version read from the newest git tag; no GitHub release and no registry entry, so
+    no publish date is available. Repository last pushed 2024-10-11.
+- language: javascript
+  registry: github
+  name: clerk-wix
+  url: https://github.com/clerkio/clerk-wix
+  official: true
+  version: null
+  published: null
+  note: >-
+    Wix integration. No tags, no releases, no registry entry - nothing to read. Repository last pushed
+    2023-04-25. DECAY SIGNAL.
+- language: html
+  registry: github
+  name: clerk-dynamicweb
+  url: https://github.com/clerkio/clerk-dynamicweb
+  official: true
+  version: null
+  published: null
+  note: >-
+    DynamicWeb extension and SDK. No tags, no releases, no registry entry. Repository last pushed
+    2023-06-21. DECAY SIGNAL.
+not_first_party:
+- name: '@types/clerk.io'
+  registry: npm
+  version: 2.0.2
+  published: '2026-07-15'
+  url: https://www.npmjs.com/package/@types/clerk.io
+  reason: DefinitelyTyped community-maintained TypeScript definitions for Clerk.js, not published by Clerk.io.
+- name: webgriffe/sylius-clerk-plugin
+  registry: packagist
+  url: https://packagist.org/packages/webgriffe/sylius-clerk-plugin
+  reason: Third-party Sylius plugin maintained by Webgriffe.
+- name: clerkinc/backend-php
+  registry: packagist
+  reason: Belongs to Clerk.com (authentication), a different company. Do not attribute to Clerk.io.
+registries_checked:
+  npm: no first-party package
+  pypi: 404 for clerk-io and clerkio
+  packagist: 1 first-party package (clerk/magento)
+  maven-central: not applicable - no JVM client published
+  nuget: not applicable - no .NET client published
+  rubygems: not applicable - no Ruby client published
+  crates-io: not applicable - no Rust client published
+  pkg-go-dev: not applicable - no Go client published

@@ -1,0 +1,60 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.clerk.io/docs/authentication
+docs: https://docs.clerk.io/docs/authentication
+spec_source: openapi/clerk-io-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+  - body
+  model: dual-key
+  oauth2_flows: []
+  description: >-
+    Clerk.io authenticates at store level with a dual API key system. Every account has one public key and
+    one private key. The public key identifies the store, is safe to expose in browser-side calls, and is
+    sent as the `key` query parameter (GET) or `key` body field (POST/PATCH/DELETE). The private key
+    authenticates the store for sensitive operations - catalog writes, order and customer ingestion, and
+    sales statistics - and is sent as the `private_key` body field. Clerk.io's documentation requires SSL
+    whenever the private key is transmitted and warns that a holder of the private key can edit or delete
+    anything in the store.
+schemes:
+- name: sec0
+  type: apiKey
+  in: query
+  parameter: key
+  role: public store identification
+  sources:
+  - openapi/clerk-io-openapi.yml
+  note: >-
+    The only securityScheme Clerk.io declares in its published OpenAPI. It covers the public key only.
+- name: private_key
+  type: apiKey
+  in: body
+  parameter: private_key
+  role: store authentication for write and sensitive operations
+  sources:
+  - https://docs.clerk.io/docs/authentication
+  - openapi/clerk-io-openapi.yml
+  note: >-
+    Not modelled as an OpenAPI securityScheme by the provider - it appears as a required requestBody
+    property on write operations (for example products-post, orders-post, customers-post). Recorded here
+    because the documented auth model is incomplete without it.
+- name: jwt
+  type: http
+  scheme: bearer
+  in: cookie
+  parameter: jwt
+  role: visitor/session token verification
+  sources:
+  - openapi/clerk-io-openapi.yml#token-verification
+  note: >-
+    The /token/verify operation accepts a signed JWT as an httpOnly secure cookie, used to verify a
+    visitor token rather than to authenticate an API caller.
+rotation:
+  documented: false
+  note: No key-rotation or key-revocation procedure is published in the developer documentation.
+transport:
+  tls_required: true
+  source: https://docs.clerk.io/docs/authentication

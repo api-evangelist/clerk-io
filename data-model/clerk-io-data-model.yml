@@ -1,0 +1,133 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/clerk-io-openapi.yml (requestBody / parameter schemas of the 101 provider-published
+  operations), enriched from https://docs.clerk.io/reference/product-resource,
+  https://docs.clerk.io/reference/order-resource, https://docs.clerk.io/reference/customer-resource and
+  https://docs.clerk.io/reference/parcels
+note: >-
+  Clerk.io's data model is SCHEMALESS BY DESIGN. Products and customers are open JSON objects - any
+  number of caller-defined attributes of type bool/int/float/string/object/list - with a small required
+  core. Relationships are therefore carried by convention as ID-reference fields inside those open
+  objects rather than by $ref links in the OpenAPI, which declares almost every request body as a bare
+  `type: object` or `type: array`. The graph below is read from the documented required fields and the
+  operation surface, not from spec $refs.
+id_strategy:
+  style: caller-supplied
+  note: >-
+    Every core entity is keyed on an ID the MERCHANT supplies from their own e-commerce platform
+    (product.id, category.id, order.id, customer.customerid). Clerk.io mints no IDs and uses no
+    prefixed identifiers, so writes are upserts against the merchant's own key space. The one exception
+    is `visitor`, which Clerk.io will generate anonymously when the caller passes the literal `auto`.
+entities:
+- name: Product
+  docs: https://docs.clerk.io/reference/product-resource
+  required_fields: [id, name, description, price, image, url, categories, created_at]
+  optional_fields: [list_price]
+  open_attributes: true
+  operations: [products-post, products-patch, categories-get-1, product-add, product-remove, product-attributes, product-facets]
+  operations_note: >-
+    GET /products and DELETE /products carry the operationIds `categories-get-1` and `categories-get-1-1`
+    in Clerk.io's published spec - copy-paste artifacts from ReadMe API Designer. They are preserved
+    verbatim because they are what the provider ships.
+- name: Category
+  required_fields: [id, name, url]
+  open_attributes: true
+  operations: [categories-post, categories-patch, categories-get]
+- name: Page
+  description: CMS / content pages indexed for page search and page-based recommendations.
+  operations: [pages-post, pages-patch, pages-get, pages-delete, search-pages]
+- name: Order
+  docs: https://docs.clerk.io/reference/order-resource
+  required_fields: [id, products, time]
+  optional_fields: [customer, email]
+  operations: [orders-post, orders-patch, orders-get, orders-delete]
+- name: Parcel
+  docs: https://docs.clerk.io/reference/parcels
+  description: One or more shipment parcels bound to an Order.
+  operations: [parcels-get, parcels-post, parcels-patch, parcels-delete]
+- name: Customer
+  docs: https://docs.clerk.io/reference/customer-resource
+  required_fields: []
+  key_fields: [customerid, email]
+  optional_fields: [name, subscribed]
+  open_attributes: true
+  key_note: Either customerid or email is required; email is required for the Email and Audience products.
+  operations: [customers-post, customers-patch, customers-get, customers-delete]
+- name: Visitor
+  description: >-
+    Anonymous on-site identity used to attribute behaviour. Not a writable resource - it exists only as
+    the `visitor` parameter on search, recommendation and log calls, and as the subject of the
+    /recommendations/visitor/* logics.
+  operations: [recommendations-visitor-history, recommendations-visitor-complementary, recommendations-visitor-substituting]
+- name: Accessory
+  description: Manually curated product-to-product accessory associations.
+  operations: [accessories-get, accessories-post, accessories-patch, accessories-delete]
+- name: Audience
+  description: Customer segment used by the Audience and Email products.
+  operations: [audiences-get, audiences-post, audiences-patch, audiences-delete, audienceslist, audiencesemails]
+- name: Subscriber
+  description: Email subscription state for a customer.
+  operations: [subscriberssubscribe, subscribersunsubscribe]
+- name: Campaign
+  description: Email campaign; exposes click tracking and an embed surface.
+  operations: [campaigns-click, campaigns-embed]
+- name: Synonym
+  description: Merchandising - search query synonym rules.
+  operations: [synonyms-get, synonyms-post, synonyms-patch, synonyms-delete]
+- name: Redirect
+  description: Merchandising - search query redirect rules.
+  operations: [redirects-get, redirects-post, redirects-patch, redirects-delete]
+- name: CustomizedSearch
+  description: Merchandising - saved custom search configurations.
+  operations: [customized-searches-get, customized-searches-post, customized-searches-patch, customized-searches-delete]
+- name: Merchandising
+  description: Merchandising rules applied to result ranking.
+  operations: [merchandising-get, merchandising-post, merchandising-patch, merchandising-delete]
+relationships:
+- from: Product
+  to: Category
+  type: has_many
+  via: product.categories
+  note: Required list of category IDs on every product object.
+- from: Order
+  to: Product
+  type: has_many
+  via: order.products
+- from: Order
+  to: Customer
+  type: belongs_to
+  via: order.customer
+  optional: true
+- from: Order
+  to: Parcel
+  type: has_many
+  via: parcel binding on /orders/parcels
+- from: Customer
+  to: Order
+  type: has_many
+  via: inverse of order.customer
+  note: Drives the /recommendations/customer/* logics, which read a customer's order history.
+- from: Visitor
+  to: Product
+  type: has_many
+  via: behavioural log events (log-click, logproduct, logcartadd, log-sale)
+  note: Not stored as a field; accumulated from /log/* calls keyed on the visitor ID.
+- from: Audience
+  to: Customer
+  type: has_many
+  via: audienceslist / audiencesemails
+- from: Accessory
+  to: Product
+  type: has_many
+  via: accessory association endpoints
+- from: Product
+  to: Page
+  type: has_many
+  via: page-based recommendation logics (recommendations-page-product, recommendations-page-related-products)
+privacy:
+  data_subject_endpoints: [privacy-info, privacy-forget]
+  note: >-
+    Clerk.io exposes GDPR data-subject access and erasure directly in the API - /privacy/info returns
+    what is held about a subject and /privacy/forget erases it. Few catalogs in this space ship these as
+    first-class endpoints.

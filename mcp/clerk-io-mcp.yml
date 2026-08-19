@@ -1,0 +1,50 @@
+generated: '2026-08-13'
+method: probed
+status: published
+source: https://docs.clerk.io/mcp
+deployment:
+  mode: remote
+  endpoint: https://docs.clerk.io/mcp
+  auth: unknown
+  verified: probed
+server:
+  name: clerk-io-docs
+  transport: http
+  url: https://docs.clerk.io/mcp
+  scope: documentation
+  vendor: ReadMe
+  note: >-
+    Clerk.io serves a remote MCP endpoint on its own documentation host, docs.clerk.io. A plain GET
+    returns the plaintext body "This URL can only be accessed with a MCP client." A JSON-RPC POST of
+    either `initialize` or `tools/list` returns HTTP 401 with
+    {"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"},"id":null}, so the live
+    tool list and its inputSchemas could not be enumerated anonymously. The endpoint is provisioned by
+    ReadMe, Clerk.io's documentation platform, and is scoped to the documentation corpus - it is not a
+    Model Context Protocol wrapper over the api.clerk.io REST surface. No /.well-known/
+    oauth-protected-resource or /.well-known/oauth-authorization-server document is served on
+    docs.clerk.io, so the authorization scheme is undiscoverable without credentials.
+tools: []
+tools_note: >-
+  NOT ENUMERATED. tools/list is auth-gated (HTTP 401). No tool list is published in llms.txt either, so
+  there is nothing to record. No candidate tools are derived here - deriving them would misrepresent an
+  auth-gated documentation MCP as an API-operations MCP.
+x-evidence:
+- url: https://docs.clerk.io/mcp
+  method: GET
+  http_status: 200
+  body: 'This URL can only be accessed with a MCP client.'
+- url: https://docs.clerk.io/mcp
+  method: POST
+  jsonrpc_method: initialize
+  http_status: 401
+  body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"},"id":null}'
+- url: https://docs.clerk.io/mcp
+  method: POST
+  jsonrpc_method: tools/list
+  http_status: 401
+- url: https://api.clerk.io/mcp
+  method: GET
+  http_status: 404
+- url: https://docs.clerk.io/.well-known/oauth-protected-resource
+  http_status: 404
+checked: '2026-08-13'

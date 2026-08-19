@@ -1,0 +1,79 @@
+# Clerk.io Documentation
+
+> Clerk.io is a personalisation platform that uses data science to make it easier for consumers to find the perfect products in online stores.
+
+## Guides
+- [How The Clerk.io Platform Works](https://docs.clerk.io/docs/how-the-clerkio-platform-works.md): An overview of the Clerk.io architecture for developers or other technically interested people.
+- [Basics](https://docs.clerk.io/docs/api.md): Introduction to the Clerk.io API.
+- [Filters](https://docs.clerk.io/docs/filters.md): How to filter the products returned based on their attributes.
+- [Facets](https://docs.clerk.io/docs/facets.md): How to get attribute groups (facets) back with a result.
+- [Product Metadata](https://docs.clerk.io/docs/product-metadata.md): How to load product metadata and attributes directly from the Clerk.io API.
+- [Visitor Tracking](https://docs.clerk.io/docs/visitor-tracking.md): How Clerk.io tracks visitors to give you insights and improve the algorithmic performance.
+- [Quick Start](https://docs.clerk.io/docs/clerkjs-quick-start.md): How to quickly get started with Clerk.js.
+- [Template Language](https://docs.clerk.io/docs/clerkjs-template-language.md): How to style the results from Clerk.io.
+- [Search Page](https://docs.clerk.io/docs/search-page.md)
+- [Category Page](https://docs.clerk.io/docs/category-page.md)
+- [Facets](https://docs.clerk.io/docs/clerkjs-ui-faceted-search.md): Faceted navigation helps your customers easily filter through your results.
+- [Excluding Products](https://docs.clerk.io/docs/clerkjs-ui-excluding-products.md)
+- [Exit Intent](https://docs.clerk.io/docs/clerkjs-ui-exit-intent.md): Recover customers about to leve with personal recommendations.
+- [Popup](https://docs.clerk.io/docs/clerkjs-ui-popup.md): Smooth popups out of the box.
+- [Configuration](https://docs.clerk.io/docs/clerkjs-configuration.md): How to alter the settings of Clerk.js.
+- [Element Rendering](https://docs.clerk.io/docs/clerkjs-content.md): JavaScript interface for interacting with Clerk.js Elements.
+- [Shopping Cart](https://docs.clerk.io/docs/clerkjs-shopping-cart.md): Notify Clerk.js about changes to the shopping cart.
+- [Chat](https://docs.clerk.io/docs/chat.md): The Chat interface allows you to configure hooks for Chat events and perform various actions through simple commands.
+- [Events](https://docs.clerk.io/docs/clerkjs-events.md): Handling Clerk.js events.
+- [Click Tracking](https://docs.clerk.io/docs/clerkjs-click-tracking.md): How to add click tracking to DOM elements not rendered by Clerk.js
+- [Debugging](https://docs.clerk.io/docs/clerkjs-debugger.md): Handling errors in Clerk.js.
+- [Clerk.js CDN](https://docs.clerk.io/docs/clerkjs-cdn.md)
+- [Split Testing](https://docs.clerk.io/docs/split-testing.md): Compare performance between one or more Clerk logics on your site.
+- [MJML Template Language](https://docs.clerk.io/docs/template-language-1.md): How to style and configure AUTO EMAIL templates.
+
+## API Reference
+- [Product](https://docs.clerk.io/reference/product-resource.md): How Products are represented in Clerk.io
+- [/products](https://docs.clerk.io/reference/products-post.md): Add or update products in Clerk.io
+- [/categories](https://docs.clerk.io/reference/categories-post.md): Add or update categories in Clerk.io
+- [Order](https://docs.clerk.io/reference/order-resource.md)
+- [/orders](https://docs.clerk.io/reference/orders-post.md): Add or update orders in Clerk.io
+- [Parcels](https://docs.clerk.io/reference/parcels.md): Parcels allows you to bind (multiple) parcels to an Order resource.
+- [/orders/parcels](https://docs.clerk.io/reference/parcels-get.md): Allows you to fetch all parcels associated with a given Order.
+- [/orders/parcels](https://docs.clerk.io/reference/parcels-post.md): Allows you to create parcels associated with a given Order.
+- [/orders/parcels](https://docs.clerk.io/reference/parcels-patch.md): Allows you to edit parcels associated with a given Order.
+- [/orders/parcels](https://docs.clerk.io/reference/parcels-delete.md): Allows you to delete parcels associated with a given Order.
+- [/pages](https://docs.clerk.io/reference/pages-post.md): Add or update pages in Clerk.io
+- [Customer](https://docs.clerk.io/reference/customer-resource.md): How customers are represented in Clerk.io
+- [log/click](https://docs.clerk.io/reference/log-click.md): Log a click on a product from Clerk.io.
+- [log/category](https://docs.clerk.io/reference/logcategory.md): Log a category view from a customer
+- [search/search](https://docs.clerk.io/reference/search-search.md): Search for products in the store with a ranking based on sales and behavioural data as well as keyword matching.
+- [search/predictive](https://docs.clerk.io/reference/search-predictive.md): "Search As You Type" API that predicts the given unfinished query and returns products matching it.
+- [search/suggestions](https://docs.clerk.io/reference/search-suggestions.md): Auto-complete the customer's search query as they type.
+- [search/categories](https://docs.clerk.io/reference/search-categories.md): Category search API. Returns categories matching the search, sorted with the relevant and popular first.
+- [search/pages](https://docs.clerk.io/reference/search-pages.md): Pages search API.
+- [search/popular](https://docs.clerk.io/reference/search-popular.md): Searches that have been made the most in the past 2 days.
+- [recommendations/popular](https://docs.clerk.io/reference/recommendations-popular.md): The most popular products among the store's customers right now.
+- [recommendations/trending](https://docs.clerk.io/reference/recommendations-trending.md): The products with the fastest growth in popularity amongst customers right now.
+- [recommendations/new](https://docs.clerk.io/reference/recommendationsnew.md): The products that were most recently added to the store.
+- [recommendations/currently_watched](https://docs.clerk.io/reference/recommendationscurrently_watched.md): The products other store visitors are currently looking at.
+- [recommendations/recently_bought](https://docs.clerk.io/reference/recommendationsrecently_bought.md): The products that were most recently purchased by customers.
+- [recommendations/keywords](https://docs.clerk.io/reference/recommendations-keywords.md): Products based on content such as blogs, news or content pages.
+- [recommendations/complementary](https://docs.clerk.io/reference/recommendations-complementary.md): The products that customers are most likely to buy with a given product or multiple products.
+- [recommendations/substituting](https://docs.clerk.io/reference/recommendations-substituting.md): The products that customers are most likely to buy instead of a given product or multiple products.
+- [recommendations/category/popular](https://docs.clerk.io/reference/recommendations-category-popular.md): The products in a given category (and subcategories) that are most popular among customers right now.
+- [recommendations/category/trending](https://docs.clerk.io/reference/recommendationscategorytrending.md): The products in a given category (and subcategories) that are growing the most in popularity amongst customers right now.
+- [recommendations/category/new](https://docs.clerk.io/reference/recommendationscategorynew.md): The products in a given category (and subcategories) that were most recently added to the store.
+- [recommendations/category/popular_subcategories](https://docs.clerk.io/reference/recommendationscategorypopular_subcategories.md): The subcategories in a given category that are most popular among customers right now.
+- [recommendations/visitor/history](https://docs.clerk.io/reference/recommendations-visitor-history.md): The history of a visitor's on-site activity.
+- [recommendations/visitor/complementary](https://docs.clerk.io/reference/recommendations-visitor-complementary.md): The products that a specific visitor is most likely to buy right now based on their on-site activity.
+- [recommendations/visitor/substituting](https://docs.clerk.io/reference/recommendations-visitor-substituting.md): The products that a specific visitor is most likely to buy as alternatives to their on-site activity.
+- [recommendations/customer/history](https://docs.clerk.io/reference/recommendations-customer-history.md): The history of a customer's on-site activity.
+- [recommendations/customer/complementary](https://docs.clerk.io/reference/recommendations-customer-complementary.md): The products that a specific customer is most likely to buy right now based on their order history.
+- [recommendations/customer/substituting](https://docs.clerk.io/reference/recommendations-customer-substituting.md): The products that a specific customer is most likely to buy right now as replacements for their order history.
+- [recommendations/page/substituting](https://docs.clerk.io/reference/recommendationspagesubstituting.md): Pages that are similar to any given page
+- [recommendations/page/product](https://docs.clerk.io/reference/recommendationspageproduct.md): Pages that are related to any given product
+- [recommendations/page/category](https://docs.clerk.io/reference/recommendationspagecategory.md): Pages that are related to any given category
+- [recommendations/page/related_products](https://docs.clerk.io/reference/recommendationspagerelated_products.md): Products that are related to any given page
+- [recommendations/page/related_categories](https://docs.clerk.io/reference/recommendationspagerelated_categories.md): Products that are related to any given page
+- [recommendations/most_sold_with](https://docs.clerk.io/reference/recommendationsmost_sold_with.md): The products that have been sold the most times with a given product or multiple products
+- [/accessories](https://docs.clerk.io/reference/accessories-get.md)
+- [/accessories](https://docs.clerk.io/reference/accessories-post.md)
+- [/accessories](https://docs.clerk.io/reference/accessories-patch.md)
+- [/accessories](https://docs.clerk.io/reference/accessories-delete.md)

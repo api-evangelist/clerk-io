@@ -1,0 +1,554 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Clerk.io API
+  version: 1.0.0
+extends: openapi/_original/clerk-io-api-settings-openapi-original.yml
+x-provenance:
+  generated: '2026-08-13'
+  method: generated
+  source: diff of openapi/clerk-io-openapi.yml against openapi/_original/clerk-io-api-settings-openapi-original.yml
+  note: Records exactly what API Evangelist added to Clerk.io's published OpenAPI. The provider spec carries no document description,
+    no contact, and no tags at all - 101 untagged operations in a single flat list. Applying this overlay to the verbatim
+    original reproduces openapi/clerk-io-openapi.yml. No operation semantics, parameters, schemas or responses are altered.
+actions:
+- target: $.info
+  description: API Evangelist replaced the ReadMe API Designer working title "api-settings" with the product name and added
+    a substantive description and a docs contact.
+  update:
+    title: Clerk.io API
+    description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages,
+      orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request
+      recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category-
+      and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers
+      for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+      All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies
+      the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations
+      and MUST only be sent over SSL.'
+    contact:
+      name: Clerk.io Documentation
+      url: https://docs.clerk.io/
+- target: $
+  description: Declared the tag vocabulary derived from Clerk.io path prefixes; the provider ships no tags[] and no per-operation
+    tags.
+  update:
+    tags:
+    - name: Accessories
+    - name: Audiences
+    - name: Campaigns
+    - name: Catalog
+    - name: Logging
+    - name: Merchandising
+    - name: Parcels
+    - name: Privacy
+    - name: Product Data
+    - name: Recommendations
+    - name: Search
+    - name: Subscribers
+    - name: Tokens
+- target: $.paths['/accessories'].get
+  description: Assigned tag Accessories.
+  update:
+    tags:
+    - Accessories
+- target: $.paths['/accessories'].post
+  description: Assigned tag Accessories.
+  update:
+    tags:
+    - Accessories
+- target: $.paths['/accessories'].patch
+  description: Assigned tag Accessories.
+  update:
+    tags:
+    - Accessories
+- target: $.paths['/accessories'].delete
+  description: Assigned tag Accessories.
+  update:
+    tags:
+    - Accessories
+- target: $.paths['/audiences'].get
+  description: Assigned tag Audiences.
+  update:
+    tags:
+    - Audiences
+- target: $.paths['/audiences'].post
+  description: Assigned tag Audiences.
+  update:
+    tags:
+    - Audiences
+- target: $.paths['/audiences'].patch
+  description: Assigned tag Audiences.
+  update:
+    tags:
+    - Audiences
+- target: $.paths['/audiences'].delete
+  description: Assigned tag Audiences.
+  update:
+    tags:
+    - Audiences
+- target: $.paths['/audiences/emails'].get
+  description: Assigned tag Audiences.
+  update:
+    tags:
+    - Audiences
+- target: $.paths['/audiences/list'].get
+  description: Assigned tag Audiences.
+  update:
+    tags:
+    - Audiences
+- target: $.paths['/campaigns/click'].get
+  description: Assigned tag Campaigns.
+  update:
+    tags:
+    - Campaigns
+- target: $.paths['/campaigns/embed'].get
+  description: Assigned tag Campaigns.
+  update:
+    tags:
+    - Campaigns
+- target: $.paths['/categories'].get
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/categories'].post
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/categories'].patch
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/customers'].get
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/customers'].post
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/customers'].patch
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/customers'].delete
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/customized_search'].get
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/customized_search'].post
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/customized_search'].patch
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/customized_search'].delete
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/log/cart/add'].get
+  description: Assigned tag Logging.
+  update:
+    tags:
+    - Logging
+- target: $.paths['/log/cart/remove'].get
+  description: Assigned tag Logging.
+  update:
+    tags:
+    - Logging
+- target: $.paths['/log/cart/update'].get
+  description: Assigned tag Logging.
+  update:
+    tags:
+    - Logging
+- target: $.paths['/log/category'].get
+  description: Assigned tag Logging.
+  update:
+    tags:
+    - Logging
+- target: $.paths['/log/click'].get
+  description: Assigned tag Logging.
+  update:
+    tags:
+    - Logging
+- target: $.paths['/log/email'].get
+  description: Assigned tag Logging.
+  update:
+    tags:
+    - Logging
+- target: $.paths['/log/product'].get
+  description: Assigned tag Logging.
+  update:
+    tags:
+    - Logging
+- target: $.paths['/log/returned'].get
+  description: Assigned tag Logging.
+  update:
+    tags:
+    - Logging
+- target: $.paths['/log/sale'].get
+  description: Assigned tag Logging.
+  update:
+    tags:
+    - Logging
+- target: $.paths['/log/sale'].post
+  description: Assigned tag Logging.
+  update:
+    tags:
+    - Logging
+- target: $.paths['/merchandising'].get
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/merchandising'].post
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/merchandising'].patch
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/merchandising'].delete
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/orders'].get
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/orders'].post
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/orders'].patch
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/orders'].delete
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/orders/parcels'].get
+  description: Assigned tag Parcels.
+  update:
+    tags:
+    - Parcels
+- target: $.paths['/orders/parcels'].post
+  description: Assigned tag Parcels.
+  update:
+    tags:
+    - Parcels
+- target: $.paths['/orders/parcels'].patch
+  description: Assigned tag Parcels.
+  update:
+    tags:
+    - Parcels
+- target: $.paths['/orders/parcels'].delete
+  description: Assigned tag Parcels.
+  update:
+    tags:
+    - Parcels
+- target: $.paths['/pages'].get
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/pages'].post
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/pages'].patch
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/pages'].delete
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/privacy/forget'].get
+  description: Assigned tag Privacy.
+  update:
+    tags:
+    - Privacy
+- target: $.paths['/privacy/info'].get
+  description: Assigned tag Privacy.
+  update:
+    tags:
+    - Privacy
+- target: $.paths['/product/add'].get
+  description: Assigned tag Product Data.
+  update:
+    tags:
+    - Product Data
+- target: $.paths['/product/attributes'].get
+  description: Assigned tag Product Data.
+  update:
+    tags:
+    - Product Data
+- target: $.paths['/product/facets'].get
+  description: Assigned tag Product Data.
+  update:
+    tags:
+    - Product Data
+- target: $.paths['/product/remove'].get
+  description: Assigned tag Product Data.
+  update:
+    tags:
+    - Product Data
+- target: $.paths['/products'].post
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/products'].patch
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/products'].delete
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/products'].get
+  description: Assigned tag Catalog.
+  update:
+    tags:
+    - Catalog
+- target: $.paths['/recommendations/bundle'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/category/new'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/category/popular'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/category/popular_subcategories'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/category/trending'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/complementary'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/currently_watched'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/customer/complementary'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/customer/history'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/customer/substituting'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/keywords'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/most_sold_with'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/new'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/page/category'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/page/product'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/page/related_categories'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/page/related_products'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/page/substituting'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/popular'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/recently_bought'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/substituting'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/trending'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/visitor/complementary'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/visitor/history'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/recommendations/visitor/substituting'].get
+  description: Assigned tag Recommendations.
+  update:
+    tags:
+    - Recommendations
+- target: $.paths['/redirects/'].get
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/redirects/'].post
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/redirects/'].patch
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/redirects/'].delete
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/search/categories'].get
+  description: Assigned tag Search.
+  update:
+    tags:
+    - Search
+- target: $.paths['/search/pages'].get
+  description: Assigned tag Search.
+  update:
+    tags:
+    - Search
+- target: $.paths['/search/popular'].get
+  description: Assigned tag Search.
+  update:
+    tags:
+    - Search
+- target: $.paths['/search/predictive'].get
+  description: Assigned tag Search.
+  update:
+    tags:
+    - Search
+- target: $.paths['/search/search'].get
+  description: Assigned tag Search.
+  update:
+    tags:
+    - Search
+- target: $.paths['/search/suggestions'].get
+  description: Assigned tag Search.
+  update:
+    tags:
+    - Search
+- target: $.paths['/subscriber/subscribe'].get
+  description: Assigned tag Subscribers.
+  update:
+    tags:
+    - Subscribers
+- target: $.paths['/subscriber/unsubscribe'].get
+  description: Assigned tag Subscribers.
+  update:
+    tags:
+    - Subscribers
+- target: $.paths['/synonyms'].get
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/synonyms'].post
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/synonyms'].patch
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/synonyms'].delete
+  description: Assigned tag Merchandising.
+  update:
+    tags:
+    - Merchandising
+- target: $.paths['/token/verify'].get
+  description: Assigned tag Tokens.
+  update:
+    tags:
+    - Tokens

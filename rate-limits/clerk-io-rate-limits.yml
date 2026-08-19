@@ -3,94 +3,58 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Clerk.io
 providerId: clerk-io
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.clerk.io/llms.txt (full docs index), https://docs.clerk.io/docs/api,
+  https://www.clerk.io/pricing, live response-header observation on https://api.clerk.io/v2
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-08-13'
 tags:
   - AI
   - Commerce
   - E-Commerce
-  - Email Marketing
   - Personalization
   - Recommendations
   - Search
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Clerk.io API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Clerk.io API
-      - Clerk.js Client Library
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Clerk.io API
-      - Clerk.js Client Library
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Clerk.io API
-      - Clerk.js Client Library
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Clerk.io API
-      - Clerk.js Client Library
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Clerk.io API
-      - Clerk.js Client Library
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+description: >-
+  Clerk.io publishes NO rate limits. This file REPLACES a fabricated scaffold written by the 2026-05-04
+  bulk sweep that asserted 10/100/1000 requests-per-minute tiers, monthly quotas and a full
+  X-RateLimit-* header set - none of which Clerk.io publishes or returns. An honest zero is the finding.
+limit_count: 0
+limits: []
+headers: {}
+responseCodes: {}
+findings:
+  documentation:
+    searched: true
+    result: >-
+      Clerk.io's complete documentation index (https://docs.clerk.io/llms.txt, 47 reference pages and 27
+      guides) contains no page on rate limits, throttling, quotas or backoff, and the word does not
+      appear in the index. The Basics page describes only version, endpoint and arguments.
+  openapi:
+    searched: true
+    result: >-
+      The provider-published OpenAPI declares only 200 and 400 responses across all 101 operations. No
+      429 response is declared on any operation.
+  live_headers:
+    probed: true
+    url: https://api.clerk.io/v2/recommendations/popular
+    http_status: 401
+    result: >-
+      The response carries no RateLimit-*, X-RateLimit-*, or Retry-After header. Observed 2026-08-13.
+      Only date, content-type and content-length were returned.
+  pricing:
+    searched: true
+    result: >-
+      https://www.clerk.io/pricing meters usage in searches, recommendations, conversations, opened
+      emails and active subscribers per month, but attaches no request-rate ceiling to any band and
+      publishes no throttling behaviour on band exhaustion.
+implication: >-
+  An agent integrating Clerk.io has no runtime signal for how close it is to any ceiling and no documented
+  status code or header to react to. Backoff must be inferred from generic 5xx behaviour. This is a real
+  gap to raise with the provider, not a data-collection failure.
 maintainers:
   - FN: Kin Lane
     email: kinlane@gmail.com

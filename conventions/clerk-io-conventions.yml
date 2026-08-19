@@ -1,0 +1,103 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.clerk.io/docs/api, https://docs.clerk.io/docs/authentication,
+  https://docs.clerk.io/docs/pagenation, https://docs.clerk.io/docs/errors,
+  https://docs.clerk.io/docs/product-metadata, https://docs.clerk.io/docs/filters,
+  https://docs.clerk.io/docs/facets, https://docs.clerk.io/docs/visitor-tracking
+spec_source: openapi/clerk-io-openapi.yml
+base_url: https://api.clerk.io/v2
+style:
+  protocol: REST-like over HTTPS
+  methods: [GET, POST, PATCH, DELETE]
+  payload: JSON request and JSON response, always
+  note: >-
+    Clerk.io describes its own API as "REST-like". Requests are composed as version + endpoint +
+    arguments. GET arguments are query parameters; POST/PATCH/DELETE arguments are a JSON-encoded object
+    in the body. Complex GET query parameter values (lists, objects) MUST be JSON-encoded or Clerk.io
+    treats them as a plain string. This is the single most common integration trap in the API.
+authentication:
+  style: dual API key (public `key` + `private_key`)
+  in: query parameter for GET, body field for POST/PATCH/DELETE
+  tls_required: true
+  see: authentication/clerk-io-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    NO idempotency mechanism. Clerk.io publishes no idempotency key header, no request-deduplication
+    window, and no retry-safety guidance anywhere in its documentation or its OpenAPI. Catalog writes
+    (products-post, orders-post, customers-post) are upserts keyed on the caller-supplied resource `id`,
+    which makes repeating an identical write naturally convergent, but that is a property of the data
+    model, not a published idempotency contract - it does not protect a partially-applied batch and
+    there is no way to detect a replay. Recorded as absent; no Idempotency pointer is emitted.
+pagination:
+  style: limit-offset
+  params:
+    limit: Number of results to return. Required on most result-returning operations.
+    offset: 0-indexed offset into the result set. Defaults to 0.
+  response_fields: []
+  applies_to: >-
+    Only endpoints that return product result sets - search results, category listings, recommendation
+    logics. Clerk.io states pagination is available "only where it makes sense".
+  cursor: false
+  total_count: false
+  formula: 'For page size N and page P: limit = N, offset = (P - 1) * N'
+  docs: https://docs.clerk.io/docs/pagenation
+  note: >-
+    No total-result-count field and no next/prev links are documented, so a client cannot know when it
+    has reached the end of a result set other than by receiving fewer than `limit` results.
+field_expansion:
+  supported: true
+  param: attributes
+  response_field: product_data
+  note: >-
+    Result-returning endpoints return an array of product IDs in `result`. Passing `attributes` as a
+    list of product attribute names causes Clerk.io to hydrate those attributes into a parallel
+    `product_data` array in the same response. This is Clerk.io's sparse-fieldset mechanism and avoids
+    an N+1 fetch.
+  docs: https://docs.clerk.io/docs/product-metadata
+filtering:
+  param: filter
+  style: attribute filter expression, JSON-encoded when sent as a GET query parameter
+  exclude_param: exclude
+  docs: https://docs.clerk.io/docs/filters
+faceting:
+  param: facets
+  style: list of attribute names to return grouped counts for
+  docs: https://docs.clerk.io/docs/facets
+tracking:
+  visitor_param: visitor
+  labels_param: labels
+  note: >-
+    Search and recommendation calls accept a `visitor` ID (or the literal `auto` to have Clerk.io mint an
+    anonymous ID) and a `labels` array. Both are marked "Required for tracking" in the spec parameter
+    descriptions - omitting them returns results but silently drops the call out of Clerk.io analytics
+    and out of the behavioural signal that ranks future results.
+  docs: https://docs.clerk.io/docs/visitor-tracking
+metadata:
+  supported: false
+  note: No arbitrary key/value metadata field is documented on any resource.
+request_id_tracing:
+  header: null
+  note: >-
+    No request-id request or response header is documented. The only per-call identifier is the `id`
+    field inside an error envelope, and its companion `moreInfo` URL, which expire after 24 hours if
+    unopened or 7 days of inactivity - so there is no durable trace handle for a SUCCESSFUL call.
+versioning:
+  scheme: uri-path
+  current: v2
+  note: >-
+    The version is always `v2` and is the first path segment. No version-negotiation header, no dated
+    version pinning, and no published policy for how a v3 would be introduced.
+  see: lifecycle/clerk-io-lifecycle.yml
+error_envelope:
+  format: vendor-envelope
+  media_type: application/json
+  see: errors/clerk-io-problem-types.yml
+rate_limit_signaling:
+  headers: []
+  status_on_exhaustion: null
+  note: >-
+    Nothing published and nothing observed. See rate-limits/clerk-io-rate-limits.yml.
+  see: rate-limits/clerk-io-rate-limits.yml

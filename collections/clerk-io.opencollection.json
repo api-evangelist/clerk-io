@@ -1,0 +1,4267 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Clerk.io API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accessories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/accessories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/accessories",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "accessories",
+                "value": "",
+                "type": "query",
+                "description": "List of product ID's to get the data for."
+              }
+            ]
+          },
+          "docs": "/accessories"
+        },
+        {
+          "info": {
+            "name": "/accessories",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/accessories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/accessories"
+        },
+        {
+          "info": {
+            "name": "/accessories",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/accessories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/accessories"
+        },
+        {
+          "info": {
+            "name": "/accessories",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/accessories",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "accessories",
+                "value": "",
+                "type": "query",
+                "description": "List of product ID's to delete accessories for"
+              }
+            ]
+          },
+          "docs": "/accessories"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audiences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/audiences",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The public key of the store"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "The private key of the store"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "The ids of the audiences to fetch"
+              }
+            ]
+          },
+          "docs": "/audiences"
+        },
+        {
+          "info": {
+            "name": "/audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/audiences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/audiences"
+        },
+        {
+          "info": {
+            "name": "/audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/audiences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/audiences"
+        },
+        {
+          "info": {
+            "name": "/audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/audiences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/audiences"
+        },
+        {
+          "info": {
+            "name": "/audiences/emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/audiences/emails",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The public key of the store"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "The private key of the store"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The id for the audience to fetch all emails from."
+              }
+            ]
+          },
+          "docs": "/audiences/emails"
+        },
+        {
+          "info": {
+            "name": "/audiences/list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/audiences/list",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The public key of the store"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "The private key of the store"
+              }
+            ]
+          },
+          "docs": "/audiences/list"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "campaigns/click",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/campaigns/click",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The email of the customer to load the recommendation for."
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "ID of the Hosted Template to be embedded."
+              },
+              {
+                "name": "n",
+                "value": "",
+                "type": "query",
+                "description": "Loading the n-th product in the set of recommended products. n is 0-indexed."
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query",
+                "description": "Unique version number of the email (ideally a random number per email or else a campaign id or date string)."
+              },
+              {
+                "name": "append",
+                "value": "",
+                "type": "query",
+                "description": "Append this string to the redirect link URL."
+              },
+              {
+                "name": "prepend",
+                "value": "",
+                "type": "query",
+                "description": "Prepend this string to the redirect URL."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "An attribute filter to filter the result. See API documentation on Filters for details."
+              }
+            ]
+          },
+          "docs": "Redirect the customer to the product corresponding to the previously rendered image from campaigns/embed."
+        },
+        {
+          "info": {
+            "name": "campaigns/embed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/campaigns/embed",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The email of the customer to load the recommendation for."
+              },
+              {
+                "name": "embed",
+                "value": "",
+                "type": "query",
+                "description": "ID of the Hosted Template to be embedded."
+              },
+              {
+                "name": "n",
+                "value": "",
+                "type": "query",
+                "description": "Loading the n-th product in the set of recommended products. n is 0-indexed."
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query",
+                "description": "Unique version number of the email (ideally a random number per email or else a campaign id or date string)."
+              },
+              {
+                "name": "append",
+                "value": "",
+                "type": "query",
+                "description": "Append this string to the redirect link URL."
+              },
+              {
+                "name": "prepend",
+                "value": "",
+                "type": "query",
+                "description": "Prepend this string to the redirect URL."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "An attribute filter to filter the result. See API documentation on Filters for details."
+              }
+            ]
+          },
+          "docs": "Render a recommendation onto a dynamic image for embedding dynamic content in a email."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/categories",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "List of category ID's to get the data for."
+              }
+            ]
+          },
+          "docs": "Get categories from Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update categories in Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch existing categories in Clerk.io with new attributes or values."
+        },
+        {
+          "info": {
+            "name": "/customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/customers",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "customers",
+                "value": "",
+                "type": "query",
+                "description": "List of customers emails to get the data for."
+              }
+            ]
+          },
+          "docs": "Get customers from Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update customers in Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch existing customers in Clerk.io with new attributes or values."
+        },
+        {
+          "info": {
+            "name": "/customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/customers",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "customers",
+                "value": "",
+                "type": "query",
+                "description": "List of customer ID's to delete from Clerk.io"
+              }
+            ]
+          },
+          "docs": "Delete customers from Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/orders",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "orders",
+                "value": "",
+                "type": "query",
+                "description": "List of order ID's to get the data for."
+              }
+            ]
+          },
+          "docs": "Get orders from Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update orders in Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch existing orders in Clerk.io with new attributes or values."
+        },
+        {
+          "info": {
+            "name": "/orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/orders",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "orders",
+                "value": "",
+                "type": "query",
+                "description": "List of order ID's to delete from Clerk.io"
+              }
+            ]
+          },
+          "docs": "Delete orders from Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/pages",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "pages",
+                "value": "",
+                "type": "query",
+                "description": "List of page ID's to get the data for."
+              }
+            ]
+          },
+          "docs": "Get pages from Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/pages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update pages in Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/pages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch existing pages in Clerk.io with new attributes or values."
+        },
+        {
+          "info": {
+            "name": "/pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/pages",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "pages",
+                "value": "",
+                "type": "query",
+                "description": "List of page ID's to delete from Clerk.io"
+              }
+            ]
+          },
+          "docs": "Delete pages from Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/products",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "List of category ID's to delete."
+              }
+            ]
+          },
+          "docs": "Get products from Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/products",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update products in Clerk.io"
+        },
+        {
+          "info": {
+            "name": "/products",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch existing products in Clerk.io with new attributes or values."
+        },
+        {
+          "info": {
+            "name": "Copy of Copy of /categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/products",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "List of product ID's to delete."
+              }
+            ]
+          },
+          "docs": "Get categories from Clerk.io"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Merchandising",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/customized_search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/customized_search",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "rules",
+                "value": "",
+                "type": "query",
+                "description": "the list of rule queries which you want to retrieve customized search rules for"
+              }
+            ]
+          },
+          "docs": "/customized_search"
+        },
+        {
+          "info": {
+            "name": "/customized_search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/customized_search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/customized_search"
+        },
+        {
+          "info": {
+            "name": "/customized_search",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/customized_search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/customized_search"
+        },
+        {
+          "info": {
+            "name": "/customized_search",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/customized_search",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores public API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your stores private API key."
+              },
+              {
+                "name": "rules",
+                "value": "",
+                "type": "query",
+                "description": "the list of queries you want to delete customized search rules for"
+              }
+            ]
+          },
+          "docs": "/customized_search"
+        },
+        {
+          "info": {
+            "name": "/merchandising",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/merchandising",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The public key of the store"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "The private key of the store"
+              },
+              {
+                "name": "campaigns",
+                "value": "",
+                "type": "query",
+                "description": "The ids for the merchandising campaign"
+              }
+            ]
+          },
+          "docs": "/merchandising"
+        },
+        {
+          "info": {
+            "name": "/merchandising",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/merchandising",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/merchandising"
+        },
+        {
+          "info": {
+            "name": "/merchandising",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/merchandising",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/merchandising"
+        },
+        {
+          "info": {
+            "name": "/merchandising",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/merchandising",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The public key of the store"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "The private key of the store"
+              },
+              {
+                "name": "campaigns",
+                "value": "",
+                "type": "query",
+                "description": "The ids for the merchandising campaigns which should be deleted"
+              }
+            ]
+          },
+          "docs": "/merchandising"
+        },
+        {
+          "info": {
+            "name": "/redirects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/redirects/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The public key of the store"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "The private key of the store"
+              },
+              {
+                "name": "redirects",
+                "value": "",
+                "type": "query",
+                "description": "The urls to fetch queries for"
+              }
+            ]
+          },
+          "docs": "/redirects"
+        },
+        {
+          "info": {
+            "name": "/redirects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/redirects/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/redirects"
+        },
+        {
+          "info": {
+            "name": "/redirects",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/redirects/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/redirects"
+        },
+        {
+          "info": {
+            "name": "/redirects",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/redirects/",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The public key of the store"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "The private key of the store"
+              },
+              {
+                "name": "redirects",
+                "value": "",
+                "type": "query",
+                "description": "The urls to delete redirects for"
+              }
+            ]
+          },
+          "docs": "/redirects"
+        },
+        {
+          "info": {
+            "name": "/synonyms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/synonyms",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The public key of the store"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "The private key of the store"
+              },
+              {
+                "name": "synonyms",
+                "value": "",
+                "type": "query",
+                "description": "The queries which to fetch synonyms for"
+              }
+            ]
+          },
+          "docs": "/synonyms"
+        },
+        {
+          "info": {
+            "name": "/synonyms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/synonyms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/synonyms"
+        },
+        {
+          "info": {
+            "name": "/synonyms",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/synonyms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "/synonyms"
+        },
+        {
+          "info": {
+            "name": "/synonyms",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/synonyms",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The public key of the store"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "The private key of the store"
+              },
+              {
+                "name": "synonyms",
+                "value": "",
+                "type": "query",
+                "description": "The queries which to delete synonyms for"
+              }
+            ]
+          },
+          "docs": "/synonyms"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Logging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "log/cart/add",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/log/cart/add",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "A list of products in the form of **basket_products**"
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor id belonging to the basket"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email belonging to the basket"
+              },
+              {
+                "name": "basket_id",
+                "value": "",
+                "type": "query",
+                "description": "Will be self assigned if one is not provided"
+              }
+            ]
+          },
+          "docs": "Add products to a customers cart. A product is defined as a basket_product object  (see below)"
+        },
+        {
+          "info": {
+            "name": "log/cart/remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/log/cart/remove",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "A list of products in the form of **basket_products**"
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor id belonging to the basket"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email belonging tot he basket"
+              },
+              {
+                "name": "basket_id",
+                "value": "",
+                "type": "query",
+                "description": "Will be self assigned if one is not provided"
+              }
+            ]
+          },
+          "docs": "remove products from a customers cart. A product is defined as a basket_product object (see below)"
+        },
+        {
+          "info": {
+            "name": "log/cart/update",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/log/cart/update",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "A list of products in the form of **basket_products**"
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor id belonging to the basket"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email belonging tot he basket"
+              },
+              {
+                "name": "basket_id",
+                "value": "",
+                "type": "query",
+                "description": "Will be self assigned if one is not provided"
+              }
+            ]
+          },
+          "docs": "Sets the customers basket to the given products. A product is defined as a basket_product object (see below)"
+        },
+        {
+          "info": {
+            "name": "log/category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/log/category",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "ID of the product that the visitor viewed."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              }
+            ]
+          },
+          "docs": "Log a category view from a customer"
+        },
+        {
+          "info": {
+            "name": "log/click",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/log/click",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "ID pf the clicked product."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "query",
+                "description": "The API endpoint used to generate the result for this click."
+              },
+              {
+                "name": "n",
+                "value": "",
+                "type": "query",
+                "description": "The clicked products position in the result (0-indexed)."
+              },
+              {
+                "name": "external",
+                "value": "",
+                "type": "query",
+                "description": "Is this a external click from outside the website such as a email or an ad."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "The label(s) of the API endpoint used to generate this click"
+              }
+            ]
+          },
+          "docs": "Log a click on a product from Clerk.io."
+        },
+        {
+          "info": {
+            "name": "log/email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/log/email",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The visitors email."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              }
+            ]
+          },
+          "docs": "Associate an email with a visitor."
+        },
+        {
+          "info": {
+            "name": "log/product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/log/product",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "ID of the product that the visitor viewed."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              }
+            ]
+          },
+          "docs": "Log a product view from a customer"
+        },
+        {
+          "info": {
+            "name": "log/returned",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/log/returned",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your store API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your store private API key."
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "ID of the product."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "ID of the order / sale."
+              },
+              {
+                "name": "quantity",
+                "value": "",
+                "type": "query",
+                "description": "The amount of returned products"
+              }
+            ]
+          },
+          "docs": "Log a product that was returned, on an order."
+        },
+        {
+          "info": {
+            "name": "log/sale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/log/sale",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key"
+              },
+              {
+                "name": "sale",
+                "value": "",
+                "type": "query",
+                "description": "ID of the order / sale."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "List of products in the order. Can be a simple list of product IDs or a list of objects with ID, price and quantity."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "query",
+                "description": "ID of the customer who made the order / sale."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The email of the customer who mae the order / sale."
+              }
+            ]
+          },
+          "docs": "Log a sale / order made by a user."
+        },
+        {
+          "info": {
+            "name": "log/sale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/log/sale",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Log a sale / order made by a user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Parcels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/orders/parcels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/orders/parcels",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Public key"
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Private key"
+              },
+              {
+                "name": "order_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the order to fetch tracking information for"
+              },
+              {
+                "name": "parcel_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the specific parcel you want to retrieve"
+              }
+            ]
+          },
+          "docs": "Allows you to fetch all parcels associated with a given Order."
+        },
+        {
+          "info": {
+            "name": "/orders/parcels",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.clerk.io/v2/orders/parcels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows you to create parcels associated with a given Order."
+        },
+        {
+          "info": {
+            "name": "/orders/parcels",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.clerk.io/v2/orders/parcels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows you to edit parcels associated with a given Order."
+        },
+        {
+          "info": {
+            "name": "/orders/parcels",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.clerk.io/v2/orders/parcels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows you to delete parcels associated with a given Order."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Privacy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "privacy/forget",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/privacy/forget",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your store private API key."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email to forget info for."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "query",
+                "description": "Customer ID to forget info for."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor ID to forget info for."
+              }
+            ]
+          },
+          "docs": "Forget all available info Clerk.io has on a visitor or customer."
+        },
+        {
+          "info": {
+            "name": "privacy/info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/privacy/info",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your store private API key."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email to retrieve info for."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "query",
+                "description": "Customer ID to retrieve info for."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor ID to retrieve info for."
+              }
+            ]
+          },
+          "docs": "Get all available info Clerk.io has on a visitor or customer."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Product Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "product/add",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/product/add",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your store private API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "List of the product objects to add. If the product already exists it will be overridden with the new data."
+              }
+            ]
+          },
+          "docs": "Bulk add new / changed products to a store."
+        },
+        {
+          "info": {
+            "name": "product/attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/product/attributes",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "List of Product ID's to return attributes for."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details. If none is provided all available attributes will be returned."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The language if the store is using multiple languages. If not provided the most used language in the store will be used."
+              }
+            ]
+          },
+          "docs": "Loads the given attributes for the given products. See the API documentation for Product Metadata to embed this with every avary call."
+        },
+        {
+          "info": {
+            "name": "product/facets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/product/facets",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "List of product IDs. If not provided facets will be computed for all products."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details. If none is provided all available attributes will be returned."
+              }
+            ]
+          },
+          "docs": "Loads the facet groups available for the given products and attributes."
+        },
+        {
+          "info": {
+            "name": "product/remove",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/product/remove",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "private_key",
+                "value": "",
+                "type": "query",
+                "description": "Your store private API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "List of product IDs to be removed."
+              }
+            ]
+          },
+          "docs": "Bulk remove products from a store."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recommendations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "recommendations/bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/bundle",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Product ID for the product you want bundled products for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              }
+            ]
+          },
+          "docs": "This endpoint is deprecated and has been replaced by recommendations/complementary"
+        },
+        {
+          "info": {
+            "name": "recommendations/category/new",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/category/new",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Category ID for the category you want popular products for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products in a given category (and subcategories) that were most recently added to the store."
+        },
+        {
+          "info": {
+            "name": "recommendations/category/popular",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/category/popular",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Category ID for the category you want popular products for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into the result. See pagenation docs for a deeper specification on how to use pagenation."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "facets",
+                "value": "",
+                "type": "query",
+                "description": "List of facets to be returned for the products in the result. See API documentation on Facets for details."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Attribute to order the results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Should the ordering from `orderby` be ascending (asc) or descending (desc)."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products in a given category (and subcategories) that are most popular among customers right now."
+        },
+        {
+          "info": {
+            "name": "recommendations/category/popular_subcategories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/category/popular_subcategories",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Category ID for the category you want popular products for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into the result. See pagenation docs for a deeper specification on how to use pagenation."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Should the subcategories be in descending or ascending order. Default is descending so the most popular is the first result."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The subcategories in a given category that are most popular among customers right now."
+        },
+        {
+          "info": {
+            "name": "recommendations/category/trending",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/category/trending",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Category ID for the category you want popular products for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into the result. See pagenation docs for a deeper specification on how to use pagenation."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "facets",
+                "value": "",
+                "type": "query",
+                "description": "List of facets to be returned for the products in the result. See API documentation on Facets for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products in a given category (and subcategories) that are growing the most in popularity amongst customers right now."
+        },
+        {
+          "info": {
+            "name": "recommendations/complementary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/complementary",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "Product ID(s) for the products you want complementary products for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products that customers are most likely to buy with a given product or multiple products."
+        },
+        {
+          "info": {
+            "name": "recommendations/currently_watched",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/currently_watched",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products other store visitors are currently looking at."
+        },
+        {
+          "info": {
+            "name": "recommendations/customer/complementary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/customer/complementary",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The customers email address"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "query",
+                "description": "The customers ID."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products that a specific customer is most likely to buy right now based on their order history."
+        },
+        {
+          "info": {
+            "name": "recommendations/customer/history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/customer/history",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The customers email address"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "query",
+                "description": "The customers ID."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The history of a customer's on-site activity."
+        },
+        {
+          "info": {
+            "name": "recommendations/customer/substituting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/customer/substituting",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The customers email address"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "query",
+                "description": "The customers ID."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "An attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products that a specific customer is most likely to buy right now as replacements for their order history."
+        },
+        {
+          "info": {
+            "name": "recommendations/keywords",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/keywords",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "keywords",
+                "value": "",
+                "type": "query",
+                "description": "The keywords (ie. content title) to base the recommendations upon."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Products based on content such as blogs, news or content pages."
+        },
+        {
+          "info": {
+            "name": "recommendations/most_sold_with",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/most_sold_with",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "Product ID(s) for the products you the most sold with products for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products that have been sold the most times with a given product or multiple products"
+        },
+        {
+          "info": {
+            "name": "recommendations/new",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/new",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products that were most recently added to the store."
+        },
+        {
+          "info": {
+            "name": "recommendations/page/category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/page/category",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "ID of the category you want related pages for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Page attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of pages to return"
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Pages that are related to any given category"
+        },
+        {
+          "info": {
+            "name": "recommendations/page/product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/page/product",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "ID of the product you want related pages for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Page attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of pages to return"
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Pages that are related to any given product"
+        },
+        {
+          "info": {
+            "name": "recommendations/page/related_categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/page/related_categories",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "ID of the page you want similar pages for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Page attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Products that are related to any given page"
+        },
+        {
+          "info": {
+            "name": "recommendations/page/related_products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/page/related_products",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "ID of the page you want similar pages for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Page attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Products that are related to any given page"
+        },
+        {
+          "info": {
+            "name": "recommendations/page/substituting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/page/substituting",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "ID of the page you want similar pages for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of pages to return"
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Page attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Pages that are similar to any given page"
+        },
+        {
+          "info": {
+            "name": "recommendations/popular",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/popular",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into the result. See pagenation docs for a deeper specification on how to use pagenation."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "facets",
+                "value": "",
+                "type": "query",
+                "description": "List of facets to be returned for the products in the result. See API documentation on Facets for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The most popular products among the store's customers right now."
+        },
+        {
+          "info": {
+            "name": "recommendations/recently_bought",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/recently_bought",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Your store API key"
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "An attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products that were most recently purchased by customers."
+        },
+        {
+          "info": {
+            "name": "recommendations/substituting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/substituting",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "products",
+                "value": "",
+                "type": "query",
+                "description": "Product ID(s) for the products you want substituting products for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products that customers are most likely to buy instead of a given product or multiple products."
+        },
+        {
+          "info": {
+            "name": "recommendations/trending",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/trending",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into the result. See pagenation docs for a deeper specification on how to use pagenation."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "facets",
+                "value": "",
+                "type": "query",
+                "description": "List of facets to be returned for the products in the result. See API documentation on Facets for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products with the fastest growth in popularity amongst customers right now."
+        },
+        {
+          "info": {
+            "name": "recommendations/visitor/complementary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/visitor/complementary",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "A optional email to be mapped to a visitor ID. This will override the given visitor ID if any."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products that a specific visitor is most likely to buy right now based on their on-site activity."
+        },
+        {
+          "info": {
+            "name": "recommendations/visitor/history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/visitor/history",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "A optional email to be mapped to a visitor ID. This will override the given visitor ID if any."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The history of a visitor's on-site activity."
+        },
+        {
+          "info": {
+            "name": "recommendations/visitor/substituting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/recommendations/visitor/substituting",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "A optional email to be mapped to a visitor ID. This will override the given visitor ID if any."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "The products that a specific visitor is most likely to buy as alternatives to their on-site activity."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "search/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/search/categories",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query. Can be empty to return all categories."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned. Maximum 10."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The language used for finding results. If not provided, the language configured on the Store in my.clerk.io will be used."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Category search API. Returns categories matching the search, sorted with the relevant and popular first."
+        },
+        {
+          "info": {
+            "name": "search/pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/search/pages",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned. Maximum 10."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of the page if you only wish pages of a single type."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The language used for finding results. If not provided, the language configured on the Store in my.clerk.io will be used."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Pages search API."
+        },
+        {
+          "info": {
+            "name": "search/popular",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/search/popular",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned. Maximum 10."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The language used for finding results. If not provided, the language configured on the Store in my.clerk.io will be used."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Searches that have been made the most in the past 2 days."
+        },
+        {
+          "info": {
+            "name": "search/predictive",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/search/predictive",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned. Maximum 10."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "facets",
+                "value": "",
+                "type": "query",
+                "description": "List of facets to be returned for the products in the result. See API documentation on Facets for details"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The language used for finding results. If not provided, the language configured on the Store in my.clerk.io will be used."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "\"Search As You Type\" API that predicts the given unfinished query and returns products matching it."
+        },
+        {
+          "info": {
+            "name": "search/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/search/search",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics."
+              },
+              {
+                "name": "facets",
+                "value": "",
+                "type": "query",
+                "description": "List of facets to be returned for the products in the result. See API documentation on Facets for details."
+              },
+              {
+                "name": "longtail",
+                "value": "",
+                "type": "query",
+                "description": "Should all products matching any word in the query be in the result."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into the result. See pagenation docs for a deeper specification on how to use pagenation."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A attribute filter to filter the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Array of product IDs to be excluded from the result. See API documentation on Filters for details."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Attribute to order the results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Should the ordering from `orderby` be ascending (asc) or descending (desc)."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The language used for finding results. If not provided, the language configured on the Store in my.clerk.io will be used."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "Product attributes to be provided in the response. See API documentation on Product Metadata for details."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Search for products in the store with a ranking based on sales and behavioural data as well as keyword matching."
+        },
+        {
+          "info": {
+            "name": "search/suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/search/suggestions",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to be returned. Maximum 10."
+              },
+              {
+                "name": "visitor",
+                "value": "",
+                "type": "query",
+                "description": "<small style=\"color: #eea236;\">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href=\"https://docs.clerk.io/docs/visitor-tracking\" target=\"_blank\">API documentation on Visitor Tracking</a> for details."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The language used for finding results. If not provided, the language configured on the Store in my.clerk.io will be used."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "JSONP - Wraps the response as a function call with the name of the string."
+              },
+              {
+                "name": "debug",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc."
+              }
+            ]
+          },
+          "docs": "Auto-complete the customer's search query as they type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscribers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "subscriber/subscribe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/subscriber/subscribe",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The email address to subscribe for email marketing."
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "An optional ID of a list for the email address to be subscribed to. Email address will also be subscribed globally if it was not already.<br/>List IDs are found in my.clerk.io under *Email > Lists*."
+              },
+              {
+                "name": "redirect",
+                "value": "",
+                "type": "query",
+                "description": "If true, redirects the user to my.clerk.io to confirm subscription. Can be combined with `redirect_url` to send user to a specific URL."
+              },
+              {
+                "name": "redirect_url",
+                "value": "",
+                "type": "query",
+                "description": "An optional URL to redirect to after the user is successfully subscribed."
+              }
+            ]
+          },
+          "docs": "Subscribe an email address globally or to a specific list"
+        },
+        {
+          "info": {
+            "name": "subscriber/unsubscribe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/subscriber/unsubscribe",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "You store API key."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The email address to unsubscribe for email marketing."
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "query",
+                "description": "An optional ID of a list for the email address to be unsubscribed from. If not provided, recipient will be unsubscribed globally. <br/> List IDs are found in my.clerk.io under *Email > Lists*."
+              },
+              {
+                "name": "redirect",
+                "value": "",
+                "type": "query",
+                "description": "If true, redirects the user to my.clerk.io to confirm that they are unsubscribed. Can be combined with `redirect_url` to send user to a specific URL."
+              },
+              {
+                "name": "redirect_url",
+                "value": "",
+                "type": "query",
+                "description": "An optional URL to redirect to after the user is successfully unsubscribed."
+              }
+            ]
+          },
+          "docs": "Unsubscribe an email address globally or from a specific list"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Verify",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.clerk.io/v2/token/verify",
+            "headers": [
+              {
+                "name": "jwt",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "The token we want to verify, note this will be overwritten if you have a jwt token in your cookie"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "public_key of the store the verification token is made for. Only required for importers"
+              }
+            ]
+          },
+          "docs": "This provides an overview of the verify endpoint. It's general use is to see if the token you have in the cookie header is valid or not."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

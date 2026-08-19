@@ -3,8 +3,11 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: Clerk.io
 providerId: clerk-io
+generated: '2026-08-13'
+method: searched
+source: https://www.clerk.io/pricing
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-08-13'
 tags:
   - AI
   - Commerce
@@ -13,134 +16,102 @@ tags:
   - Personalization
   - Recommendations
   - Search
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: >-
+  Clerk.io's published plans and pricing, read from https://www.clerk.io/pricing on 2026-08-13. This file
+  REPLACES a fabricated Free/Professional/Enterprise scaffold written by the 2026-05-04 bulk sweep, whose
+  tier names, quotas (1,000 and 100,000 requests/month) and rate limits (10 and 100 req/min) were
+  invented and appear nowhere in Clerk.io's material.
+pricing_model:
+  type: modular-usage-based
+  description: >-
+    Clerk.io does not sell named subscription tiers. It sells five products a la carte - Search,
+    Recommendations, Chat, Email and Audience - each metered on its own usage unit, each priced by a
+    volume band selected in an interactive calculator. A customer buys any subset and can add products
+    at any time. Clerk.io states "you only pay for the amount you use".
+  billing_period: month
+  currencies: [EUR, USD, GBP, DKK]
+  currency_selectable: true
+  quote_required_above_top_band: true
+  price_transparency: calculator-only
+  price_transparency_note: >-
+    PRICES ARE NOT MACHINE-READABLE. The per-band monthly price and the per-1,000-unit rate are computed
+    client-side by a JavaScript calculator; the served HTML carries 0 for every price and exposes no JSON
+    price feed. The volume BANDS below are published in the page markup and are recorded verbatim; the
+    amounts are not, and are deliberately left unstated here rather than guessed.
+plan_count: 5
 plans:
-  - id: clerk-io-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Clerk.io API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Clerk.io API
-      - name: Clerk.js Client Library
-  - id: clerk-io-pro
-    name: Professional
-    type: paid
-    description: Production tier for Clerk.io. Provides higher quotas, priority support, and access to
-      the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Clerk.io API
-      - name: Clerk.js Client Library
-  - id: clerk-io-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Clerk.io. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Clerk.io API
-      - name: Clerk.js Client Library
+  - id: clerk-io-search
+    name: Search
+    type: usage
+    description: Behaviour-based product search engine.
+    metric: monthly searches
+    bands: [10000, 25000, 50000, 75000, 100000, 150000, 200000, 250000, 500000, 750000, 1000000, 1500000, 2000000, 2500000]
+    band_unit: searches/month
+    above_top_band: contact for quote
+    opt_out: 'No Search'
+    price: not-published
+    overage_unit: per 1,000 usage
+    overage_price: not-published
+  - id: clerk-io-recommendations
+    name: Recommendations
+    type: usage
+    description: Product recommendations across storefront touchpoints.
+    metric: monthly recommendations
+    bands: [100000, 250000, 500000, 750000, 1000000, 1500000, 2000000, 2500000, 5000000, 7500000, 10000000]
+    band_unit: recommendations/month
+    above_top_band: contact for quote
+    opt_out: 'No Recommendations'
+    price: not-published
+    overage_unit: per 1,000 usage
+    overage_price: not-published
+  - id: clerk-io-chat
+    name: Chat
+    type: usage
+    description: Generative and predictive AI-powered chatbot.
+    metric: monthly conversations
+    bands: [100, 250, 500, 750, 1000, 1500, 2000, 2500, 5000, 7500, 10000, 15000, 20000, 25000]
+    band_unit: conversations/month
+    above_top_band: contact for quote
+    opt_out: 'No Chat'
+    price: not-published
+    overage_unit: per 1,000 usage
+    overage_price: not-published
+  - id: clerk-io-email
+    name: Email
+    type: usage
+    description: 1:1 personalised product emails.
+    metric: monthly opened emails
+    bands: [10000, 25000, 50000, 75000, 100000, 150000, 200000, 250000, 500000, 750000, 1000000, 1500000, 2000000, 2500000]
+    band_unit: opened emails/month
+    above_top_band: contact for quote
+    opt_out: 'No Email'
+    price: not-published
+    overage_unit: per 1,000 usage
+    overage_price: not-published
+    note: Metered on emails OPENED, not emails sent.
+  - id: clerk-io-audience
+    name: Audience
+    type: usage
+    description: Audience segmentation and growth.
+    metric: monthly active subscribers
+    bands: [10000, 25000, 50000, 75000, 100000, 150000, 200000, 250000, 500000, 750000, 1000000, 1500000, 2000000, 2500000]
+    band_unit: active subscribers/month
+    above_top_band: contact for quote
+    opt_out: 'No Audience'
+    price: not-published
+    overage_unit: per 1,000 usage
+    overage_price: not-published
+api_access:
+  gated_by_plan: false
+  note: >-
+    The REST API is not sold as a separate line item and is not tiered. Any store gets a public and a
+    private API key; API usage is metered through whichever products the store bought (a /search/search
+    call consumes a Search unit, a /recommendations/* call consumes a Recommendations unit). There is no
+    published free API tier and no published request quota or rate limit attached to any plan.
+trial:
+  available: true
+  url: https://www.clerk.io/free-trial
+  terms_published: false
 maintainers:
   - FN: Kin Lane
     email: kinlane@gmail.com

@@ -1,27 +1,14 @@
+# Harvested 2026-08-13 by the API Evangelist enrichment pipeline.
+# method: searched
+# source: https://docs.clerk.io/reference/* (ReadMe API Designer OpenAPI 3.1.0 fragments
+#         embedded in each reference page's ssr-props payload, merged path-by-path).
+# Ownership: servers[] is https://api.clerk.io/v2 and every path matches Clerk.io's own
+# documented product surface; harvested from Clerk.io's own docs host docs.clerk.io.
+# Provider content is preserved verbatim; only document assembly (path merge) is ours.
 openapi: 3.1.0
 info:
-  title: Clerk.io API
+  title: api-settings
   version: '2'
-  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages,
-    orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request
-    recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category-
-    and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers
-    for email, log visitor behaviour events, and service GDPR privacy requests.
-
-
-    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the
-    store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and
-    MUST only be sent over SSL.'
-  contact:
-    name: Clerk.io Documentation
-    url: https://docs.clerk.io/
-  x-provenance:
-    method: searched
-    harvested: '2026-08-13'
-    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
-    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
-    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations
-      and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
 servers:
 - url: https://api.clerk.io/v2
 components:
@@ -79,8 +66,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Accessories
     post:
       summary: /accessories
       description: ''
@@ -122,8 +107,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Accessories
     patch:
       summary: /accessories
       description: ''
@@ -165,8 +148,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Accessories
     delete:
       summary: /accessories
       description: ''
@@ -210,8 +191,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Accessories
   /audiences:
     get:
       summary: /audiences
@@ -260,8 +239,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Audiences
     post:
       summary: /audiences
       description: ''
@@ -306,8 +283,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Audiences
     patch:
       summary: /audiences
       description: ''
@@ -352,8 +327,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Audiences
     delete:
       summary: /audiences
       description: ''
@@ -401,8 +374,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Audiences
   /audiences/emails:
     get:
       summary: /audiences/emails
@@ -448,8 +419,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Audiences
   /audiences/list:
     get:
       summary: /audiences/list
@@ -487,8 +456,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Audiences
   /campaigns/click:
     get:
       summary: campaigns/click
@@ -590,8 +557,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Campaigns
   /campaigns/embed:
     get:
       summary: campaigns/embed
@@ -693,8 +658,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Campaigns
   /categories:
     get:
       summary: /categories
@@ -740,8 +703,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     post:
       summary: /categories
       description: Add or update categories in Clerk.io
@@ -790,8 +751,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     patch:
       summary: /categories
       description: Patch existing categories in Clerk.io with new attributes or values.
@@ -840,8 +799,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
   /customers:
     get:
       summary: /customers
@@ -887,8 +844,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     post:
       summary: /customers
       description: Add or update customers in Clerk.io
@@ -937,8 +892,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     patch:
       summary: /customers
       description: Patch existing customers in Clerk.io with new attributes or values.
@@ -987,8 +940,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     delete:
       summary: /customers
       description: Delete customers from Clerk.io
@@ -1039,8 +990,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
   /customized_search:
     get:
       summary: /customized_search
@@ -1087,8 +1036,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
     post:
       summary: /customized_search
       description: ''
@@ -1135,8 +1082,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
     patch:
       summary: /customized_search
       description: ''
@@ -1183,8 +1128,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
     delete:
       summary: /customized_search
       description: ''
@@ -1234,8 +1177,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
   /log/cart/add:
     get:
       summary: log/cart/add
@@ -1297,8 +1238,6 @@ paths:
           code: curl https://api.clerk.io/v2/log/cart/add?key=store_api_key&products=[{"id":"abc","qty":3}]&visitor=bob
         samples-languages:
         - curl
-      tags:
-      - Logging
   /log/cart/remove:
     get:
       summary: log/cart/remove
@@ -1360,8 +1299,6 @@ paths:
           code: curl https://api.clerk.io/v2/log/cart/remove?key=store_api_key&products=[{"id":"abc","qty":3}]&visitor=bob
         samples-languages:
         - curl
-      tags:
-      - Logging
   /log/cart/update:
     get:
       summary: log/cart/update
@@ -1423,8 +1360,6 @@ paths:
           code: curl https://api.clerk.io/v2/log/cart/update?key=store_api_key&products=[{"id":"abc","qty":3}]&visitor=bob
         samples-languages:
         - curl
-      tags:
-      - Logging
   /log/category:
     get:
       summary: log/category
@@ -1498,8 +1433,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Logging
   /log/click:
     get:
       summary: log/click
@@ -1598,8 +1531,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Logging
   /log/email:
     get:
       summary: log/email
@@ -1673,8 +1604,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Logging
   /log/product:
     get:
       summary: log/product
@@ -1748,8 +1677,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Logging
   /log/returned:
     get:
       summary: log/returned
@@ -1836,8 +1763,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Logging
   /log/sale:
     get:
       summary: log/sale
@@ -1950,8 +1875,6 @@ paths:
         samples-languages:
         - curl
         - text
-      tags:
-      - Logging
     post:
       summary: log/sale
       description: Log a sale / order made by a user.
@@ -2056,8 +1979,6 @@ paths:
         samples-languages:
         - curl
         - text
-      tags:
-      - Logging
   /merchandising:
     get:
       summary: /merchandising
@@ -2103,8 +2024,6 @@ paths:
                 Result:
                   value: '{request: bad}'
       deprecated: false
-      tags:
-      - Merchandising
     post:
       summary: /merchandising
       description: ''
@@ -2144,8 +2063,6 @@ paths:
                 Result:
                   value: '{request: bad}'
       deprecated: false
-      tags:
-      - Merchandising
     patch:
       summary: /merchandising
       description: ''
@@ -2185,8 +2102,6 @@ paths:
                 Result:
                   value: '{request: bad}'
       deprecated: false
-      tags:
-      - Merchandising
     delete:
       summary: /merchandising
       description: ''
@@ -2228,8 +2143,6 @@ paths:
                 Result:
                   value: '{request: bad}'
       deprecated: false
-      tags:
-      - Merchandising
   /orders:
     get:
       summary: /orders
@@ -2275,8 +2188,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     post:
       summary: /orders
       description: Add or update orders in Clerk.io
@@ -2325,8 +2236,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     patch:
       summary: /orders
       description: Patch existing orders in Clerk.io with new attributes or values.
@@ -2375,8 +2284,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     delete:
       summary: /orders
       description: Delete orders from Clerk.io
@@ -2427,8 +2334,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
   /orders/parcels:
     get:
       summary: /orders/parcels
@@ -2480,8 +2385,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Parcels
     post:
       summary: /orders/parcels
       description: Allows you to create parcels associated with a given Order.
@@ -2536,8 +2439,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Parcels
     patch:
       summary: /orders/parcels
       description: Allows you to edit parcels associated with a given Order.
@@ -2596,8 +2497,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Parcels
     delete:
       summary: /orders/parcels
       description: Allows you to delete parcels associated with a given Order.
@@ -2643,8 +2542,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Parcels
   /pages:
     get:
       summary: /pages
@@ -2690,8 +2587,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     post:
       summary: /pages
       description: Add or update pages in Clerk.io
@@ -2740,8 +2635,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     patch:
       summary: /pages
       description: Patch existing pages in Clerk.io with new attributes or values.
@@ -2790,8 +2683,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     delete:
       summary: /pages
       description: Delete pages from Clerk.io
@@ -2842,8 +2733,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
   /privacy/forget:
     get:
       summary: privacy/forget
@@ -2925,8 +2814,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Privacy
   /privacy/info:
     get:
       summary: privacy/info
@@ -3003,8 +2890,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Privacy
   /product/add:
     get:
       summary: product/add
@@ -3082,8 +2967,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Product Data
   /product/attributes:
     get:
       summary: product/attributes
@@ -3180,8 +3063,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Product Data
   /product/facets:
     get:
       summary: product/facets
@@ -3304,8 +3185,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Product Data
   /product/remove:
     get:
       summary: product/remove
@@ -3380,8 +3259,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Product Data
   /products:
     post:
       summary: /products
@@ -3431,8 +3308,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     patch:
       summary: /products
       description: Patch existing products in Clerk.io with new attributes or values.
@@ -3481,8 +3356,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     delete:
       summary: Copy of Copy of /categories
       description: Get categories from Clerk.io
@@ -3527,8 +3400,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Catalog
     get:
       summary: /products
       description: Get products from Clerk.io
@@ -3572,8 +3443,6 @@ paths:
               schema:
                 type: object
                 properties: {}
-      tags:
-      - Catalog
   /recommendations/bundle:
     get:
       summary: recommendations/bundle
@@ -3670,8 +3539,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/category/new:
     get:
       summary: recommendations/category/new
@@ -3787,8 +3654,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/category/popular:
     get:
       summary: recommendations/category/popular
@@ -3929,8 +3794,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/category/popular_subcategories:
     get:
       summary: recommendations/category/popular_subcategories
@@ -4033,8 +3896,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/category/trending:
     get:
       summary: recommendations/category/trending
@@ -4165,8 +4026,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/complementary:
     get:
       summary: recommendations/complementary
@@ -4284,8 +4143,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/currently_watched:
     get:
       summary: recommendations/currently_watched
@@ -4391,8 +4248,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/customer/complementary:
     get:
       summary: recommendations/customer/complementary
@@ -4513,8 +4368,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/customer/history:
     get:
       summary: recommendations/customer/history
@@ -4635,8 +4488,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/customer/substituting:
     get:
       summary: recommendations/customer/substituting
@@ -4757,8 +4608,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/keywords:
     get:
       summary: recommendations/keywords
@@ -4874,8 +4723,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/most_sold_with:
     get:
       summary: recommendations/most_sold_with
@@ -4993,8 +4840,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/new:
     get:
       summary: recommendations/new
@@ -5098,8 +4943,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/page/category:
     get:
       summary: recommendations/page/category
@@ -5210,8 +5053,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/page/product:
     get:
       summary: recommendations/page/product
@@ -5322,8 +5163,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/page/related_categories:
     get:
       summary: recommendations/page/related_categories
@@ -5428,8 +5267,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/page/related_products:
     get:
       summary: recommendations/page/related_products
@@ -5532,8 +5369,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/page/substituting:
     get:
       summary: recommendations/page/substituting
@@ -5644,8 +5479,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/popular:
     get:
       summary: recommendations/popular
@@ -5768,8 +5601,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/recently_bought:
     get:
       summary: recommendations/recently_bought
@@ -5874,8 +5705,6 @@ paths:
             Are Looking At"]
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/substituting:
     get:
       summary: recommendations/substituting
@@ -5992,8 +5821,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/trending:
     get:
       summary: recommendations/trending
@@ -6116,8 +5943,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/visitor/complementary:
     get:
       summary: recommendations/visitor/complementary
@@ -6232,8 +6057,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/visitor/history:
     get:
       summary: recommendations/visitor/history
@@ -6348,8 +6171,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /recommendations/visitor/substituting:
     get:
       summary: recommendations/visitor/substituting
@@ -6464,8 +6285,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Recommendations
   /redirects/:
     get:
       summary: /redirects
@@ -6515,8 +6334,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
     post:
       summary: /redirects
       description: ''
@@ -6559,8 +6376,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
     patch:
       summary: /redirects
       description: ''
@@ -6603,8 +6418,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
     delete:
       summary: /redirects
       description: ''
@@ -6649,8 +6462,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
   /search/categories:
     get:
       summary: search/categories
@@ -6773,8 +6584,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Search
   /search/pages:
     get:
       summary: search/pages
@@ -6910,8 +6719,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Search
   /search/popular:
     get:
       summary: search/popular
@@ -7011,8 +6818,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Search
   /search/predictive:
     get:
       summary: search/predictive
@@ -7166,8 +6971,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Search
   /search/search:
     get:
       summary: search/search
@@ -7323,8 +7126,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Search
   /search/suggestions:
     get:
       summary: search/suggestions
@@ -7430,8 +7231,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Search
   /subscriber/subscribe:
     get:
       summary: subscriber/subscribe
@@ -7513,8 +7312,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Subscribers
   /subscriber/unsubscribe:
     get:
       summary: subscriber/unsubscribe
@@ -7596,8 +7393,6 @@ paths:
           name: POST
         samples-languages:
         - curl
-      tags:
-      - Subscribers
   /synonyms:
     get:
       summary: /synonyms
@@ -7643,8 +7438,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
     post:
       summary: /synonyms
       description: ''
@@ -7685,8 +7478,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
     patch:
       summary: /synonyms
       description: ''
@@ -7727,8 +7518,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
     delete:
       summary: /synonyms
       description: ''
@@ -7771,8 +7560,6 @@ paths:
                 type: object
                 properties: {}
       deprecated: false
-      tags:
-      - Merchandising
   /token/verify:
     get:
       summary: Verify
@@ -7806,19 +7593,3 @@ paths:
                 Result:
                   value: '{"status":"ok", "token_payload":PAYLOAD}'
       deprecated: false
-      tags:
-      - Tokens
-tags:
-- name: Accessories
-- name: Audiences
-- name: Campaigns
-- name: Catalog
-- name: Logging
-- name: Merchandising
-- name: Parcels
-- name: Privacy
-- name: Product Data
-- name: Recommendations
-- name: Search
-- name: Subscribers
-- name: Tokens

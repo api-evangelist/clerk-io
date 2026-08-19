@@ -1,0 +1,160 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/clerk-io-openapi.yml + mcp/clerk-io-mcp.yml
+note: 'Clerk.io has both a published OpenAPI (101 operations under https://api.clerk.io/v2) and a remote MCP endpoint
+  (https://docs.clerk.io/mcp), so a crosswalk is emitted. NO tool bindings could be established: the MCP tools/list
+  call returns HTTP 401 "Authorization required" and Clerk.io publishes no tool list in llms.txt or its docs. The
+  MCP endpoint is a ReadMe-provisioned documentation server, not a wrapper over the REST operations, so the expected
+  overlap is near zero rather than unmeasured parity. Every REST operation is therefore recorded as rest_only. No
+  tool names are guessed.'
+surfaces:
+  openapi:
+    file: openapi/clerk-io-openapi.yml
+    server: https://api.clerk.io/v2
+    operations: 101
+    gated: false
+  mcp:
+    url: https://docs.clerk.io/mcp
+    tools_list: gated
+    http_status: 401
+    scope: documentation
+  graphql:
+    present: false
+    note: No GraphQL surface found on any Clerk.io host.
+crosswalk: []
+mcp_only: []
+rest_only:
+- category: Accessories
+  operations:
+  - accessories-delete
+  - accessories-get
+  - accessories-patch
+  - accessories-post
+- category: Audiences
+  operations:
+  - audiences-delete
+  - audiences-get
+  - audiences-patch
+  - audiences-post
+  - audiencesemails
+  - audienceslist
+- category: Campaigns
+  operations:
+  - campaigns-click
+  - campaigns-embed
+- category: Catalog
+  operations:
+  - categories-get
+  - categories-get-1
+  - categories-get-1-1
+  - categories-patch
+  - categories-post
+  - customers-delete
+  - customers-get
+  - customers-patch
+  - customers-post
+  - orders-delete
+  - orders-get
+  - orders-patch
+  - orders-post
+  - pages-delete
+  - pages-get
+  - pages-patch
+  - pages-post
+  - products-patch
+  - products-post
+- category: Logging
+  operations:
+  - log-click
+  - log-email
+  - log-sale
+  - logcartadd
+  - logcartremove
+  - logcartupdate
+  - logcategory
+  - logproduct
+  - logreturned
+  - logsale-copy
+- category: Merchandising
+  operations:
+  - customized-searches-delete
+  - customized-searches-get
+  - customized-searches-patch
+  - customized-searches-post
+  - merchandising-delete
+  - merchandising-get
+  - merchandising-patch
+  - merchandising-post
+  - redirects-delete
+  - redirects-get
+  - redirects-patch
+  - redirects-post
+  - synonyms-delete
+  - synonyms-get
+  - synonyms-patch
+  - synonyms-post
+- category: Parcels
+  operations:
+  - parcels-delete
+  - parcels-get
+  - parcels-patch
+  - parcels-post
+- category: Privacy
+  operations:
+  - privacy-forget
+  - privacy-info
+- category: Product Data
+  operations:
+  - product-add
+  - product-attributes
+  - product-facets
+  - product-remove
+- category: Recommendations
+  operations:
+  - recommendations-bundle
+  - recommendations-category-popular
+  - recommendations-complementary
+  - recommendations-customer-complementary
+  - recommendations-customer-history
+  - recommendations-customer-substituting
+  - recommendations-keywords
+  - recommendations-popular
+  - recommendations-substituting
+  - recommendations-trending
+  - recommendations-visitor-complementary
+  - recommendations-visitor-history
+  - recommendations-visitor-substituting
+  - recommendationscategorynew
+  - recommendationscategorypopular_subcategories
+  - recommendationscategorytrending
+  - recommendationscurrently_watched
+  - recommendationsmost_sold_with
+  - recommendationsnew
+  - recommendationspagecategory
+  - recommendationspageproduct
+  - recommendationspagerelated_categories
+  - recommendationspagerelated_products
+  - recommendationspagesubstituting
+  - recommendationsrecently_bought
+- category: Search
+  operations:
+  - search-categories
+  - search-pages
+  - search-popular
+  - search-predictive
+  - search-search
+  - search-suggestions
+- category: Subscribers
+  operations:
+  - subscriberssubscribe
+  - subscribersunsubscribe
+- category: Tokens
+  operations:
+  - token-verification
+coverage:
+  tools_named: 0
+  tools_bound: 0
+  mcp_only: 0
+  rest_operations_total: 101
+  rest_operations_with_tool: 0
+  confidence: n/a - MCP tool list auth-gated
