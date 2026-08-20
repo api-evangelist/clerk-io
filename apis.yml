@@ -30,6 +30,14 @@ specificationVersion: '0.23'
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/clerk-io.png
 kind: company
 tags:
+  - Artificial Intelligence
+  - Commerce
+  - E-Commerce
+  - Email Marketing
+  - Personalization
+  - Recommendations
+  - Search
+tags_raw:
   - AI
   - Commerce
   - E-Commerce
