@@ -1,0 +1,751 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Merchandising API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Merchandising
+paths:
+  /customized_search:
+    get:
+      summary: /customized_search
+      description: ''
+      operationId: customized-searches-get
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        schema:
+          type: string
+      - name: rules
+        in: query
+        description: the list of rule queries which you want to retrieve customized search rules for
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "[\n  {\n    'query': 'abc',\n   \t'products': {'pin': [1,2], 'hide': []},\n   \t'categories': {'pin': [45], 'hide': []},\n   \t'pages': {'pin': [], 'hide': []},\n   \t'suggestions': {'pin': ['bcd'], 'hide': []}\n\t}\n]"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+    post:
+      summary: /customized_search
+      description: ''
+      operationId: customized-searches-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                rules:
+                  type: array
+                  description: list of customized_search objects
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+    patch:
+      summary: /customized_search
+      description: ''
+      operationId: customized-searches-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                rules:
+                  type: array
+                  description: list of customized_search objects
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+    delete:
+      summary: /customized_search
+      description: ''
+      operationId: customized-searches-delete
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        schema:
+          type: string
+      - name: rules
+        in: query
+        description: the list of queries you want to delete customized search rules for
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+  /merchandising:
+    get:
+      summary: /merchandising
+      description: ''
+      operationId: merchandising-get
+      parameters:
+      - name: key
+        in: query
+        description: The public key of the store
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: The private key of the store
+        required: true
+        schema:
+          type: string
+      - name: campaigns
+        in: query
+        description: The ids for the merchandising campaign
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  'status': 'ok',\n  'campaigns': [\n    {'id': 'saa',\n \t\t'name': 'saa',\n \t\t'description': '',\n \t\t'active': True,\n \t\t'start_at': None,\n \t\t'end_at': None,\n \t\t'rules': [{'action': 'pin', 'products': ['MC-PRBO1100']}],\n \t\t'triggers': [{'type': 'searches_all'}],\n \t\t'triggers_match': 'any'}\n  ]\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{request: bad}'
+      deprecated: false
+      tags:
+      - Merchandising
+    post:
+      summary: /merchandising
+      description: ''
+      operationId: merchandising-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - campaigns
+              properties:
+                key:
+                  type: string
+                  description: The public key of the store
+                private_key:
+                  type: string
+                  description: The private key of the store
+                campaigns:
+                  type: array
+                  description: The campaigns which should be created. Consists of merchandising objects without ids.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{ 'status': 'ok',\n\t'campaign_ids':['c1','c2']}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{request: bad}'
+      deprecated: false
+      tags:
+      - Merchandising
+    patch:
+      summary: /merchandising
+      description: ''
+      operationId: merchandising-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - campaigns
+              properties:
+                key:
+                  type: string
+                  description: The public key of the store
+                private_key:
+                  type: string
+                  description: The private key of the store
+                campaigns:
+                  type: array
+                  description: The merchandising campaigns which should be updated. Consists of merchandising objects.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{ ''status'': ''ok'',}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{request: bad}'
+      deprecated: false
+      tags:
+      - Merchandising
+    delete:
+      summary: /merchandising
+      description: ''
+      operationId: merchandising-delete
+      parameters:
+      - name: key
+        in: query
+        description: The public key of the store
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: The private key of the store
+        required: true
+        schema:
+          type: string
+      - name: campaigns
+        in: query
+        description: The ids for the merchandising campaigns which should be deleted
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{''status'': ''ok'',}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{request: bad}'
+      deprecated: false
+      tags:
+      - Merchandising
+  /redirects/:
+    get:
+      summary: /redirects
+      description: ''
+      operationId: redirects-get
+      parameters:
+      - name: key
+        in: query
+        description: The public key of the store
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: The private key of the store
+        required: true
+        schema:
+          type: string
+      - name: redirects
+        in: query
+        description: The urls to fetch queries for
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{''status'': ''ok''
+
+                    ''redirects'':[{''url'':''clerk.io'',''queries'':[''clerk'',''redirects''],''exact_match'':True}]
+
+                    }'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+    post:
+      summary: /redirects
+      description: ''
+      operationId: redirects-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - redirects
+              properties:
+                key:
+                  type: string
+                  description: The public key of the store
+                private_key:
+                  type: string
+                  description: The private key of the store
+                redirects:
+                  type: array
+                  description: A list of redirect objects
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{''status'': ''ok''}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+    patch:
+      summary: /redirects
+      description: ''
+      operationId: redirects-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - redirects
+              properties:
+                key:
+                  type: string
+                  description: The public key of the store
+                private_key:
+                  type: string
+                  description: The private key of the store
+                redirects:
+                  type: array
+                  description: A list of redirect objects
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{''status'': ''ok}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+    delete:
+      summary: /redirects
+      description: ''
+      operationId: redirects-delete
+      parameters:
+      - name: key
+        in: query
+        description: The public key of the store
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: The private key of the store
+        required: true
+        schema:
+          type: string
+      - name: redirects
+        in: query
+        description: The urls to delete redirects for
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{''status'': ''ok''}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+  /synonyms:
+    get:
+      summary: /synonyms
+      description: ''
+      operationId: synonyms-get
+      parameters:
+      - name: key
+        in: query
+        description: The public key of the store
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: The private key of the store
+        schema:
+          type: string
+      - name: synonyms
+        in: query
+        description: The queries which to fetch synonyms for
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  'status' : 'ok',\n  'synonyms' :\n  \t[\n      {'query':'hello', 'directed_synonyms':['hi'],'synonyms':['hello there','greetings']},\n      {'query':'shirt', 'directed_synonyms':['sweater'],'synonyms':['cardigan']}\n    ]\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+    post:
+      summary: /synonyms
+      description: ''
+      operationId: synonyms-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: The public key of the store
+                private_key:
+                  type: string
+                  description: The private key of the store
+                synonyms:
+                  type: array
+                  description: List of synonym objects
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  'status' : 'ok',\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+    patch:
+      summary: /synonyms
+      description: ''
+      operationId: synonyms-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: The public key of the store
+                private_key:
+                  type: string
+                  description: The private key of the store
+                synonyms:
+                  type: array
+                  description: List of synonym objects
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  'status' : 'ok',\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+    delete:
+      summary: /synonyms
+      description: ''
+      operationId: synonyms-delete
+      parameters:
+      - name: key
+        in: query
+        description: The public key of the store
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: The private key of the store
+        schema:
+          type: string
+      - name: synonyms
+        in: query
+        description: The queries which to delete synonyms for
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  'status' : 'ok',\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchandising
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key

@@ -1,0 +1,186 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Privacy API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Privacy
+paths:
+  /privacy/forget:
+    get:
+      summary: privacy/forget
+      description: Forget all available info Clerk.io has on a visitor or customer.
+      operationId: privacy-forget
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your store private API key.
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Email to forget info for.
+        schema:
+          type: string
+      - name: customer
+        in: query
+        description: Customer ID to forget info for.
+        schema:
+          type: string
+      - name: visitor
+        in: query
+        description: Visitor ID to forget info for.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://api.clerk.io/v2/privacy/forget?key=store_api_key&private_key=store_private_key&email=john.doe@example.com
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"private_key\": \"store_private_api_key\"\n          \"email\": \"john.doe@example.com\"}' \\\n     https://api.clerk.io/v2/privacy/forget"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Privacy
+  /privacy/info:
+    get:
+      summary: privacy/info
+      description: Get all available info Clerk.io has on a visitor or customer.
+      operationId: privacy-info
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your store private API key.
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Email to retrieve info for.
+        schema:
+          type: string
+      - name: customer
+        in: query
+        description: Customer ID to retrieve info for.
+        schema:
+          type: string
+      - name: visitor
+        in: query
+        description: Visitor ID to retrieve info for.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"orders\": [123, 456, 789],\n  \"activity\": [\n    {\n      \"visitor\": \"123ABc\",\n      \"type\": \"other\",\n      \"description\": \"Some tracked activity\"\n      \"time\": 1527206400\n    }\n  ]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://api.clerk.io/v2/privacy/info?key=store_api_key&private_key=store_private_key&email=john.doe@example.com
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"private_key\": \"store_private_api_key\"\n          \"email\": \"john.doe@example.com\"}' \\\n     https://api.clerk.io/v2/privacy/info"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Privacy
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key

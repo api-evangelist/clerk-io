@@ -1,0 +1,818 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Logging API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Logging
+paths:
+  /log/cart/add:
+    get:
+      summary: log/cart/add
+      description: Add products to a customers cart. A product is defined as a basket_product object  (see below)
+      operationId: logcartadd
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: A list of products in the form of **basket_products**
+        required: true
+        schema:
+          type: array
+      - name: visitor
+        in: query
+        description: Visitor id belonging to the basket
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Email belonging to the basket
+        schema:
+          type: string
+      - name: basket_id
+        in: query
+        description: Will be self assigned if one is not provided
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://api.clerk.io/v2/log/cart/add?key=store_api_key&products=[{"id":"abc","qty":3}]&visitor=bob
+        samples-languages:
+        - curl
+      tags:
+      - Logging
+  /log/cart/remove:
+    get:
+      summary: log/cart/remove
+      description: remove products from a customers cart. A product is defined as a basket_product object (see below)
+      operationId: logcartremove
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: A list of products in the form of **basket_products**
+        required: true
+        schema:
+          type: array
+      - name: visitor
+        in: query
+        description: Visitor id belonging to the basket
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Email belonging tot he basket
+        schema:
+          type: string
+      - name: basket_id
+        in: query
+        description: Will be self assigned if one is not provided
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://api.clerk.io/v2/log/cart/remove?key=store_api_key&products=[{"id":"abc","qty":3}]&visitor=bob
+        samples-languages:
+        - curl
+      tags:
+      - Logging
+  /log/cart/update:
+    get:
+      summary: log/cart/update
+      description: Sets the customers basket to the given products. A product is defined as a basket_product object (see below)
+      operationId: logcartupdate
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: A list of products in the form of **basket_products**
+        required: true
+        schema:
+          type: array
+      - name: visitor
+        in: query
+        description: Visitor id belonging to the basket
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Email belonging tot he basket
+        schema:
+          type: string
+      - name: basket_id
+        in: query
+        description: Will be self assigned if one is not provided
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://api.clerk.io/v2/log/cart/update?key=store_api_key&products=[{"id":"abc","qty":3}]&visitor=bob
+        samples-languages:
+        - curl
+      tags:
+      - Logging
+  /log/category:
+    get:
+      summary: log/category
+      description: Log a category view from a customer
+      operationId: logcategory
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: ID of the product that the visitor viewed.
+        required: true
+        schema:
+          type: string
+      - name: visitor
+        in: query
+        description: Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://api.clerk.io/v2/log/category?key=store_api_key&category=123&visitor=unique_visitor_id
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"product\": 123,\n          \"visitor\": \"unique_visitor_id\"}' \\\n       https://api.clerk.io/v2/log/category"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Logging
+  /log/click:
+    get:
+      summary: log/click
+      description: Log a click on a product from Clerk.io.
+      operationId: log-click
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: product
+        in: query
+        description: ID pf the clicked product.
+        required: true
+        schema:
+          type: string
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        required: true
+        schema:
+          type: string
+      - name: api
+        in: query
+        description: The API endpoint used to generate the result for this click.
+        schema:
+          type: string
+      - name: n
+        in: query
+        description: The clicked products position in the result (0-indexed).
+        schema:
+          type: integer
+          format: int32
+      - name: external
+        in: query
+        description: Is this a external click from outside the website such as a email or an ad.
+        schema:
+          type: boolean
+          default: false
+      - name: labels
+        in: query
+        description: The label(s) of the API endpoint used to generate this click
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://api.clerk.io/v2/log/click?key=store_api_key&product=123&visitor=unique_visitor_id
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"product\": 123,\n          \"visitor\": \"unique_visitor_id\"}' \\\n       https://api.clerk.io/v2/log/click"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Logging
+  /log/email:
+    get:
+      summary: log/email
+      description: Associate an email with a visitor.
+      operationId: log-email
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: The visitors email.
+        required: true
+        schema:
+          type: string
+      - name: visitor
+        in: query
+        description: Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://api.clerk.io/v2/log/email?key=store_api_key&email=john@doe.com&visitor=unique_visitor_id
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"product\": 123,\n          \"visitor\": \"unique_visitor_id\"}' \\\n       https://api.clerk.io/v2/log/click"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Logging
+  /log/product:
+    get:
+      summary: log/product
+      description: Log a product view from a customer
+      operationId: logproduct
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: product
+        in: query
+        description: ID of the product that the visitor viewed.
+        required: true
+        schema:
+          type: string
+      - name: visitor
+        in: query
+        description: Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://api.clerk.io/v2/log/product?key=store_api_key&product=123&visitor=unique_visitor_id
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"product\": 123,\n          \"visitor\": \"unique_visitor_id\"}' \\\n       https://api.clerk.io/v2/log/product"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Logging
+  /log/returned:
+    get:
+      summary: log/returned
+      description: Log a product that was returned, on an order.
+      operationId: logreturned
+      parameters:
+      - name: key
+        in: query
+        description: Your store API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your store private API key.
+        required: true
+        schema:
+          type: string
+      - name: product
+        in: query
+        description: ID of the product.
+        required: true
+        schema:
+          type: string
+      - name: order
+        in: query
+        description: ID of the order / sale.
+        required: true
+        schema:
+          type: string
+      - name: quantity
+        in: query
+        description: The amount of returned products
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: '    curl https://api.clerk.io/v2/log/returned?key=store_api_key&private_key=store_private_api_key&product=123&order=456&quantity=2'
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"private_key\": \"store_private_api_key\",\n          \"product\": 123,\n          \"order\": 456,\n          \"quantity\":1}' \\\n     https://api.clerk.io/v2/log/returned"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Logging
+  /log/sale:
+    get:
+      summary: log/sale
+      description: Log a sale / order made by a user.
+      operationId: log-sale
+      parameters:
+      - name: key
+        in: query
+        description: You store API key
+        required: true
+        schema:
+          type: string
+      - name: sale
+        in: query
+        description: ID of the order / sale.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: List of products in the order. Can be a simple list of product IDs or a list of objects with ID, price and quantity.
+        required: true
+        schema:
+          items:
+            properties:
+              id:
+                type: integer
+                description: The ID of the product that was bought.
+                format: int32
+              quantity:
+                type: integer
+                description: The number of identical products that were bought. Minimum 1.
+                format: int32
+              price:
+                type: number
+                description: The unit price of the product that was bought. This will be multiplied by the quantity in Clerk.
+                format: float
+            type: object
+          type: array
+        style: deepObject
+        explode: true
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: customer
+        in: query
+        description: ID of the customer who made the order / sale.
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: The email of the customer who mae the order / sale.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"sale\": 567,\n          \"products\": [\n            {\n              \"id\": 1,\n              \"price\": 99.95,\n              \"quantity\": 2\n            }, \n            {\n              \"id\": 33,\n              \"price\": 14.00,\n              \"quantity\": 2\n            }\n          ],\n          \"customer\": 1234,\n          \"email\": \"theone@matrix.com\",\n          \"visitor\":  \"a1d0c6e83f027327d8461063f4ac58a6\"}' \\\n       https://api.clerk.io/v2/log/sale"
+          name: POST
+        - language: text
+          code: curl https://api.clerk.io/v2/log/sale?key=store_api_key&sale=123456&email=john@doe.com&products=[123,456]
+          name: GET
+        samples-languages:
+        - curl
+        - text
+      tags:
+      - Logging
+    post:
+      summary: log/sale
+      description: Log a sale / order made by a user.
+      operationId: logsale-copy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - sale
+              - products
+              properties:
+                key:
+                  type: string
+                  description: You store API key
+                customer:
+                  type: string
+                  description: ID of the customer who made the order / sale.
+                email:
+                  type: string
+                  description: The email of the customer who mae the order / sale.
+                sale:
+                  type: string
+                  description: ID of the order / sale.
+                products:
+                  type: array
+                  description: List of products in the order. Can be a simple list of product IDs or a list of objects with ID, price and quantity.
+                  items:
+                    properties:
+                      id:
+                        type: integer
+                        description: The ID of the product that was bought.
+                        format: int32
+                      quantity:
+                        type: integer
+                        description: The number of identical products that were bought. Minimum 1.
+                        format: int32
+                      price:
+                        type: number
+                        description: The unit price of the product that was bought. This will be multiplied by the quantity in Clerk.
+                        format: float
+                    type: object
+                visitor:
+                  type: string
+                  description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"sale\": 567,\n          \"products\": [\n            {\n              \"id\": 1,\n              \"price\": 99.95,\n              \"quantity\": 2\n            }, \n            {\n              \"id\": 33,\n              \"price\": 14.00,\n              \"quantity\": 2\n            }\n          ],\n          \"customer\": 1234,\n          \"email\": \"theone@matrix.com\",\n          \"visitor\":  \"a1d0c6e83f027327d8461063f4ac58a6\"}' \\\n       https://api.clerk.io/v2/log/sale"
+          name: POST
+        - language: text
+          code: curl https://api.clerk.io/v2/log/sale?key=store_api_key&sale=123456&email=john@doe.com&products=[123,456]
+          name: GET
+        samples-languages:
+        - curl
+        - text
+      tags:
+      - Logging
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key

@@ -1,0 +1,189 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Subscribers API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Subscribers
+paths:
+  /subscriber/subscribe:
+    get:
+      summary: subscriber/subscribe
+      description: Subscribe an email address globally or to a specific list
+      operationId: subscriberssubscribe
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: The email address to subscribe for email marketing.
+        required: true
+        schema:
+          type: string
+      - name: list_id
+        in: query
+        description: An optional ID of a list for the email address to be subscribed to. Email address will also be subscribed globally if it was not already.<br/>List IDs are found in my.clerk.io under *Email > Lists*.
+        schema:
+          type: string
+      - name: redirect
+        in: query
+        description: If true, redirects the user to my.clerk.io to confirm subscription. Can be combined with `redirect_url` to send user to a specific URL.
+        schema:
+          type: boolean
+          default: false
+      - name: redirect_url
+        in: query
+        description: An optional URL to redirect to after the user is successfully subscribed.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/subscriber/subscribe?key=store_api_key&email=luke@skywalker.org&list_id=RFPGVQFA
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"email\": \"luke@skywalker.org\",\n          \"list_id\": \"RFPGVQFA\"}' \\\n     http://api.clerk.io/v2/subscriber/subscribe"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Subscribers
+  /subscriber/unsubscribe:
+    get:
+      summary: subscriber/unsubscribe
+      description: Unsubscribe an email address globally or from a specific list
+      operationId: subscribersunsubscribe
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: The email address to unsubscribe for email marketing.
+        required: true
+        schema:
+          type: string
+      - name: list_id
+        in: query
+        description: An optional ID of a list for the email address to be unsubscribed from. If not provided, recipient will be unsubscribed globally. <br/> List IDs are found in my.clerk.io under *Email > Lists*.
+        schema:
+          type: string
+      - name: redirect
+        in: query
+        description: If true, redirects the user to my.clerk.io to confirm that they are unsubscribed. Can be combined with `redirect_url` to send user to a specific URL.
+        schema:
+          type: boolean
+          default: false
+      - name: redirect_url
+        in: query
+        description: An optional URL to redirect to after the user is successfully unsubscribed.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/subscriber/unsubscribe?key=store_api_key&email=luke@skywalker.org&list_id=RFPGVQFA
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"email\": \"luke@skywalker.org\",\n          \"list_id\": \"RFPGVQFA\"}' \\\n     http://api.clerk.io/v2/subscriber/unsubscribe"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Subscribers
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key

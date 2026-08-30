@@ -1,0 +1,379 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Product Data API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Product Data
+paths:
+  /product/add:
+    get:
+      summary: product/add
+      description: Bulk add new / changed products to a store.
+      operationId: product-add
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your store private API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: List of the product objects to add. If the product already exists it will be overridden with the new data.
+        required: true
+        schema:
+          type: array
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"private_key\": \"store_private_api_key\"\n          \"products\": [\n                {\n                  \"id\": 123,\n                  \"name\": \"Green Lightsaber\",\n                  \"description\": \"Antiuque rebel lightsaber.\",\n                  \"price\": 99995.95,\n                  \"brand\": \"Je’daii\",\n                  \"categories\": [987, 654],\n                  \"created_at\": 1199145600\n                },\n                  {\n                  \"id\": 789,\n                  \"name\": \"Death Star Deluxe\",\n                  \"description\": \"Death Star. Guaranteed idiot proof. \"\n                  \"price\": 99999999999999.95,\n                  \"brand\": \"Imperial Inc.\",\n                  \"categories\": [345678],\n                  \"created_at\": 11991864600\n                }\n          ]}' \\\n     https://api.clerk.io/v2/product/add"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Product Data
+  /product/attributes:
+    get:
+      summary: product/attributes
+      description: Loads the given attributes for the given products. See the API documentation for Product Metadata to embed this with every avary call.
+      operationId: product-attributes
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: List of Product ID's to return attributes for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+            format: int32
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details. If none is provided all available attributes will be returned.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: language
+        in: query
+        description: The language if the store is using multiple languages. If not provided the most used language in the store will be used.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "[\n  {\n    \"id\": 123,\n    \"name\": \"Wombat Wand\",\n    \"price\": 14.95\n  },\n    {\n    \"id\": 123,\n    \"name\": \"Green Light Saber\",\n    \"price\": 99995.95\n  },\n    {\n    \"id\": 789,\n    \"name\": \"Death Star Deluxe\",\n    \"price\": 99999999999999.95\n  }\n]"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 123
+                        default: 0
+                      name:
+                        type: string
+                        example: Wombat Wand
+                      price:
+                        type: number
+                        example: 14.95
+                        default: 0
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/product/attributes?key=store_api_key&products=[123,456,789]&attributes=id,name,price
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"products\": [123, 456, 789],\n          \"attributes\": [\"id\", \"name\", \"price\"]}' \\\n     http://api.clerk.io/v2/product/attributes"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Product Data
+  /product/facets:
+    get:
+      summary: product/facets
+      description: Loads the facet groups available for the given products and attributes.
+      operationId: product-facets
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: List of product IDs. If not provided facets will be computed for all products.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details. If none is provided all available attributes will be returned.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"facets\": {\n    \"categories\": [\n      {\n        \"count\": 2,\n        \"type\": \"unit\",\n        \"name\": \"Imperial Inc.\",\n        \"value\": \"Imperial Inc.\"\n      },\n      {\n        \"count\": 1,\n        \"type\": \"unit\",\n        \"name\": \"Je’daii\",\n        \"value\": \"Je’daii\"\n      }\n    ],\n    \"price\": [\n      {\n        \"max\": 49.0,\n        \"type\": \"range\",\n        \"name\": \"0 - 49\",\n        \"min\": 0.0\n      },\n      {\n        \"max\": 99.0,\n        \"type\": \"range\",\n        \"name\": \"50 - 99\",\n        \"min\": 50.0\n      },\n      {\n        \"max\": 750,\n        \"type\": \"range\",\n        \"name\": \"> 100\",\n        \"min\": 100\n      }\n    ]\n  }\n}\n"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                    facets:
+                      type: object
+                      properties:
+                        categories:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              count:
+                                type: integer
+                                example: 2
+                                default: 0
+                              type:
+                                type: string
+                                example: unit
+                              name:
+                                type: string
+                                example: Imperial Inc.
+                              value:
+                                type: string
+                                example: Imperial Inc.
+                        price:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              max:
+                                type: integer
+                                example: 49
+                                default: 0
+                              type:
+                                type: string
+                                example: range
+                              name:
+                                type: string
+                                example: 0 - 49
+                              min:
+                                type: integer
+                                example: 0
+                                default: 0
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/product/facets?key=store_api_key&products=[123,456,789]&attributes=brand,price
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"products\": [123, 456, 789],\n          \"attributes\": [\"id\", \"name\", \"price\"]}' \\\n     http://api.clerk.io/v2/product/attributes"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Product Data
+  /product/remove:
+    get:
+      summary: product/remove
+      description: Bulk remove products from a store.
+      operationId: product-remove
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your store private API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: List of product IDs to be removed.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://api.clerk.io/v2/product/remove?key=store_api_key&private_key=store_private_key&products=[123,456,789]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"private_key\": \"store_private_api_key\"\n          \"products\": [123, 456, 789]}' \\\n     https://api.clerk.io/v2/product/remove"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Product Data
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key

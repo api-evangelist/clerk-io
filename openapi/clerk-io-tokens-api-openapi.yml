@@ -1,0 +1,65 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Tokens API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Tokens
+paths:
+  /token/verify:
+    get:
+      summary: Verify
+      description: This provides an overview of the verify endpoint. It's general use is to see if the token you have in the cookie header is valid or not.
+      operationId: token-verification
+      parameters:
+      - name: token
+        in: query
+        description: The token we want to verify, note this will be overwritten if you have a jwt token in your cookie
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: query
+        description: public_key of the store the verification token is made for. Only required for importers
+        schema:
+          type: string
+      - name: jwt
+        in: header
+        description: signed jwt token we want to verify as an http only, secure cookie.
+        schema:
+          type: string
+          default: 'Cookie: jwt=TOKEN'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok", "token_payload":PAYLOAD}'
+      deprecated: false
+      tags:
+      - Tokens
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key

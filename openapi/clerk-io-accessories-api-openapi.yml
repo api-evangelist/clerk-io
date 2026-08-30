@@ -1,0 +1,208 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Accessories API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Accessories
+paths:
+  /accessories:
+    get:
+      summary: /accessories
+      description: ''
+      operationId: accessories-get
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: accessories
+        in: query
+        description: List of product ID's to get the data for.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{'status': 'ok',\n 'accessories':[\n  \t{'product': 'AV-DHONO',\n   \t 'accessories': ['JBL-GO'],\n   \t 'directed_accessories': ['LDY84']}\n   ]\n }"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Accessories
+    post:
+      summary: /accessories
+      description: ''
+      operationId: accessories-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                accessories:
+                  type: array
+                  description: list of accessory objects
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{''status'': ''ok''}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Accessories
+    patch:
+      summary: /accessories
+      description: ''
+      operationId: accessories-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                accessories:
+                  type: array
+                  description: list of accessory objects
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{''status'': ''ok''}'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Accessories
+    delete:
+      summary: /accessories
+      description: ''
+      operationId: accessories-delete
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: accessories
+        in: query
+        description: List of product ID's to delete accessories for
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{''status'': ''ok'' }'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Accessories
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key

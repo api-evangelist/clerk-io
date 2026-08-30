@@ -1,0 +1,231 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Campaigns API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Campaigns
+paths:
+  /campaigns/click:
+    get:
+      summary: campaigns/click
+      description: Redirect the customer to the product corresponding to the previously rendered image from campaigns/embed.
+      operationId: campaigns-click
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: The email of the customer to load the recommendation for.
+        required: true
+        schema:
+          type: string
+      - name: embed
+        in: query
+        description: ID of the Hosted Template to be embedded.
+        required: true
+        schema:
+          type: string
+      - name: n
+        in: query
+        description: Loading the n-th product in the set of recommended products. n is 0-indexed.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: v
+        in: query
+        description: Unique version number of the email (ideally a random number per email or else a campaign id or date string).
+        required: true
+        schema:
+          type: string
+      - name: append
+        in: query
+        description: Append this string to the redirect link URL.
+        schema:
+          type: string
+      - name: prepend
+        in: query
+        description: Prepend this string to the redirect URL.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: An attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "// Redirects to the product URL.\n\n{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/campaigns/click?key=store_api_key&email=john@doe.com&embed=reciept-email&n=0&v=1234567890&filter=price+>+10
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"email\": \"john@doe.com\",\n          \"embed\": \"reciept-email\",\n          \"n\": 0,\n          \"v\": 1234567890,\n          \"filter\": \"price > 10\"}' \\\n     http://api.clerk.io/v2/campaigns/click"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Campaigns
+  /campaigns/embed:
+    get:
+      summary: campaigns/embed
+      description: Render a recommendation onto a dynamic image for embedding dynamic content in a email.
+      operationId: campaigns-embed
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: The email of the customer to load the recommendation for.
+        required: true
+        schema:
+          type: string
+      - name: embed
+        in: query
+        description: ID of the Hosted Template to be embedded.
+        required: true
+        schema:
+          type: string
+      - name: n
+        in: query
+        description: Loading the n-th product in the set of recommended products. n is 0-indexed.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: v
+        in: query
+        description: Unique version number of the email (ideally a random number per email or else a campaign id or date string).
+        required: true
+        schema:
+          type: string
+      - name: append
+        in: query
+        description: Append this string to the redirect link URL.
+        schema:
+          type: string
+      - name: prepend
+        in: query
+        description: Prepend this string to the redirect URL.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: An attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "// Redirects to the dynamically generated image on success.\n\n{\n  \"status\": \"ok\"\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    status:
+                      type: string
+                      example: ok
+                - title: Error
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: error
+                    message:
+                      type: string
+                      example: A message explaining the error.
+                    moreInfo:
+                      type: string
+                      example: http://help.clerk.io/error/{ERROR_ID}
+                    type:
+                      type: string
+                      example: ErrorType
+                    id:
+                      type: string
+                      example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/campaigns/embed?key=store_api_key&email=john@doe.com&embed=reciept-email&n=0&v=1234567890&filter=price+>+10
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"email\": \"john@doe.com\",\n          \"embed\": \"reciept-email\",\n          \"n\": 0,\n          \"v\": 1234567890,\n          \"filter\": \"price > 10\"}' \\\n     http://api.clerk.io/v2/campaigns/embed"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Campaigns
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key

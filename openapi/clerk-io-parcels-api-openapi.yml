@@ -1,0 +1,247 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Parcels API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Parcels
+paths:
+  /orders/parcels:
+    get:
+      summary: /orders/parcels
+      description: Allows you to fetch all parcels associated with a given Order.
+      operationId: parcels-get
+      parameters:
+      - name: key
+        in: query
+        description: Public key
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Private key
+        required: true
+        schema:
+          type: string
+      - name: order_id
+        in: query
+        description: ID of the order to fetch tracking information for
+        required: true
+        schema:
+          type: string
+      - name: parcel_id
+        in: query
+        description: ID of the specific parcel you want to retrieve
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Parcels
+    post:
+      summary: /orders/parcels
+      description: Allows you to create parcels associated with a given Order.
+      operationId: parcels-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - order_id
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                order_id:
+                  type: string
+                  description: The ID of the order tied to the parcel.
+                tracking_code:
+                  type: string
+                  description: Tracking code associated with the parcel.
+                tracking_link:
+                  type: string
+                  description: Link from the carrier, including the tracking code in the query parameters.
+                status:
+                  type: string
+                  description: Semantic description of the parcel status.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Parcels
+    patch:
+      summary: /orders/parcels
+      description: Allows you to edit parcels associated with a given Order.
+      operationId: parcels-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - parcel_id
+              - order_id
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                parcel_id:
+                  type: string
+                  description: The ID of the parcel you are patching
+                order_id:
+                  type: string
+                  description: The ID of the order tied to the parcel
+                tracking_code:
+                  type: string
+                  description: Tracking code associated with the parcel
+                tracking_link:
+                  type: string
+                  description: Link from the carrier, including the tracking code in the query parameters.
+                status:
+                  type: string
+                  description: Semantic description of the parcel status.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Parcels
+    delete:
+      summary: /orders/parcels
+      description: Allows you to delete parcels associated with a given Order.
+      operationId: parcels-delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - parcel_id
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                parcel_id:
+                  type: string
+                  description: The ID of the parcel you want to delete.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Parcels
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key

@@ -1,0 +1,967 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Catalog API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Catalog
+paths:
+  /categories:
+    get:
+      summary: /categories
+      description: Get categories from Clerk.io
+      operationId: categories-get
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: categories
+        in: query
+        description: List of category ID's to get the data for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    post:
+      summary: /categories
+      description: Add or update categories in Clerk.io
+      operationId: categories-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - categories
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                categories:
+                  type: array
+                  description: List of [categories](/reference/category-resource) to add or update.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    patch:
+      summary: /categories
+      description: Patch existing categories in Clerk.io with new attributes or values.
+      operationId: categories-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - categories
+              properties:
+                key:
+                  type: string
+                  description: You stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                categories:
+                  type: array
+                  description: List of partial category objects.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+  /customers:
+    get:
+      summary: /customers
+      description: Get customers from Clerk.io
+      operationId: customers-get
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: customers
+        in: query
+        description: List of customers emails to get the data for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    post:
+      summary: /customers
+      description: Add or update customers in Clerk.io
+      operationId: customers-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - customers
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                customers:
+                  type: array
+                  description: List of [customers](/reference/customer-resource) to add or update.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    patch:
+      summary: /customers
+      description: Patch existing customers in Clerk.io with new attributes or values.
+      operationId: customers-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - customers
+              properties:
+                key:
+                  type: string
+                  description: You stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                customers:
+                  type: array
+                  description: List of partial [customer](/reference/customer-resource) objects.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    delete:
+      summary: /customers
+      description: Delete customers from Clerk.io
+      operationId: customers-delete
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: customers
+        in: query
+        description: List of customer ID's to delete from Clerk.io
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+  /orders:
+    get:
+      summary: /orders
+      description: Get orders from Clerk.io
+      operationId: orders-get
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: orders
+        in: query
+        description: List of order ID's to get the data for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    post:
+      summary: /orders
+      description: Add or update orders in Clerk.io
+      operationId: orders-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - orders
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                orders:
+                  type: array
+                  description: List of [orders](/reference/order-resource) to add or update.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    patch:
+      summary: /orders
+      description: Patch existing orders in Clerk.io with new attributes or values.
+      operationId: orders-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - orders
+              properties:
+                key:
+                  type: string
+                  description: You stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                orders:
+                  type: array
+                  description: List of partial order objects.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    delete:
+      summary: /orders
+      description: Delete orders from Clerk.io
+      operationId: orders-delete
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: orders
+        in: query
+        description: List of order ID's to delete from Clerk.io
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+  /pages:
+    get:
+      summary: /pages
+      description: Get pages from Clerk.io
+      operationId: pages-get
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: pages
+        in: query
+        description: List of page ID's to get the data for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    post:
+      summary: /pages
+      description: Add or update pages in Clerk.io
+      operationId: pages-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - pages
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                pages:
+                  type: array
+                  description: List of [pages](/reference/page-resource) to add or update.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    patch:
+      summary: /pages
+      description: Patch existing pages in Clerk.io with new attributes or values.
+      operationId: pages-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - pages
+              properties:
+                key:
+                  type: string
+                  description: You stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                pages:
+                  type: array
+                  description: List of partial page objects.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    delete:
+      summary: /pages
+      description: Delete pages from Clerk.io
+      operationId: pages-delete
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: pages
+        in: query
+        description: List of page ID's to delete from Clerk.io
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+  /products:
+    post:
+      summary: /products
+      description: Add or update products in Clerk.io
+      operationId: products-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - products
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                products:
+                  type: array
+                  description: List of [products](/reference/product-resource) to add or update.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    patch:
+      summary: /products
+      description: Patch existing products in Clerk.io with new attributes or values.
+      operationId: products-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - products
+              properties:
+                key:
+                  type: string
+                  description: You stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                products:
+                  type: array
+                  description: List of partial product objects.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    delete:
+      summary: Copy of Copy of /categories
+      description: Get categories from Clerk.io
+      operationId: categories-get-1-1
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: List of product ID's to delete.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Catalog
+    get:
+      summary: /products
+      description: Get products from Clerk.io
+      operationId: categories-get-1
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: categories
+        in: query
+        description: List of category ID's to delete.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      tags:
+      - Catalog
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key

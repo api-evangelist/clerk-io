@@ -1,0 +1,2703 @@
+openapi: 3.2.0
+info:
+  title: Clerk.io Recommendations API
+  version: '2'
+  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
+
+
+    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
+  contact:
+    name: Clerk.io Documentation
+    url: https://docs.clerk.io/
+  x-provenance:
+    method: searched
+    harvested: '2026-08-13'
+    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
+    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
+    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
+servers:
+- url: https://api.clerk.io/v2
+security:
+- sec0: []
+tags:
+- name: Recommendations
+paths:
+  /recommendations/bundle:
+    get:
+      summary: recommendations/bundle
+      description: This endpoint is deprecated and has been replaced by recommendations/complementary
+      operationId: recommendations-bundle
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: product
+        in: query
+        description: Product ID for the product you want bundled products for.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/bundle?key=store_api_key&product=123&limit=30&labels=["Bundled products"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"product\": 123, \n          \"limit\": 30,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Bundle options\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/bundle"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/category/new:
+    get:
+      summary: recommendations/category/new
+      description: The products in a given category (and subcategories) that were most recently added to the store.
+      operationId: recommendationscategorynew
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Category ID for the category you want popular products for.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/category/new?key=store_api_key&category=123&limit=30&labels=["New products in this category"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"category\": 123, \n          \"limit\": 30,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Category Popular\"]' \\\n     http://api.clerk.io/v2/recommendations/category/new"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/category/popular:
+    get:
+      summary: recommendations/category/popular
+      description: The products in a given category (and subcategories) that are most popular among customers right now.
+      operationId: recommendations-category-popular
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Category ID for the category you want popular products for.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: offset
+        in: query
+        description: Offset into the result. See pagenation docs for a deeper specification on how to use pagenation.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: facets
+        in: query
+        description: List of facets to be returned for the products in the result. See API documentation on Facets for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: orderby
+        in: query
+        description: Attribute to order the results by.
+        schema:
+          type: string
+      - name: order
+        in: query
+        description: Should the ordering from `orderby` be ascending (asc) or descending (desc).
+        schema:
+          type: string
+          default: asc
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/category/popular?key=store_api_key&category=123&limit=30&labels=["Category Popular"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"category\": 123, \n          \"limit\": 30,\n          \"offset\": 60,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Category Popular\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/category/popular"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/category/popular_subcategories:
+    get:
+      summary: recommendations/category/popular_subcategories
+      description: The subcategories in a given category that are most popular among customers right now.
+      operationId: recommendationscategorypopular_subcategories
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Category ID for the category you want popular products for.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Offset into the result. See pagenation docs for a deeper specification on how to use pagenation.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: order
+        in: query
+        description: Should the subcategories be in descending or ascending order. Default is descending so the most popular is the first result.
+        schema:
+          type: string
+          default: desc
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [{'url':'https://www.yoursite.com/category1','name':'category1','id':123},{'url':'https://www.yoursite.com/category2','name':'category2','id':124},{'url':'https://www.yoursite.com/category3','name':'category3','id':325} ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/category/popular_subcategories?key=store_api_key&category=123&limit=30
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"category\": 123, \n          \"limit\": 30,\n          \"offset\": 60,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Category Popular\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/category/popular"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/category/trending:
+    get:
+      summary: recommendations/category/trending
+      description: The products in a given category (and subcategories) that are growing the most in popularity amongst customers right now.
+      operationId: recommendationscategorytrending
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Category ID for the category you want popular products for.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: offset
+        in: query
+        description: Offset into the result. See pagenation docs for a deeper specification on how to use pagenation.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: facets
+        in: query
+        description: List of facets to be returned for the products in the result. See API documentation on Facets for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/category/trending?key=store_api_key&category=123&limit=30&labels=["Trending In This Category"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"category\": 123, \n          \"limit\": 30,\n          \"offset\": 60,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Trending In This Category\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/category/trending"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/complementary:
+    get:
+      summary: recommendations/complementary
+      description: The products that customers are most likely to buy with a given product or multiple products.
+      operationId: recommendations-complementary
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: Product ID(s) for the products you want complementary products for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/complementary?key=store_api_key&products=[123,456,789]&limit=30&labels=["Best Cross-Sell Products"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"products\": [123], \n          \"limit\": 30,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Best Cross-Sell Products\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     https://api.clerk.io/v2/recommendations/complementary"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/currently_watched:
+    get:
+      summary: recommendations/currently_watched
+      description: The products other store visitors are currently looking at.
+      operationId: recommendationscurrently_watched
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+          default: insert_api_key
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/currently_watched?key=store_api_key&limit=30&labels=["Customers Are Looking At"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"limit\": 30,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"labels\": [\"Customers Are Looking At\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     https://api.clerk.io/v2/recommendations/currently_watched"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/customer/complementary:
+    get:
+      summary: recommendations/customer/complementary
+      description: The products that a specific customer is most likely to buy right now based on their order history.
+      operationId: recommendations-customer-complementary
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: The customers email address
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: customer
+        in: query
+        description: The customers ID.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/customer/complementary?key=store_api_key&email=luke@skywalker.net&limit=30&labels=["Customer Recommendations"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n     \t\t\t\"visitor\": \"visitor_id\",\n          \"email\": \"luke@skywalker.com\",\n          \"limit\": 30,\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Customer Recommendations\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/customer/complementary"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/customer/history:
+    get:
+      summary: recommendations/customer/history
+      description: The history of a customer's on-site activity.
+      operationId: recommendations-customer-history
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: The customers email address
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: customer
+        in: query
+        description: The customers ID.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/customer/history?key=store_api_key&email=luke@skywalker.net&limit=30&labels=["Customer History"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n     \t\t\t\"visitor\": \"visitor_id\",\n          \"email\": \"luke@skywalker.com\",\n          \"limit\": 30,\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Customer History\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/customer/history"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/customer/substituting:
+    get:
+      summary: recommendations/customer/substituting
+      description: The products that a specific customer is most likely to buy right now as replacements for their order history.
+      operationId: recommendations-customer-substituting
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: The customers email address
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: customer
+        in: query
+        description: The customers ID.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: An attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/customer/substituting?key=store_api_key&email=luke@skywalker.net&limit=30&labels=["Customer Alternatives"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"visitor\": \"visitor_id\",\n          \"email\": \"luke@skywalker.com\",\n          \"limit\": 30,\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Customer Alternatives\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/customer/substituting"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/keywords:
+    get:
+      summary: recommendations/keywords
+      description: Products based on content such as blogs, news or content pages.
+      operationId: recommendations-keywords
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: The keywords (ie. content title) to base the recommendations upon.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/keywords?key=store_api_key&limit=30&keywords=lightsaber&labels=["Keyword Recommendations"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"limit\": 30,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Keyword Recommendations\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/currently_watched"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/most_sold_with:
+    get:
+      summary: recommendations/most_sold_with
+      description: The products that have been sold the most times with a given product or multiple products
+      operationId: recommendationsmost_sold_with
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: Product ID(s) for the products you the most sold with products for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/most_sold_with?key=store_api_key&products=[123,456,789]&limit=30&labels=["Best Cross-Sell Products"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"products\": [123], \n          \"limit\": 30,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Best Cross-Sell Products\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/most_sold_with"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/new:
+    get:
+      summary: recommendations/new
+      description: The products that were most recently added to the store.
+      operationId: recommendationsnew
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+          default: insert_api_key
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/new?key=store_api_key&limit=30&labels=["Newly added products"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"limit\": 30,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"labels\": [\"Newly added products\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     https://api.clerk.io/v2/recommendations/new"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/page/category:
+    get:
+      summary: recommendations/page/category
+      description: Pages that are related to any given category
+      operationId: recommendationspagecategory
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: ID of the category you want related pages for.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Page attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: The type of pages to return
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, 112, 113],\n  \"pages\": [{\"title\": \"How to build a Death Star\",\"url:\":\"https://galactic-empire.com/blogs/death-star\",\"text\":\"In order to build a Death Star, you must consider ventilation and...\",\"image\":\"https://galactic-empire.com/images/death-star.jpg\",\"type\":\"blog\",\"id\": 123},{...}]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/page/category?key=store_api_key&category=123&limit=5&type="CMS Page"&labels=["Categories - Related Articles"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"category\": 123, \n          \"type\": \"CMS Page\",\n          \"limit\": 5,\n          \"visitor\": \"unique_visitor_id\",\n          \"labels\": [\"Categories - Related Articles\"]}' \\\n     http://api.clerk.io/v2/recommendations/page/category"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/page/product:
+    get:
+      summary: recommendations/page/product
+      description: Pages that are related to any given product
+      operationId: recommendationspageproduct
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: product
+        in: query
+        description: ID of the product you want related pages for.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Page attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: The type of pages to return
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, 112, 113],\n  \"pages\": [{\"title\": \"How to build a Death Star\",\"url:\":\"https://galactic-empire.com/blogs/death-star\",\"text\":\"In order to build a Death Star, you must consider ventilation and...\",\"image\":\"https://galactic-empire.com/images/death-star.jpg\",\"type\":\"blog\",\"id\": 123},{...}]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/page/product?key=store_api_key&product=123&limit=5&type="CMS Page"&labels=["Product Page - Related Articles"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"product\": 123,\n          \"type\": \"CMS Page\",\n          \"limit\": 5,\n          \"visitor\": \"unique_visitor_id\",\n          \"labels\": [\"Product Page - Related Articles\"]}' \\\n     http://api.clerk.io/v2/recommendations/page/product"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/page/related_categories:
+    get:
+      summary: recommendations/page/related_categories
+      description: Products that are related to any given page
+      operationId: recommendationspagerelated_categories
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ID of the page you want similar pages for.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Page attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"status\": \"ok\",\n\t\"count\": 1,\n\t\"result\": [456,111,455,786,433],\n\t\"categories\": [{\"id\":456,\"name\": \"Lightsabers\",\"subcategories\":[789],\"parent\": 123,\"url\":\"https://www.rebels-of-a-just-cause.org/lightsabers\"},{...}]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/page/related_categories?key=store_api_key&page=123&limit=5&labels=["Blog Pages - Related Categories"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"page\": 123, \n          \"limit\": 5,\n          \"visitor\": \"unique_visitor_id\",\n          \"labels\": [\"Blog Pages - Related Categories\"],}' \\\n     http://api.clerk.io/v2/recommendations/page/related_categories"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/page/related_products:
+    get:
+      summary: recommendations/page/related_products
+      description: Products that are related to any given page
+      operationId: recommendationspagerelated_products
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ID of the page you want similar pages for.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Page attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/page/related_products?key=store_api_key&page=123&limit=5&labels=["Blog Pages - Related Products"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"page\": 123, \n          \"limit\": 5,\n          \"visitor\": \"unique_visitor_id\",\n          \"labels\": [\"Blog Pages - Related Products\"],}' \\\n     http://api.clerk.io/v2/recommendations/page/related_products"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/page/substituting:
+    get:
+      summary: recommendations/page/substituting
+      description: Pages that are similar to any given page
+      operationId: recommendationspagesubstituting
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: ID of the page you want similar pages for.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: type
+        in: query
+        description: The type of pages to return
+        schema:
+          type: string
+      - name: attributes
+        in: query
+        description: Page attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, 112, 113],\n  \"pages\": [{\"title\": \"How to build a Death Star\",\"url:\":\"https://galactic-empire.com/blogs/death-star\",\"text\":\"In order to build a Death Star, you must consider ventilation and...\",\"image\":\"https://galactic-empire.com/images/death-star.jpg\",\"type\":\"blog\",\"id\": 123},{...}]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/page/substituting?key=store_api_key&page=123&limit=5&type="CMS Page"&labels=["Blog Pages - Similar Articles"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"page\": 123, \n          \"type\": \"CMS Page\",\n          \"limit\": 5,\n          \"visitor\": \"unique_visitor_id\",\n          \"labels\": [\"Blog Pages - Similar Articles\"]}' \\\n     http://api.clerk.io/v2/recommendations/page/substituting"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/popular:
+    get:
+      summary: recommendations/popular
+      description: The most popular products among the store's customers right now.
+      operationId: recommendations-popular
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: offset
+        in: query
+        description: Offset into the result. See pagenation docs for a deeper specification on how to use pagenation.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: facets
+        in: query
+        description: List of facets to be returned for the products in the result. See API documentation on Facets for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/popular?key=store_api_key&limit=30&labels=["Bestsellers"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"limit\": 30,\n          \"offset\": 60,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Bestsellers\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     https://api.clerk.io/v2/recommendations/popular"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/recently_bought:
+    get:
+      summary: recommendations/recently_bought
+      description: The products that were most recently purchased by customers.
+      operationId: recommendationsrecently_bought
+      parameters:
+      - name: key
+        in: query
+        description: Your store API key
+        required: true
+        schema:
+          type: string
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        schema:
+          type: integer
+          format: int32
+      - name: filter
+        in: query
+        description: An attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/recently_bought?key=store_api_key&limit=30&labels=["Customers Are Looking At"]
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/substituting:
+    get:
+      summary: recommendations/substituting
+      description: The products that customers are most likely to buy instead of a given product or multiple products.
+      operationId: recommendations-substituting
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: products
+        in: query
+        description: Product ID(s) for the products you want substituting products for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/substituting?key=store_api_key&products=[123,456,789]&limit=30&labels=["Alternatives"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"products\": [123], \n          \"limit\": 30,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Alternatives\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     https://api.clerk.io/v2/recommendations/substituting"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/trending:
+    get:
+      summary: recommendations/trending
+      description: The products with the fastest growth in popularity amongst customers right now.
+      operationId: recommendations-trending
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.'
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: offset
+        in: query
+        description: Offset into the result. See pagenation docs for a deeper specification on how to use pagenation.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: facets
+        in: query
+        description: List of facets to be returned for the products in the result. See API documentation on Facets for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/trending?key=store_api_key&limit=30&labels=["Hottest Products"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"limit\": 30,\n          \"offset\": 60,\n          \"visitor\": \"unique_visitor_id\",\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Hottest Products\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     https://api.clerk.io/v2/recommendations/trending"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/visitor/complementary:
+    get:
+      summary: recommendations/visitor/complementary
+      description: The products that a specific visitor is most likely to buy right now based on their on-site activity.
+      operationId: recommendations-visitor-complementary
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.
+        required: true
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: email
+        in: query
+        description: A optional email to be mapped to a visitor ID. This will override the given visitor ID if any.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/visitor/complementary?key=store_api_key&visitor=unique_visitor_id&limit=30&labels=["Visitor Recommendations"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"visitor\": \"unique_visitor_id\",\n          \"limit\": 30,\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Visitor Recommendations\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/visitor/complementary"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/visitor/history:
+    get:
+      summary: recommendations/visitor/history
+      description: The history of a visitor's on-site activity.
+      operationId: recommendations-visitor-history
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.
+        required: true
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: email
+        in: query
+        description: A optional email to be mapped to a visitor ID. This will override the given visitor ID if any.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/visitor/history?key=store_api_key&visitor=unique_visitor_id&limit=30&labels=["Visitor History"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"visitor\": \"unique_visitor_id\",\n          \"limit\": 30,\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Visitor History\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/visitor/history"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+  /recommendations/visitor/substituting:
+    get:
+      summary: recommendations/visitor/substituting
+      description: The products that a specific visitor is most likely to buy as alternatives to their on-site activity.
+      operationId: recommendations-visitor-substituting
+      parameters:
+      - name: key
+        in: query
+        description: You store API key.
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Number of results to be returned.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: visitor
+        in: query
+        description: Visitor ID for the given visitor. <br/> If `auto`, an anonymous ID is generated. <br/> See <a href="https://docs.clerk.io/docs/visitor-tracking" target="_blank">API documentation on Visitor Tracking</a> for details.
+        required: true
+        schema:
+          type: string
+      - name: labels
+        in: query
+        description: '<small style="color: #eea236;">Required for tracking</small><br/>A list of one or more text labels, used to track the labels performance in Analytics.'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: email
+        in: query
+        description: A optional email to be mapped to a visitor ID. This will override the given visitor ID if any.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: A attribute filter to filter the result. See API documentation on Filters for details.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Array of product IDs to be excluded from the result. See API documentation on Filters for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attributes
+        in: query
+        description: Product attributes to be provided in the response. See API documentation on Product Metadata for details.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: callback
+        in: query
+        description: JSONP - Wraps the response as a function call with the name of the string.
+        schema:
+          type: string
+      - name: debug
+        in: query
+        description: When `true`, the response will include a JSON dictionary of the various customisations made to the results shown by Synonyms, Customized Search, Merchandising etc.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"status\": \"ok\",\n  \"result\": [123, 456, 789, ...]\n}"
+                Error:
+                  value: "{\n  \"status\": \"error\",\n  \"message\": \"A message explaining the error.\",\n  \"moreInfo\": \"http://help.clerk.io/error/{ERROR_ID}\",\n  \"type\": \"ErrorType\",\n  \"id\": \"{ERROR_ID}\"\n}"
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: A message explaining the error.
+                  moreInfo:
+                    type: string
+                    example: http://help.clerk.io/error/{ERROR_ID}
+                  type:
+                    type: string
+                    example: ErrorType
+                  id:
+                    type: string
+                    example: '{ERROR_ID}'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.clerk.io/v2/recommendations/visitor/substituting?key=store_api_key&visitor=unique_visitor_id&limit=30&labels=["Visitor Alternatives"]
+          name: GET
+        - language: curl
+          code: "curl -X POST \\\n     -H 'Content-Type: application/json' \\\n     -d '{\"key\": \"store_api_key\",\n          \"visitor\": \"unique_visitor_id\",\n          \"limit\": 30,\n          \"exclude\": [42],\n          \"filter\": \"price > 100\",\n          \"labels\": [\"Visitor Alternatives\"],\n          \"facets\": [\"categories\", \"brands\"]}' \\\n     http://api.clerk.io/v2/recommendations/visitor/substituting"
+          name: POST
+        samples-languages:
+        - curl
+      tags:
+      - Recommendations
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: key
+      in: query
+      x-default: your_api_key
