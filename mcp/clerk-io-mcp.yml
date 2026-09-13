@@ -7,32 +7,34 @@ deployment:
   endpoint: https://docs.clerk.io/mcp
   auth: unknown
   verified: probed
+  probe_prior: (never probed)
+  probe: gated
+  probe_why: JSON-RPC error envelope -- the MCP server answered
+  checked: '2026-09-11'
+  source: claimed-backlog re-probe 2026-09-11
 server:
   name: clerk-io-docs
   transport: http
   url: https://docs.clerk.io/mcp
   scope: documentation
   vendor: ReadMe
-  note: >-
-    Clerk.io serves a remote MCP endpoint on its own documentation host, docs.clerk.io. A plain GET
-    returns the plaintext body "This URL can only be accessed with a MCP client." A JSON-RPC POST of
-    either `initialize` or `tools/list` returns HTTP 401 with
-    {"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"},"id":null}, so the live
-    tool list and its inputSchemas could not be enumerated anonymously. The endpoint is provisioned by
-    ReadMe, Clerk.io's documentation platform, and is scoped to the documentation corpus - it is not a
-    Model Context Protocol wrapper over the api.clerk.io REST surface. No /.well-known/
-    oauth-protected-resource or /.well-known/oauth-authorization-server document is served on
-    docs.clerk.io, so the authorization scheme is undiscoverable without credentials.
+  note: Clerk.io serves a remote MCP endpoint on its own documentation host, docs.clerk.io. A plain GET
+    returns the plaintext body "This URL can only be accessed with a MCP client." A JSON-RPC POST of either
+    `initialize` or `tools/list` returns HTTP 401 with {"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization
+    required"},"id":null}, so the live tool list and its inputSchemas could not be enumerated anonymously.
+    The endpoint is provisioned by ReadMe, Clerk.io's documentation platform, and is scoped to the documentation
+    corpus - it is not a Model Context Protocol wrapper over the api.clerk.io REST surface. No /.well-known/
+    oauth-protected-resource or /.well-known/oauth-authorization-server document is served on docs.clerk.io,
+    so the authorization scheme is undiscoverable without credentials.
 tools: []
-tools_note: >-
-  NOT ENUMERATED. tools/list is auth-gated (HTTP 401). No tool list is published in llms.txt either, so
-  there is nothing to record. No candidate tools are derived here - deriving them would misrepresent an
-  auth-gated documentation MCP as an API-operations MCP.
+tools_note: NOT ENUMERATED. tools/list is auth-gated (HTTP 401). No tool list is published in llms.txt
+  either, so there is nothing to record. No candidate tools are derived here - deriving them would misrepresent
+  an auth-gated documentation MCP as an API-operations MCP.
 x-evidence:
 - url: https://docs.clerk.io/mcp
   method: GET
   http_status: 200
-  body: 'This URL can only be accessed with a MCP client.'
+  body: This URL can only be accessed with a MCP client.
 - url: https://docs.clerk.io/mcp
   method: POST
   jsonrpc_method: initialize
