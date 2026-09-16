@@ -154,54 +154,6 @@ apis:
     url: https://docs.clerk.io/docs/errors
   - type: Pagination
     url: https://docs.clerk.io/docs/pagenation
-- aid: clerk-io:clerk-io-catalog-api
-  name: Clerk.io Catalog API
-  description: The Catalog API from Clerk.io — 5 operation(s) for catalog.
-  humanURL: https://docs.clerk.io/
-  baseURL: https://api.clerk.io/v2
-  tags:
-  - Catalog
-  properties:
-  - type: OpenAPI
-    url: openapi/clerk-io-catalog-api-openapi.yml
-  - type: ToolCrosswalk
-    url: mcp/clerk-io-tool-crosswalk.yml
-  - type: Documentation
-    url: https://docs.clerk.io/
-  - type: APIReference
-    url: https://docs.clerk.io/reference
-  - type: GettingStarted
-    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
-  - type: Authentication
-    url: https://docs.clerk.io/docs/authentication
-  - type: ErrorCodes
-    url: https://docs.clerk.io/docs/errors
-  - type: Pagination
-    url: https://docs.clerk.io/docs/pagenation
-- aid: clerk-io:clerk-io-logging-api
-  name: Clerk.io Logging API
-  description: The Logging API from Clerk.io — 9 operation(s) for logging.
-  humanURL: https://docs.clerk.io/
-  baseURL: https://api.clerk.io/v2
-  tags:
-  - Logging
-  properties:
-  - type: OpenAPI
-    url: openapi/clerk-io-logging-api-openapi.yml
-  - type: ToolCrosswalk
-    url: mcp/clerk-io-tool-crosswalk.yml
-  - type: Documentation
-    url: https://docs.clerk.io/
-  - type: APIReference
-    url: https://docs.clerk.io/reference
-  - type: GettingStarted
-    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
-  - type: Authentication
-    url: https://docs.clerk.io/docs/authentication
-  - type: ErrorCodes
-    url: https://docs.clerk.io/docs/errors
-  - type: Pagination
-    url: https://docs.clerk.io/docs/pagenation
 - aid: clerk-io:clerk-io-merchandising-api
   name: Clerk.io Merchandising API
   description: The Merchandising API from Clerk.io — 4 operation(s) for merchandising.
@@ -226,30 +178,6 @@ apis:
     url: https://docs.clerk.io/docs/errors
   - type: Pagination
     url: https://docs.clerk.io/docs/pagenation
-- aid: clerk-io:clerk-io-parcels-api
-  name: Clerk.io Parcels API
-  description: The Parcels API from Clerk.io — 1 operation(s) for parcels.
-  humanURL: https://docs.clerk.io/
-  baseURL: https://api.clerk.io/v2
-  tags:
-  - Parcels
-  properties:
-  - type: OpenAPI
-    url: openapi/clerk-io-parcels-api-openapi.yml
-  - type: ToolCrosswalk
-    url: mcp/clerk-io-tool-crosswalk.yml
-  - type: Documentation
-    url: https://docs.clerk.io/
-  - type: APIReference
-    url: https://docs.clerk.io/reference
-  - type: GettingStarted
-    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
-  - type: Authentication
-    url: https://docs.clerk.io/docs/authentication
-  - type: ErrorCodes
-    url: https://docs.clerk.io/docs/errors
-  - type: Pagination
-    url: https://docs.clerk.io/docs/pagenation
 - aid: clerk-io:clerk-io-privacy-api
   name: Clerk.io Privacy API
   description: The Privacy API from Clerk.io — 2 operation(s) for privacy.
@@ -260,30 +188,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/clerk-io-privacy-api-openapi.yml
-  - type: ToolCrosswalk
-    url: mcp/clerk-io-tool-crosswalk.yml
-  - type: Documentation
-    url: https://docs.clerk.io/
-  - type: APIReference
-    url: https://docs.clerk.io/reference
-  - type: GettingStarted
-    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
-  - type: Authentication
-    url: https://docs.clerk.io/docs/authentication
-  - type: ErrorCodes
-    url: https://docs.clerk.io/docs/errors
-  - type: Pagination
-    url: https://docs.clerk.io/docs/pagenation
-- aid: clerk-io:clerk-io-product-data-api
-  name: Clerk.io Product Data API
-  description: The Product Data API from Clerk.io — 4 operation(s) for product data.
-  humanURL: https://docs.clerk.io/
-  baseURL: https://api.clerk.io/v2
-  tags:
-  - Product Data
-  properties:
-  - type: OpenAPI
-    url: openapi/clerk-io-product-data-api-openapi.yml
   - type: ToolCrosswalk
     url: mcp/clerk-io-tool-crosswalk.yml
   - type: Documentation
@@ -346,16 +250,16 @@ apis:
     url: https://docs.clerk.io/docs/errors
   - type: Pagination
     url: https://docs.clerk.io/docs/pagenation
-- aid: clerk-io:clerk-io-subscribers-api
-  name: Clerk.io Subscribers API
-  description: The Subscribers API from Clerk.io — 2 operation(s) for subscribers.
-  humanURL: https://docs.clerk.io/
+- aid: clerk-io:clerk-io-categories-api
+  name: Clerk.io Categories API
+  description: The Categories API from Clerk.io — 1 operation(s) for categories.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
   baseURL: https://api.clerk.io/v2
   tags:
-  - Subscribers
+  - Categories
   properties:
   - type: OpenAPI
-    url: openapi/clerk-io-subscribers-api-openapi.yml
+    url: openapi/clerk-io-categories-api-openapi.yml
   - type: ToolCrosswalk
     url: mcp/clerk-io-tool-crosswalk.yml
   - type: Documentation
@@ -370,16 +274,256 @@ apis:
     url: https://docs.clerk.io/docs/errors
   - type: Pagination
     url: https://docs.clerk.io/docs/pagenation
-- aid: clerk-io:clerk-io-tokens-api
-  name: Clerk.io Tokens API
-  description: The Tokens API from Clerk.io — 1 operation(s) for tokens.
-  humanURL: https://docs.clerk.io/
+- aid: clerk-io:clerk-io-customers-api
+  name: Clerk.io Customers API
+  description: The Customers API from Clerk.io — 1 operation(s) for customers.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
   baseURL: https://api.clerk.io/v2
   tags:
-  - Tokens
+  - Customers
   properties:
   - type: OpenAPI
-    url: openapi/clerk-io-tokens-api-openapi.yml
+    url: openapi/clerk-io-customers-api-openapi.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Authentication
+    url: https://docs.clerk.io/docs/authentication
+  - type: ErrorCodes
+    url: https://docs.clerk.io/docs/errors
+  - type: Pagination
+    url: https://docs.clerk.io/docs/pagenation
+- aid: clerk-io:clerk-io-customized-search-api
+  name: Clerk.io Customized Search API
+  description: The Customized Search API from Clerk.io — 1 operation(s) for customized search.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+  baseURL: https://api.clerk.io/v2
+  tags:
+  - Customized Search
+  properties:
+  - type: OpenAPI
+    url: openapi/clerk-io-customized-search-api-openapi.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Authentication
+    url: https://docs.clerk.io/docs/authentication
+  - type: ErrorCodes
+    url: https://docs.clerk.io/docs/errors
+  - type: Pagination
+    url: https://docs.clerk.io/docs/pagenation
+- aid: clerk-io:clerk-io-log-api
+  name: Clerk.io Log API
+  description: The Log API from Clerk.io — 9 operation(s) for log.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+  baseURL: https://api.clerk.io/v2
+  tags:
+  - Log
+  properties:
+  - type: OpenAPI
+    url: openapi/clerk-io-log-api-openapi.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Authentication
+    url: https://docs.clerk.io/docs/authentication
+  - type: ErrorCodes
+    url: https://docs.clerk.io/docs/errors
+  - type: Pagination
+    url: https://docs.clerk.io/docs/pagenation
+- aid: clerk-io:clerk-io-orders-api
+  name: Clerk.io Orders API
+  description: The Orders API from Clerk.io — 2 operation(s) for orders.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+  baseURL: https://api.clerk.io/v2
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/clerk-io-orders-api-openapi.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Authentication
+    url: https://docs.clerk.io/docs/authentication
+  - type: ErrorCodes
+    url: https://docs.clerk.io/docs/errors
+  - type: Pagination
+    url: https://docs.clerk.io/docs/pagenation
+- aid: clerk-io:clerk-io-pages-api
+  name: Clerk.io Pages API
+  description: The Pages API from Clerk.io — 1 operation(s) for pages.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+  baseURL: https://api.clerk.io/v2
+  tags:
+  - Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/clerk-io-pages-api-openapi.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Authentication
+    url: https://docs.clerk.io/docs/authentication
+  - type: ErrorCodes
+    url: https://docs.clerk.io/docs/errors
+  - type: Pagination
+    url: https://docs.clerk.io/docs/pagenation
+- aid: clerk-io:clerk-io-product-api
+  name: Clerk.io Product API
+  description: The Product API from Clerk.io — 4 operation(s) for product.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+  baseURL: https://api.clerk.io/v2
+  tags:
+  - Product
+  properties:
+  - type: OpenAPI
+    url: openapi/clerk-io-product-api-openapi.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Authentication
+    url: https://docs.clerk.io/docs/authentication
+  - type: ErrorCodes
+    url: https://docs.clerk.io/docs/errors
+  - type: Pagination
+    url: https://docs.clerk.io/docs/pagenation
+- aid: clerk-io:clerk-io-products-api
+  name: Clerk.io Products API
+  description: The Products API from Clerk.io — 1 operation(s) for products.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+  baseURL: https://api.clerk.io/v2
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/clerk-io-products-api-openapi.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Authentication
+    url: https://docs.clerk.io/docs/authentication
+  - type: ErrorCodes
+    url: https://docs.clerk.io/docs/errors
+  - type: Pagination
+    url: https://docs.clerk.io/docs/pagenation
+- aid: clerk-io:clerk-io-redirects-api
+  name: Clerk.io Redirects API
+  description: The Redirects API from Clerk.io — 1 operation(s) for redirects.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+  baseURL: https://api.clerk.io/v2
+  tags:
+  - Redirects
+  properties:
+  - type: OpenAPI
+    url: openapi/clerk-io-redirects-api-openapi.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Authentication
+    url: https://docs.clerk.io/docs/authentication
+  - type: ErrorCodes
+    url: https://docs.clerk.io/docs/errors
+  - type: Pagination
+    url: https://docs.clerk.io/docs/pagenation
+- aid: clerk-io:clerk-io-subscriber-api
+  name: Clerk.io Subscriber API
+  description: The Subscriber API from Clerk.io — 2 operation(s) for subscriber.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+  baseURL: https://api.clerk.io/v2
+  tags:
+  - Subscriber
+  properties:
+  - type: OpenAPI
+    url: openapi/clerk-io-subscriber-api-openapi.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Authentication
+    url: https://docs.clerk.io/docs/authentication
+  - type: ErrorCodes
+    url: https://docs.clerk.io/docs/errors
+  - type: Pagination
+    url: https://docs.clerk.io/docs/pagenation
+- aid: clerk-io:clerk-io-synonyms-api
+  name: Clerk.io Synonyms API
+  description: The Synonyms API from Clerk.io — 1 operation(s) for synonyms.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+  baseURL: https://api.clerk.io/v2
+  tags:
+  - Synonyms
+  properties:
+  - type: OpenAPI
+    url: openapi/clerk-io-synonyms-api-openapi.yml
+  - type: ToolCrosswalk
+    url: mcp/clerk-io-tool-crosswalk.yml
+  - type: Documentation
+    url: https://docs.clerk.io/
+  - type: APIReference
+    url: https://docs.clerk.io/reference
+  - type: GettingStarted
+    url: https://docs.clerk.io/docs/how-the-clerkio-platform-works
+  - type: Authentication
+    url: https://docs.clerk.io/docs/authentication
+  - type: ErrorCodes
+    url: https://docs.clerk.io/docs/errors
+  - type: Pagination
+    url: https://docs.clerk.io/docs/pagenation
+- aid: clerk-io:clerk-io-token-api
+  name: Clerk.io Token API
+  description: The Token API from Clerk.io — 1 operation(s) for token.
+  humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
+  baseURL: https://api.clerk.io/v2
+  tags:
+  - Token
+  properties:
+  - type: OpenAPI
+    url: openapi/clerk-io-token-api-openapi.yml
   - type: ToolCrosswalk
     url: mcp/clerk-io-tool-crosswalk.yml
   - type: Documentation
