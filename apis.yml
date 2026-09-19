@@ -352,6 +352,8 @@ apis:
   humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
   baseURL: https://api.clerk.io/v2
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -424,6 +426,8 @@ apis:
   humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
   baseURL: https://api.clerk.io/v2
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -520,6 +524,8 @@ apis:
   humanURL: https://docs.clerk.io/docs/clerkjs-quick-start
   baseURL: https://api.clerk.io/v2
   tags:
+  - Tokens
+  tags_raw:
   - Token
   properties:
   - type: OpenAPI
