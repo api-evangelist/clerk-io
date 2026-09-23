@@ -1,27 +1,213 @@
 openapi: 3.2.0
 info:
-  title: Clerk.io Parcels API
+  title: api-settings Orders API
   version: '2'
-  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
-
-
-    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
-  contact:
-    name: Clerk.io Documentation
-    url: https://docs.clerk.io/
-  x-provenance:
-    method: searched
-    harvested: '2026-08-13'
-    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
-    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
-    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
 servers:
 - url: https://api.clerk.io/v2
 security:
 - sec0: []
 tags:
-- name: Parcels
+- name: Orders
 paths:
+  /orders:
+    get:
+      summary: /orders
+      description: Get orders from Clerk.io
+      operationId: orders-get
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: orders
+        in: query
+        description: List of order ID's to get the data for.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Orders
+    post:
+      summary: /orders
+      description: Add or update orders in Clerk.io
+      operationId: orders-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - orders
+              properties:
+                key:
+                  type: string
+                  description: Your stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                orders:
+                  type: array
+                  description: List of [orders](/reference/order-resource) to add or update.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Orders
+    patch:
+      summary: /orders
+      description: Patch existing orders in Clerk.io with new attributes or values.
+      operationId: orders-patch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - private_key
+              - orders
+              properties:
+                key:
+                  type: string
+                  description: You stores public API key.
+                private_key:
+                  type: string
+                  description: Your stores private API key.
+                orders:
+                  type: array
+                  description: List of partial order objects.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Orders
+    delete:
+      summary: /orders
+      description: Delete orders from Clerk.io
+      operationId: orders-delete
+      parameters:
+      - name: key
+        in: query
+        description: Your stores public API key.
+        required: true
+        schema:
+          type: string
+      - name: private_key
+        in: query
+        description: Your stores private API key.
+        required: true
+        schema:
+          type: string
+      - name: orders
+        in: query
+        description: List of order ID's to delete from Clerk.io
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Orders
   /orders/parcels:
     get:
       summary: /orders/parcels
@@ -74,7 +260,7 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Parcels
+      - Orders
     post:
       summary: /orders/parcels
       description: Allows you to create parcels associated with a given Order.
@@ -130,7 +316,7 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Parcels
+      - Orders
     patch:
       summary: /orders/parcels
       description: Allows you to edit parcels associated with a given Order.
@@ -190,7 +376,7 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Parcels
+      - Orders
     delete:
       summary: /orders/parcels
       description: Allows you to delete parcels associated with a given Order.
@@ -237,7 +423,7 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Parcels
+      - Orders
 components:
   securitySchemes:
     sec0:

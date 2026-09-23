@@ -1,19 +1,19 @@
 openapi: 3.2.0
 info:
-  title: api-settings Accessories API
+  title: api-settings Categories API
   version: '2'
 servers:
 - url: https://api.clerk.io/v2
 security:
 - sec0: []
 tags:
-- name: Accessories
+- name: Categories
 paths:
-  /accessories:
+  /categories:
     get:
-      summary: /accessories
-      description: ''
-      operationId: accessories-get
+      summary: /categories
+      description: Get categories from Clerk.io
+      operationId: categories-get
       parameters:
       - name: key
         in: query
@@ -27,9 +27,10 @@ paths:
         required: true
         schema:
           type: string
-      - name: accessories
+      - name: categories
         in: query
-        description: List of product ID's to get the data for.
+        description: List of category ID's to get the data for.
+        required: true
         schema:
           type: array
           items:
@@ -41,7 +42,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{'status': 'ok',\n 'accessories':[\n  \t{'product': 'AV-DHONO',\n   \t 'accessories': ['JBL-GO'],\n   \t 'directed_accessories': ['LDY84']}\n   ]\n }"
+                  value: ''
         '400':
           description: '400'
           content:
@@ -54,11 +55,11 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Categories
     post:
-      summary: /accessories
-      description: ''
-      operationId: accessories-post
+      summary: /categories
+      description: Add or update categories in Clerk.io
+      operationId: categories-post
       requestBody:
         content:
           application/json:
@@ -67,6 +68,7 @@ paths:
               required:
               - key
               - private_key
+              - categories
               properties:
                 key:
                   type: string
@@ -74,9 +76,9 @@ paths:
                 private_key:
                   type: string
                   description: Your stores private API key.
-                accessories:
+                categories:
                   type: array
-                  description: list of accessory objects
+                  description: List of [categories](/reference/category-resource) to add or update.
       responses:
         '200':
           description: '200'
@@ -84,7 +86,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{''status'': ''ok''}'
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
         '400':
           description: '400'
           content:
@@ -97,11 +105,11 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Categories
     patch:
-      summary: /accessories
-      description: ''
-      operationId: accessories-patch
+      summary: /categories
+      description: Patch existing categories in Clerk.io with new attributes or values.
+      operationId: categories-patch
       requestBody:
         content:
           application/json:
@@ -110,16 +118,17 @@ paths:
               required:
               - key
               - private_key
+              - categories
               properties:
                 key:
                   type: string
-                  description: Your stores public API key.
+                  description: You stores public API key.
                 private_key:
                   type: string
                   description: Your stores private API key.
-                accessories:
+                categories:
                   type: array
-                  description: list of accessory objects
+                  description: List of partial category objects.
       responses:
         '200':
           description: '200'
@@ -127,7 +136,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{''status'': ''ok''}'
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
         '400':
           description: '400'
           content:
@@ -140,52 +155,7 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
-    delete:
-      summary: /accessories
-      description: ''
-      operationId: accessories-delete
-      parameters:
-      - name: key
-        in: query
-        description: Your stores public API key.
-        required: true
-        schema:
-          type: string
-      - name: private_key
-        in: query
-        description: Your stores private API key.
-        required: true
-        schema:
-          type: string
-      - name: accessories
-        in: query
-        description: List of product ID's to delete accessories for
-        schema:
-          type: array
-          items:
-            type: string
-      responses:
-        '200':
-          description: '200'
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: '{''status'': ''ok'' }'
-        '400':
-          description: '400'
-          content:
-            application/json:
-              examples:
-                Result:
-                  value: '{}'
-              schema:
-                type: object
-                properties: {}
-      deprecated: false
-      tags:
-      - Accessories
+      - Categories
 components:
   securitySchemes:
     sec0:

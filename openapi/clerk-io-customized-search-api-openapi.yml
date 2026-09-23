@@ -1,19 +1,19 @@
 openapi: 3.2.0
 info:
-  title: api-settings Accessories API
+  title: api-settings Customized Search API
   version: '2'
 servers:
 - url: https://api.clerk.io/v2
 security:
 - sec0: []
 tags:
-- name: Accessories
+- name: Customized Search
 paths:
-  /accessories:
+  /customized_search:
     get:
-      summary: /accessories
+      summary: /customized_search
       description: ''
-      operationId: accessories-get
+      operationId: customized-searches-get
       parameters:
       - name: key
         in: query
@@ -24,12 +24,12 @@ paths:
       - name: private_key
         in: query
         description: Your stores private API key.
-        required: true
         schema:
           type: string
-      - name: accessories
+      - name: rules
         in: query
-        description: List of product ID's to get the data for.
+        description: the list of rule queries which you want to retrieve customized search rules for
+        required: true
         schema:
           type: array
           items:
@@ -41,7 +41,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{'status': 'ok',\n 'accessories':[\n  \t{'product': 'AV-DHONO',\n   \t 'accessories': ['JBL-GO'],\n   \t 'directed_accessories': ['LDY84']}\n   ]\n }"
+                  value: "[\n  {\n    'query': 'abc',\n   \t'products': {'pin': [1,2], 'hide': []},\n   \t'categories': {'pin': [45], 'hide': []},\n   \t'pages': {'pin': [], 'hide': []},\n   \t'suggestions': {'pin': ['bcd'], 'hide': []}\n\t}\n]"
         '400':
           description: '400'
           content:
@@ -54,11 +54,11 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Customized Search
     post:
-      summary: /accessories
+      summary: /customized_search
       description: ''
-      operationId: accessories-post
+      operationId: customized-searches-post
       requestBody:
         content:
           application/json:
@@ -66,7 +66,6 @@ paths:
               type: object
               required:
               - key
-              - private_key
               properties:
                 key:
                   type: string
@@ -74,9 +73,9 @@ paths:
                 private_key:
                   type: string
                   description: Your stores private API key.
-                accessories:
+                rules:
                   type: array
-                  description: list of accessory objects
+                  description: list of customized_search objects
       responses:
         '200':
           description: '200'
@@ -84,7 +83,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{''status'': ''ok''}'
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
         '400':
           description: '400'
           content:
@@ -97,11 +102,11 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Customized Search
     patch:
-      summary: /accessories
+      summary: /customized_search
       description: ''
-      operationId: accessories-patch
+      operationId: customized-searches-patch
       requestBody:
         content:
           application/json:
@@ -109,7 +114,6 @@ paths:
               type: object
               required:
               - key
-              - private_key
               properties:
                 key:
                   type: string
@@ -117,9 +121,9 @@ paths:
                 private_key:
                   type: string
                   description: Your stores private API key.
-                accessories:
+                rules:
                   type: array
-                  description: list of accessory objects
+                  description: list of customized_search objects
       responses:
         '200':
           description: '200'
@@ -127,7 +131,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{''status'': ''ok''}'
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
         '400':
           description: '400'
           content:
@@ -140,11 +150,11 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Customized Search
     delete:
-      summary: /accessories
+      summary: /customized_search
       description: ''
-      operationId: accessories-delete
+      operationId: customized-searches-delete
       parameters:
       - name: key
         in: query
@@ -155,12 +165,12 @@ paths:
       - name: private_key
         in: query
         description: Your stores private API key.
-        required: true
         schema:
           type: string
-      - name: accessories
+      - name: rules
         in: query
-        description: List of product ID's to delete accessories for
+        description: the list of queries you want to delete customized search rules for
+        required: true
         schema:
           type: array
           items:
@@ -172,7 +182,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{''status'': ''ok'' }'
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
         '400':
           description: '400'
           content:
@@ -185,7 +201,7 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Customized Search
 components:
   securitySchemes:
     sec0:

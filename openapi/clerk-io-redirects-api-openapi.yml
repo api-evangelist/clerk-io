@@ -1,35 +1,36 @@
 openapi: 3.2.0
 info:
-  title: api-settings Accessories API
+  title: api-settings Redirects API
   version: '2'
 servers:
 - url: https://api.clerk.io/v2
 security:
 - sec0: []
 tags:
-- name: Accessories
+- name: Redirects
 paths:
-  /accessories:
+  /redirects/:
     get:
-      summary: /accessories
+      summary: /redirects
       description: ''
-      operationId: accessories-get
+      operationId: redirects-get
       parameters:
       - name: key
         in: query
-        description: Your stores public API key.
+        description: The public key of the store
         required: true
         schema:
           type: string
       - name: private_key
         in: query
-        description: Your stores private API key.
+        description: The private key of the store
         required: true
         schema:
           type: string
-      - name: accessories
+      - name: redirects
         in: query
-        description: List of product ID's to get the data for.
+        description: The urls to fetch queries for
+        required: true
         schema:
           type: array
           items:
@@ -41,7 +42,11 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{'status': 'ok',\n 'accessories':[\n  \t{'product': 'AV-DHONO',\n   \t 'accessories': ['JBL-GO'],\n   \t 'directed_accessories': ['LDY84']}\n   ]\n }"
+                  value: '{''status'': ''ok''
+
+                    ''redirects'':[{''url'':''clerk.io'',''queries'':[''clerk'',''redirects''],''exact_match'':True}]
+
+                    }'
         '400':
           description: '400'
           content:
@@ -54,11 +59,11 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Redirects
     post:
-      summary: /accessories
+      summary: /redirects
       description: ''
-      operationId: accessories-post
+      operationId: redirects-post
       requestBody:
         content:
           application/json:
@@ -67,16 +72,17 @@ paths:
               required:
               - key
               - private_key
+              - redirects
               properties:
                 key:
                   type: string
-                  description: Your stores public API key.
+                  description: The public key of the store
                 private_key:
                   type: string
-                  description: Your stores private API key.
-                accessories:
+                  description: The private key of the store
+                redirects:
                   type: array
-                  description: list of accessory objects
+                  description: A list of redirect objects
       responses:
         '200':
           description: '200'
@@ -97,11 +103,11 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Redirects
     patch:
-      summary: /accessories
+      summary: /redirects
       description: ''
-      operationId: accessories-patch
+      operationId: redirects-patch
       requestBody:
         content:
           application/json:
@@ -110,16 +116,17 @@ paths:
               required:
               - key
               - private_key
+              - redirects
               properties:
                 key:
                   type: string
-                  description: Your stores public API key.
+                  description: The public key of the store
                 private_key:
                   type: string
-                  description: Your stores private API key.
-                accessories:
+                  description: The private key of the store
+                redirects:
                   type: array
-                  description: list of accessory objects
+                  description: A list of redirect objects
       responses:
         '200':
           description: '200'
@@ -127,7 +134,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{''status'': ''ok''}'
+                  value: '{''status'': ''ok}'
         '400':
           description: '400'
           content:
@@ -140,27 +147,28 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Redirects
     delete:
-      summary: /accessories
+      summary: /redirects
       description: ''
-      operationId: accessories-delete
+      operationId: redirects-delete
       parameters:
       - name: key
         in: query
-        description: Your stores public API key.
+        description: The public key of the store
         required: true
         schema:
           type: string
       - name: private_key
         in: query
-        description: Your stores private API key.
+        description: The private key of the store
         required: true
         schema:
           type: string
-      - name: accessories
+      - name: redirects
         in: query
-        description: List of product ID's to delete accessories for
+        description: The urls to delete redirects for
+        required: true
         schema:
           type: array
           items:
@@ -172,7 +180,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{''status'': ''ok'' }'
+                  value: '{''status'': ''ok''}'
         '400':
           description: '400'
           content:
@@ -185,7 +193,7 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Redirects
 components:
   securitySchemes:
     sec0:

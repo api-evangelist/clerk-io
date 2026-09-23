@@ -1,31 +1,18 @@
 openapi: 3.2.0
 info:
-  title: Clerk.io Logging API
+  title: api-settings Log API
   version: '2'
-  description: 'Clerk.io e-commerce personalisation REST API. Ingest and manage catalog data (products, categories, pages, orders, order parcels, customers, accessories), run behaviour-ranked search and predictive search-as-you-type, request recommendation logics (popular, trending, new, complementary, substituting, visitor- and customer-personalised, category- and page-scoped), manage merchandising (custom search configurations, synonyms, redirects), drive audiences/campaigns/subscribers for email, log visitor behaviour events, and service GDPR privacy requests.
-
-
-    All endpoints live under https://api.clerk.io/v2. Authentication uses a dual-key model: the public `key` identifies the store and is safe in browser-side calls; `private_key` is additionally required for write and sensitive operations and MUST only be sent over SSL.'
-  contact:
-    name: Clerk.io Documentation
-    url: https://docs.clerk.io/
-  x-provenance:
-    method: searched
-    harvested: '2026-08-13'
-    source: https://docs.clerk.io/reference/ (ReadMe API Designer OpenAPI 3.1.0 fragments per reference page)
-    original: openapi/_original/clerk-io-api-settings-openapi-original.yml
-    note: Provider-published operation content is verbatim. API Evangelist added the document title/description, tags[] declarations and per-operation tag assignment; see overlays/clerk-io-api-overlay.yaml.
 servers:
 - url: https://api.clerk.io/v2
 security:
 - sec0: []
 tags:
-- name: Logging
+- name: Log
 paths:
   /log/cart/add:
     get:
       summary: log/cart/add
-      description: Add products to a customers cart. A product is defined as a basket_product object  (see below)
+      description: Add products to a customers cart. A product is defined as a basket_product object (see below)
       operationId: logcartadd
       parameters:
       - name: key
@@ -84,7 +71,7 @@ paths:
         samples-languages:
         - curl
       tags:
-      - Logging
+      - Log
   /log/cart/remove:
     get:
       summary: log/cart/remove
@@ -147,7 +134,7 @@ paths:
         samples-languages:
         - curl
       tags:
-      - Logging
+      - Log
   /log/cart/update:
     get:
       summary: log/cart/update
@@ -210,7 +197,7 @@ paths:
         samples-languages:
         - curl
       tags:
-      - Logging
+      - Log
   /log/category:
     get:
       summary: log/category
@@ -282,7 +269,7 @@ paths:
         samples-languages:
         - curl
       tags:
-      - Logging
+      - Log
   /log/click:
     get:
       summary: log/click
@@ -378,7 +365,7 @@ paths:
         samples-languages:
         - curl
       tags:
-      - Logging
+      - Log
   /log/email:
     get:
       summary: log/email
@@ -450,7 +437,7 @@ paths:
         samples-languages:
         - curl
       tags:
-      - Logging
+      - Log
   /log/product:
     get:
       summary: log/product
@@ -522,7 +509,7 @@ paths:
         samples-languages:
         - curl
       tags:
-      - Logging
+      - Log
   /log/returned:
     get:
       summary: log/returned
@@ -607,7 +594,7 @@ paths:
         samples-languages:
         - curl
       tags:
-      - Logging
+      - Log
   /log/sale:
     get:
       summary: log/sale
@@ -712,7 +699,7 @@ paths:
         - curl
         - text
       tags:
-      - Logging
+      - Log
     post:
       summary: log/sale
       description: Log a sale / order made by a user.
@@ -808,7 +795,7 @@ paths:
         - curl
         - text
       tags:
-      - Logging
+      - Log
 components:
   securitySchemes:
     sec0:

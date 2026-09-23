@@ -1,19 +1,19 @@
 openapi: 3.2.0
 info:
-  title: api-settings Accessories API
+  title: api-settings Customers API
   version: '2'
 servers:
 - url: https://api.clerk.io/v2
 security:
 - sec0: []
 tags:
-- name: Accessories
+- name: Customers
 paths:
-  /accessories:
+  /customers:
     get:
-      summary: /accessories
-      description: ''
-      operationId: accessories-get
+      summary: /customers
+      description: Get customers from Clerk.io
+      operationId: customers-get
       parameters:
       - name: key
         in: query
@@ -27,9 +27,10 @@ paths:
         required: true
         schema:
           type: string
-      - name: accessories
+      - name: customers
         in: query
-        description: List of product ID's to get the data for.
+        description: List of customers emails to get the data for.
+        required: true
         schema:
           type: array
           items:
@@ -41,7 +42,7 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: "{'status': 'ok',\n 'accessories':[\n  \t{'product': 'AV-DHONO',\n   \t 'accessories': ['JBL-GO'],\n   \t 'directed_accessories': ['LDY84']}\n   ]\n }"
+                  value: ''
         '400':
           description: '400'
           content:
@@ -54,11 +55,11 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Customers
     post:
-      summary: /accessories
-      description: ''
-      operationId: accessories-post
+      summary: /customers
+      description: Add or update customers in Clerk.io
+      operationId: customers-post
       requestBody:
         content:
           application/json:
@@ -67,6 +68,7 @@ paths:
               required:
               - key
               - private_key
+              - customers
               properties:
                 key:
                   type: string
@@ -74,9 +76,9 @@ paths:
                 private_key:
                   type: string
                   description: Your stores private API key.
-                accessories:
+                customers:
                   type: array
-                  description: list of accessory objects
+                  description: List of [customers](/reference/customer-resource) to add or update.
       responses:
         '200':
           description: '200'
@@ -84,7 +86,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{''status'': ''ok''}'
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
         '400':
           description: '400'
           content:
@@ -97,11 +105,11 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Customers
     patch:
-      summary: /accessories
-      description: ''
-      operationId: accessories-patch
+      summary: /customers
+      description: Patch existing customers in Clerk.io with new attributes or values.
+      operationId: customers-patch
       requestBody:
         content:
           application/json:
@@ -110,16 +118,17 @@ paths:
               required:
               - key
               - private_key
+              - customers
               properties:
                 key:
                   type: string
-                  description: Your stores public API key.
+                  description: You stores public API key.
                 private_key:
                   type: string
                   description: Your stores private API key.
-                accessories:
+                customers:
                   type: array
-                  description: list of accessory objects
+                  description: List of partial [customer](/reference/customer-resource) objects.
       responses:
         '200':
           description: '200'
@@ -127,7 +136,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{''status'': ''ok''}'
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
         '400':
           description: '400'
           content:
@@ -140,11 +155,11 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Customers
     delete:
-      summary: /accessories
-      description: ''
-      operationId: accessories-delete
+      summary: /customers
+      description: Delete customers from Clerk.io
+      operationId: customers-delete
       parameters:
       - name: key
         in: query
@@ -158,9 +173,10 @@ paths:
         required: true
         schema:
           type: string
-      - name: accessories
+      - name: customers
         in: query
-        description: List of product ID's to delete accessories for
+        description: List of customer ID's to delete from Clerk.io
+        required: true
         schema:
           type: array
           items:
@@ -172,7 +188,13 @@ paths:
             application/json:
               examples:
                 Result:
-                  value: '{''status'': ''ok'' }'
+                  value: '{"status":"ok"}'
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
         '400':
           description: '400'
           content:
@@ -185,7 +207,7 @@ paths:
                 properties: {}
       deprecated: false
       tags:
-      - Accessories
+      - Customers
 components:
   securitySchemes:
     sec0:
