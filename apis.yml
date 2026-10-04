@@ -548,6 +548,9 @@ apis:
   - type: Pagination
     url: https://docs.clerk.io/docs/pagenation
 common:
+  - type: CapabilityMap
+    url: capabilities/clerk-io-capability-edges.yml
+    name: Clerk.io Business Capability Map
   - type: Authentication
     url: authentication/clerk-io-authentication.yml
   - type: TrustCenter
