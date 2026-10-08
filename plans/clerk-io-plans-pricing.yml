@@ -115,3 +115,40 @@ trial:
 maintainers:
   - FN: Kin Lane
     email: kinlane@gmail.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  units: []
+  plans:
+  - name: Search
+    access: other
+    model: metered
+    model_how: stated
+    units: []
+    periods: []
+  - name: Recommendations
+    access: other
+    model: metered
+    model_how: stated
+    units: []
+    periods: []
+  - name: Chat
+    access: other
+    model: metered
+    model_how: stated
+    units: []
+    periods: []
+  - name: Email
+    access: other
+    model: metered
+    model_how: stated
+    units: []
+    periods: []
+  - name: Audience
+    access: other
+    model: metered
+    model_how: stated
+    units: []
+    periods: []
