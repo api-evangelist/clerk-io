@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/clerk-io/integrations
 - https://zapier.com/apps/clerk/integrations
@@ -14,7 +14,25 @@ checked:
 - https://n8n.io/integrations/clerk/
 - https://zapier.com/apps/clerk-io/integrations
 - https://zapier.com/apps/clerk/integrations
+- wordpress/integrations/wordpress-integration-edges.yml
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: WordPress (own)
+  partner: wordpress
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://wordpress.org/plugins/clerkio/
+  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
+  apps:
+  - Clerk
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: WordPress plugin
 templates: []
