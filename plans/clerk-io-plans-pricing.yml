@@ -57,7 +57,7 @@ rate_limit_statements:
   we may automatically upgrade your tier to an appropriate usage tier, or invoice you for the additional
   usage
 x-canonical:
-  generated: '2026-11-02'
+  generated: '2026-11-06'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
@@ -65,13 +65,15 @@ x-canonical:
   units:
   - compute
   - message
+  - period
+  - request
   plans:
   - name: Search
     access: other
-    model: unstated
+    model: metered
     model_how: derived
     units:
-    - other
+    - request
     periods:
     - month
   - name: Recommendations
@@ -79,7 +81,7 @@ x-canonical:
     model: unstated
     model_how: derived
     units:
-    - other
+    - period
     periods:
     - month
   - name: Chat
@@ -87,7 +89,7 @@ x-canonical:
     model: unstated
     model_how: derived
     units:
-    - other
+    - period
     periods:
     - month
   - name: Email
@@ -103,7 +105,7 @@ x-canonical:
     model: unstated
     model_how: derived
     units:
-    - other
+    - period
     periods:
     - month
   - name: Clerk.io Workday (additional assistance)
