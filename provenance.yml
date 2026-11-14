@@ -8,12 +8,21 @@ artifacts:
   capabilities/clerk-io-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   collections/clerk-io.opencollection.json:
     method: derived
     evidence: openapi/clerk-io
   collections/clerk-io.postman_collection.json:
     method: derived
     evidence: openapi/clerk-io
+  compliance/clerk-io-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
   components/clerk-io-components.yml:
     method: searched
     evidence: declared in the artifact
@@ -23,8 +32,14 @@ artifacts:
   conventions/clerk-io-conventions.yml:
     method: searched
     evidence: declared in the artifact
+  data-license/clerk-io-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
   data-model/clerk-io-data-model.yml:
     method: derived
+    evidence: declared in the artifact
+  eligibility/clerk-io-eligibility.yml:
+    method: harvested
     evidence: declared in the artifact
   errors/clerk-io-problem-types.yml:
     method: searched
@@ -41,6 +56,9 @@ artifacts:
   heartbeat/2026-11-06.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-13.yml:
+    method: unknown
+    evidence: no authorship recorded
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -53,7 +71,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -117,6 +135,9 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-11-02T082323.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/clerk-io-lifecycle.yml:
@@ -203,6 +224,9 @@ artifacts:
   plans/clerk-io-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
+  privacy/clerk-io-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/clerk-io-rate-limits.yml:
     method: searched
     evidence: declared in the artifact
@@ -238,6 +262,9 @@ artifacts:
     evidence: declared in the artifact
   sla/clerk-io-sla.yml:
     method: searched
+    evidence: declared in the artifact
+  terms/clerk-io-terms-of-service.yml:
+    method: harvested
     evidence: declared in the artifact
   well-known/clerk-io-well-known.yml:
     method: unknown
